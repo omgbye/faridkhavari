@@ -18,3 +18,21 @@ html{scroll-padding-top:62px}body{overflow-wrap:break-word}.masthead{height:73px
 @media(max-width:700px){.hero-copy{display:contents}.hero-eyebrow{order:1;margin-top:28px;margin-bottom:17px}.hero-name{order:2}.hero-roles{order:3;margin-bottom:23px}.hero-photo{order:4;height:320px}.hero-photo img{object-position:50% 25%}.hero-photo figcaption>span{font-size:7px}.hero-photo figcaption b{font-size:22px}.hero-tag{order:5;margin-top:26px}.hero-intro{order:6}.hero-cta{order:7}.hero-bio{order:8;margin-bottom:29px}.hero-copy{animation:none}}
 .swipe-hint{display:none}@media(max-width:700px){.swipe-hint{display:block;font-size:11px;text-align:center;color:#66542e;letter-spacing:.04em;margin:0 0 17px}.shelf{padding-bottom:18px}}
 @media(max-width:700px){.hero-photo figcaption>span,.hero-photo figcaption b{display:none}.hero-photo figcaption{bottom:9px;left:18px}.hero-photo figcaption a{margin-top:0}.hero-photo:after{background:linear-gradient(0deg,#07110fe8,transparent 35%)}}
+
+/* Keep the author identity visible throughout mobile scrolling. */
+@media(max-width:700px){.masthead{position:sticky;top:0;z-index:80;height:73px;box-shadow:0 1px 0 #dfd9ce}.mobile-menu{top:73px}html{scroll-padding-top:140px}.mobile-menu nav{max-height:calc(100dvh - 145px)}}
+
+/* Mobile polish — 2026-10-23: timeline chips swipe cleanly, bigger featured cover, softer tap feel, no edge-flush cards. */
+a,button{-webkit-tap-highlight-color:transparent}
+@media(max-width:700px){
+.tl{scroll-snap-type:x proximity;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.tl::-webkit-scrollbar{display:none}
+.tl button{scroll-snap-align:start}
+.tl-panel{margin-top:6px}
+.feature>.book-card{width:min(230px,62vw)}
+.shelf{scroll-padding-right:24px;padding-right:24px}
+.primer-steps article{padding:16px 0}
+.author-portrait{margin:0 auto}
+#about .tl-panel h3{font-size:21px;line-height:1.3}
+.connect-band{padding-left:20px;padding-right:20px}
+}
