@@ -121,6 +121,12 @@ section{padding:64px 24px}
 .book-card{display:block}
 .book-card .cover{transition:transform .2s ease}
 .book-card:hover .cover{transform:translateY(-6px)}
+.cover-img{width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:4px;box-shadow:0 14px 30px rgba(0,0,0,.22);display:block;transition:transform .2s ease;background:#ddd}
+.book-card:hover .cover-img{transform:translateY(-6px)}
+.connect-band{background:var(--navy);color:#fff;padding:54px 24px;text-align:center}
+.connect-band h2{font-weight:400;font-size:30px;margin-bottom:10px}
+.connect-band p{color:#c6cedb;max-width:680px;margin:0 auto 20px;font-size:16px}
+.connect-band .btn{display:inline-block}
 .book-card .bt{margin-top:12px;font-family:Georgia,serif;font-size:16px;color:#2b2103;line-height:1.35;text-align:center}
 .book-card .bm{text-align:center;font-size:12.5px;color:#5c4a10;letter-spacing:.06em;text-transform:uppercase}
 .classics{max-width:1140px;margin:34px auto 0;background:rgba(255,255,255,.55);border-radius:8px;padding:22px 26px}
@@ -176,13 +182,13 @@ footer .small{font-size:13px;color:#7e8794;margin-top:14px}
   <div class="wrap">
     <div class="feature">
       <a class="book-card" href="https://www.amazon.com/dp/B0H94TFG83" target="_blank" rel="noopener">
-        <div class="cover c-red"><div class="cs">Zero Cost Economics</div><div class="ct">Leaving Liberal Dystopia</div><div class="ca">Farid A. Khavari</div></div>
+        <img class="cover-img" src="assets/cover-leaving-liberal-dystopia.jpg" alt="Cover of Leaving Liberal Dystopia — Book 2 of the Zero Cost Economics series, by Farid A. Khavari">
       </a>
       <div>
-        <div class="sec-head"><span class="k">New Book</span></div>
+        <div class="sec-head"><span class="k">Featured Book</span></div>
         <h2 style="font-size:34px;font-weight:400">LEAVING LIBERAL DYSTOPIA — THE ROAD TO A BRIGHT FUTURE</h2>
         <div class="news-date">Published July 16, 2026 · Paperback $14.99</div>
-        <p style="color:#3d454f;font-size:16.5px">The newest volume in the Zero Cost Economics series. Khavari argues the way out of a costly, debt-driven system isn't more of the same — it's removing the unnecessary costs baked into housing, healthcare, energy, education, and money itself, so families keep more of what they earn and build real security. A road map, in his words, to a bright future.</p>
+        <p style="color:#3d454f;font-size:16.5px">Book 2 of the Zero Cost Economics series. Khavari argues the way out of a costly, debt-driven system isn't more of the same — it's removing the unnecessary costs baked into housing, healthcare, energy, education, and money itself, so families keep more of what they earn and build real security. A road map, in his words, to a bright future.</p>
         <a class="readmore" href="https://www.amazon.com/dp/B0H94TFG83" target="_blank" rel="noopener">Buy on Amazon →</a>
       </div>
     </div>
@@ -233,35 +239,47 @@ footer .small{font-size:13px;color:#7e8794;margin-top:14px}
 <!-- BOOKS BAND -->
 <section class="books-band" id="books" style="padding-top:0">
   <div class="band-head"><span class="band-title">Books</span></div>
-  <p class="band-sub">The Zero Cost Economics series (2026) — click any book to buy on Amazon. The complete seven-book series is on his Amazon author page.</p>
+  <p class="band-sub">The Zero Cost Economics series (2026), in order, plus the classics that built it — click any cover to buy on Amazon.</p>
   <div class="shelf">
+    <a class="book-card" href="https://www.amazon.com/s?k=Zero+Cost+Economics%3A+A+New+Framework+for+Universal+Prosperity+Farid+A.+Khavari" target="_blank" rel="noopener">
+      <img class="cover-img" src="assets/cover-new-framework.jpg" alt="Cover of Zero Cost Economics: A New Framework for Universal Prosperity — Book 1">
+      <div class="bt">Zero Cost Economics: A New Framework for Universal Prosperity</div><div class="bm">Book 1 · The Series</div>
+    </a>
     <a class="book-card" href="https://www.amazon.com/dp/B0H94TFG83" target="_blank" rel="noopener">
-      <div class="cover c-red"><div class="cs">Zero Cost Economics</div><div class="ct">Leaving Liberal Dystopia</div><div class="ca">Khavari</div></div>
-      <div class="bt">Leaving Liberal Dystopia: The Road to a Bright Future</div><div class="bm">2026 · Paperback $14.99</div>
+      <img class="cover-img" src="assets/cover-leaving-liberal-dystopia.jpg" alt="Cover of Leaving Liberal Dystopia — Book 2">
+      <div class="bt">Leaving Liberal Dystopia: The Road to a Bright Future</div><div class="bm">Book 2 · 2026 · Paperback $14.99</div>
     </a>
     <a class="book-card" href="https://www.amazon.com/s?k=Zero+Cost+Economics%3A+An+Action+Plan+Farid+A.+Khavari" target="_blank" rel="noopener">
-      <div class="cover c-navy"><div class="cs">Zero Cost Economics</div><div class="ct">An Action Plan</div><div class="ca">Khavari</div></div>
-      <div class="bt">Zero Cost Economics: An Action Plan — The Road to World Peace and Prosperity Begins in Post-Mullah Iran</div><div class="bm">2026 · $19.99 · Kindle $9.99</div>
+      <img class="cover-img" src="assets/cover-action-plan.jpg" alt="Cover of Zero Cost Economics: An Action Plan — Book 3">
+      <div class="bt">Zero Cost Economics: An Action Plan — The Road to World Peace and Prosperity Begins in Post-Mullah Iran</div><div class="bm">Book 3 · 2026 · $19.99 · Kindle $9.99</div>
     </a>
     <a class="book-card" href="https://www.amazon.com/s?k=China+vs.+U.S.A.+Farid+A.+Khavari" target="_blank" rel="noopener">
-      <div class="cover c-teal"><div class="cs">Zero Cost Economics</div><div class="ct">China vs. U.S.A.</div><div class="ca">Khavari</div></div>
-      <div class="bt">China vs. U.S.A.: A New Paradigm for Global Economic Leadership</div><div class="bm">2026 · $14.99 · Kindle $9.99</div>
-    </a>
-    <a class="book-card" href="https://www.amazon.com/dp/1440121680" target="_blank" rel="noopener">
-      <div class="cover c-char"><div class="cs">The Foundation · 2009</div><div class="ct">Towards a Zero-Cost Economy</div><div class="ca">Khavari</div></div>
-      <div class="bt">Towards a Zero-Cost Economy: A Blueprint to Create General Economic Security in a Carefree Economy</div><div class="bm">2009 · The original blueprint</div>
-    </a>
-    <a class="book-card" href="https://www.amazon.com/s?k=Zero+Cost+Economics%3A+A+New+Framework+for+Universal+Prosperity+Farid+A.+Khavari" target="_blank" rel="noopener">
-      <div class="cover c-gold"><div class="cs">Zero Cost Economics</div><div class="ct">A New Framework for Universal Prosperity</div><div class="ca">Khavari</div></div>
-      <div class="bt">Zero Cost Economics: A New Framework for Universal Prosperity</div><div class="bm">In the series</div>
+      <img class="cover-img" src="assets/cover-china-vs-usa.jpg" alt="Cover of China vs. U.S.A. — Book 4">
+      <div class="bt">China vs. U.S.A.: A New Paradigm for Global Economic Leadership</div><div class="bm">Book 4 · 2026 · $14.99 · Kindle $9.99</div>
     </a>
     <a class="book-card" href="https://www.amazon.com/s?k=Zero+Cost+Economics%3A+An+Introduction+Farid+A.+Khavari" target="_blank" rel="noopener">
       <div class="cover c-plum"><div class="cs">Zero Cost Economics</div><div class="ct">An Introduction to the Economics of an Economy</div><div class="ca">Khavari</div></div>
       <div class="bt">Zero Cost Economics: An Introduction to the Economics of an Economy</div><div class="bm">In the series · Start here</div>
     </a>
+    <a class="book-card" href="https://www.amazon.com/s?k=Trumpocracy+Forming+Dollar-Bloc+Nations+Farid+A.+Khavari" target="_blank" rel="noopener">
+      <img class="cover-img" src="assets/cover-trumpocracy.jpg" alt="Cover of Trumpocracy: Forming Dollar-Bloc Nations — Book 7">
+      <div class="bt">Trumpocracy: Forming Dollar-Bloc Nations — The Blueprint for Global Economic Stability and Prosperity</div><div class="bm">Book 7 · The Series</div>
+    </a>
+    <a class="book-card" href="https://www.amazon.com/s?k=Manifesto+of+an+Unconventional+Economist+Farid+A.+Khavari" target="_blank" rel="noopener">
+      <img class="cover-img" src="assets/cover-manifesto.jpg" alt="Cover of Manifesto of an Unconventional Economist — Book 8">
+      <div class="bt">Manifesto of an Unconventional Economist: A Compilation of Economic Calls to Action</div><div class="bm">Book 8 · The Series</div>
+    </a>
+    <a class="book-card" href="https://www.amazon.com/dp/1440121680" target="_blank" rel="noopener">
+      <img class="cover-img" src="assets/cover-towards-zero-cost.jpg" alt="Cover of Towards a Zero-Cost Economy (2009)">
+      <div class="bt">Towards a Zero-Cost Economy: A Blueprint to Create General Economic Security in a Carefree Economy</div><div class="bm">2009 · The original blueprint</div>
+    </a>
     <a class="book-card" href="https://www.amazon.com/dp/027594462X" target="_blank" rel="noopener">
-      <div class="cover c-teal"><div class="cs">Classic · 1993</div><div class="ct">Environomics</div><div class="ca">Khavari</div></div>
+      <img class="cover-img" src="assets/cover-environomics.jpg" alt="Cover of Environomics (1993)">
       <div class="bt">Environomics: The Economics of Environmentally Safe Prosperity</div><div class="bm">1993 · Praeger</div>
+    </a>
+    <a class="book-card" href="https://www.amazon.com/s?k=The+Final+Reckoning+Farid+A.+Khavari" target="_blank" rel="noopener">
+      <img class="cover-img" src="assets/cover-final-reckoning.jpg" alt="Cover of The Final Reckoning: The Islamic Plot to Destroy the Dollar (1995)">
+      <div class="bt">The Final Reckoning: The Islamic Plot to Destroy the Dollar</div><div class="bm">1995 · A novel of economic terrorism</div>
     </a>
     <a class="book-card" href="https://www.amazon.com/dp/0984881603" target="_blank" rel="noopener">
       <div class="cover c-navy"><div class="cs">Classic · 2011</div><div class="ct">The Final Crash</div><div class="ca">Khavari</div></div>
@@ -273,13 +291,19 @@ footer .small{font-size:13px;color:#7e8794;margin-top:14px}
     <h3>Earlier works — the full bibliography</h3>
     <ul>
       <li><em>Oil &amp; Islam: The Ticking Bomb</em> (1990) · <em>Vultures: Doctors, Lawyers, Hospitals and Insurance Companies — What's Wrong, and What to Do About It</em> (1990)</li>
-      <li><em>The Final Reckoning: The Islamic Plot to Destroy the Dollar</em> (1995)</li>
       <li>In German: <em>Die OPEC im weltwirtschaftlichen Spannungsfeld</em> (1975) · <em>Die Oelpreispolitik der OPEC-Länder</em> (1975) · <em>Die Oelkrisen bedrohen den Wohlstand des Westens</em> (1973)</li>
       <li>His first book, at 21: <em>Education Corps in Building the Villages</em> (Iran, 1964)</li>
     </ul>
     <p style="margin-top:10px;font-size:14px"><p style="margin-top:12px;font-size:14.5px">Find every earlier work on <a href="https://www.amazon.com/s?k=Farid+A.+Khavari+books" target="_blank" rel="noopener" style="font-weight:700;color:#7e1f18">Amazon - search all Farid A. Khavari books</a></p>
     <p style="margin-top:10px;font-size:14px">His foundational book was long offered as a free download on his original site, <a href="https://www.zerocosteconomy.com/" target="_blank" rel="noopener">ZeroCostEconomy.com</a>.</p>
   </div>
+</section>
+
+<!-- CONNECT: HIS OTHER WEBSITE -->
+<section class="connect-band">
+  <h2>Connected: ZeroCostEconomy.com</h2>
+  <p>Dr. Khavari's original website — home of the Zero Cost Economics idea since long before this page existed, where his foundational book <em>Towards a Zero-Cost Economy</em> was offered as a free download. The two sites belong together: start here for the books, continue there for the archive.</p>
+  <a class="btn btn-amber" href="https://www.zerocosteconomy.com/" target="_blank" rel="noopener">Visit ZeroCostEconomy.com →</a>
 </section>
 
 <!-- ABOUT -->
