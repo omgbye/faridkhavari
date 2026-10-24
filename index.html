@@ -177,7 +177,7 @@ footer .small{font-size:13px;color:#7e8794;margin-top:14px}
 </div>
 <figure class="hero-photo"><img src="assets/farid-khavari-portrait.jpg" alt="Farid A. Khavari in a dark suit and patterned tie" width="536" height="800" fetchpriority="high"><figcaption><span>THE AUTHOR &amp; HIS LIFE’S WORK</span><b>A different way<br>to think about prosperity.</b><a href="#about">Meet Dr. Khavari <span aria-hidden="true">↗</span></a></figcaption></figure>
 </div>
-<div class="hero-strip"><div><span class="strip-label">THE CENTRAL IDEA</span><p>Eliminate unnecessary costs.<br class="mobile-break"> Create enduring prosperity.</p><a href="#idea">Explore the idea <span aria-hidden="true">↓</span></a></div></div>
+<div class="hero-strip"><div><span class="strip-label">THE CENTRAL IDEA</span><p>Eliminate unnecessary costs.<br class="mobile-break"> Create enduring prosperity.</p><a href="#idea">Try the prosperity experiment <span aria-hidden="true">↓</span></a></div></div>
 </header>
 <!-- FEATURED / NEWS -->
 <section>
@@ -210,23 +210,11 @@ footer .small{font-size:13px;color:#7e8794;margin-top:14px}
   </div>
 </section>
 
-<!-- THE IDEA -->
-<section class="idea" id="idea">
-  <div class="wrap">
-    <div class="sec-head"><span class="k">The Idea</span><h2>Zero Cost Economics</h2></div>
-    <div class="rule"></div>
-
-    <div class="system-primer">
-      <div class="primer-intro"><span class="primer-label">THE PRINCIPLE BEHIND THE NUMBERS</span><h3>Beyond earning more.<br>Rethink what life costs.</h3><p>Khavari’s proposal goes beyond household budgeting. It asks how economic policy could lower essential costs and help families build lasting security.</p></div>
-      <div class="primer-steps"><article><span>01</span><div><h4>Freeze rising costs</h4><p>Start with the pressure that essential expenses place on household income.</p></div></article><article><span>02</span><div><h4>Reduce costs at the source</h4><p>Examine the policies and systems behind housing, energy, healthcare, and education.</p></div></article><article><span>03</span><div><h4>Turn lower costs into security</h4><p>In his framework, reducing recurring expenses leaves more income available to accumulate wealth.</p></div></article></div>
-      <div class="primer-source"><p>A plain-language introduction to his proposal. Explore the full argument in his own words.</p><a href="https://www.zerocosteconomy.com/description.html" target="_blank" rel="noopener">Read his original explanation ↗</a></div>
-    </div>
-    <div class="lab-cta">
-      <p class="lab-cta-text">His argument, in his own numbers — the gauges, the money, and forty years of it, charted.</p>
-      <button class="lab-btn" id="openNumbers" type="button" aria-haspopup="dialog">Explore the numbers <span aria-hidden="true">&rarr;</span></button>
-    </div>
-  </div>
-</section>
+<!-- INTERACTIVE: THE PROSPERITY EXPERIMENT -->
+<section id="idea" class="experiment-section" aria-label="The Prosperity Experiment"><iframe id="prosperity-experiment" title="The Prosperity Experiment — interactive introduction to Zero Cost Economics" src="economic-lab.html?embed=1" style="display:block;width:100%;height:1800px;border:0;background:#091915" scrolling="no"></iframe></section>
+<script>
+addEventListener('message',event=>{const frame=document.getElementById('prosperity-experiment');if(event.source!==frame.contentWindow||event.origin!==location.origin)return;if(event.data?.type==='khavari-experiment-navigate'&&['home','books'].includes(event.data.hash)){location.hash=event.data.hash;return}if(event.data?.type==='khavari-experiment-height'&&Number.isFinite(event.data.height))frame.style.height=Math.max(500,Math.min(10000,event.data.height))+'px'});
+</script>
 
 <!-- BOOKS BAND -->
 <section class="books-band" id="books" style="padding-top:0">
@@ -380,179 +368,6 @@ footer .small{font-size:13px;color:#7e8794;margin-top:14px}
     </div>
   </div>
 </footer>
-
-
-<!-- NUMBERS LAB: pull-out interactive -->
-<div class="nl-overlay" id="numbersLab" role="dialog" aria-modal="true" aria-labelledby="nlTitle" hidden>
-  <div class="nl-inner">
-    <button class="nl-close" id="closeNumbers" type="button" aria-label="Close the numbers panel">&times;</button>
-    <span class="nl-kicker">The Idea — By the Numbers</span>
-    <h2 class="nl-title" id="nlTitle">The point of the books, in numbers.</h2>
-    <p class="nl-intro">Dr. Khavari&rsquo;s argument is not that families earn too little. It is that the costs of living rise — and accelerate — while income stands still, so a lifetime of work leaks away before it can become wealth. His system, which he calls <b>Carefreeism</b>, freezes those costs, reduces them, and where possible eliminates them. Every figure below is his.</p>
-
-    <div class="nl-grid nl-gauges">
-      <div class="nl-card nl-gauge">
-        <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="50" fill="none" stroke="#efe9da" stroke-width="11"/><circle cx="60" cy="60" r="50" fill="none" stroke="#25382d" stroke-width="11" stroke-linecap="round" stroke-dasharray="314.2" stroke-dashoffset="103.7" transform="rotate(-90 60 60)"/><text x="60" y="68" text-anchor="middle" font-family="Georgia" font-size="27" fill="#25382d">67%</text></svg>
-        <p class="nl-cap"><b>The mortgage, cut down</b>A 30-year mortgage paid off in 10 — two-thirds of the term, and its interest, gone.</p>
-      </div>
-      <div class="nl-card nl-gauge">
-        <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="50" fill="none" stroke="#efe9da" stroke-width="11"/><circle cx="60" cy="60" r="50" fill="none" stroke="#c9a86a" stroke-width="11" stroke-linecap="round" stroke-dasharray="314.2" stroke-dashoffset="44" transform="rotate(-90 60 60)"/><text x="60" y="68" text-anchor="middle" font-family="Georgia" font-size="27" fill="#25382d">86%</text></svg>
-        <p class="nl-cap"><b>Electricity, nearly eliminated</b>Pay for power about 7 years while a system pays for itself — then it is free for decades.</p>
-      </div>
-      <div class="nl-card nl-gauge">
-        <svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="50" fill="none" stroke="#efe9da" stroke-width="11"/><circle cx="60" cy="60" r="50" fill="none" stroke="#25382d" stroke-width="11" stroke-linecap="round" stroke-dasharray="314.2" stroke-dashoffset="157.1" transform="rotate(-90 60 60)"/><text x="60" y="68" text-anchor="middle" font-family="Georgia" font-size="27" fill="#25382d">50%</text></svg>
-        <p class="nl-cap"><b>Insurance, halved</b>One universal policy — health, car, life, disaster — at half the cost, in his plan.</p>
-      </div>
-      <div class="nl-card nl-gauge">
-        <div class="nl-bignum">50<small> yrs</small></div>
-        <p class="nl-cap" style="margin-top:16px"><b>Retirement becomes possible</b>Not 65 or 70 and rising — with costs eliminated, a family can afford to stop at 50.</p>
-      </div>
-    </div>
-
-    <div class="nl-grid nl-duo">
-      <div class="nl-card">
-        <h3>Where a family&rsquo;s money comes back</h3>
-        <p class="nl-sub">His &ldquo;what if&rdquo; arithmetic — what one average family keeps over a lifetime when each recurring cost is frozen or eliminated:</p>
-        <div class="nl-bar-row"><span class="nl-lab">Mortgage</span><div class="nl-track"><div class="nl-fill" style="width:100%"></div></div><span class="nl-val">+$300K</span></div>
-        <div class="nl-bar-row"><span class="nl-lab">The car</span><div class="nl-track"><div class="nl-fill gold" style="width:58%"></div></div><span class="nl-val">+$100–200K</span></div>
-        <div class="nl-bar-row"><span class="nl-lab">Electricity</span><div class="nl-track"><div class="nl-fill" style="width:33%"></div></div><span class="nl-val">+$100K</span></div>
-        <div class="nl-bar-row"><span class="nl-lab">Insurance</span><div class="nl-track"><div class="nl-fill gold" style="width:33%"></div></div><span class="nl-val">+$100K</span></div>
-        <div class="nl-total"><span class="t1">Recovered over one working life — on the same paycheck</span><span class="t2">&asymp; $600–700K</span></div>
-      </div>
-      <div class="nl-card">
-        <h3>His diagnosis, in one picture</h3>
-        <p class="nl-sub">Costs of every kind rising <i>and accelerating</i>, income nearly flat. The widening gap between the two lines is the leak his books are written to close.</p>
-        <svg viewBox="0 0 460 250" style="width:100%;margin-top:14px" role="img" aria-label="Chart: living costs accelerating upward while income stays nearly flat across a working life">
-          <defs><linearGradient id="nlGap" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#a52a21" stop-opacity=".16"/><stop offset="1" stop-color="#a52a21" stop-opacity=".03"/></linearGradient></defs>
-          <line x1="45" y1="15" x2="45" y2="215" stroke="#e5e0d2"/><line x1="45" y1="215" x2="445" y2="215" stroke="#e5e0d2"/>
-          <path d="M45,190 C150,182 240,160 320,118 C380,86 420,52 445,30 L445,205 C360,200 200,196 45,205 Z" fill="url(#nlGap)"/>
-          <path d="M45,190 C150,182 240,160 320,118 C380,86 420,52 445,30" fill="none" stroke="#a52a21" stroke-width="3" stroke-linecap="round"/>
-          <path d="M45,205 C160,201 300,198 445,193" fill="none" stroke="#25382d" stroke-width="3" stroke-linecap="round"/>
-          <text x="318" y="42" font-size="13" font-weight="bold" fill="#a52a21">COST OF LIVING</text>
-          <text x="330" y="185" font-size="13" font-weight="bold" fill="#25382d">INCOME</text>
-          <text x="255" y="150" font-size="13" font-style="italic" fill="#8a4a42" transform="rotate(-16 255 150)">the leak</text>
-          <text x="45" y="238" font-size="11" fill="#66707d">FIRST JOB</text>
-          <text x="368" y="238" font-size="11" fill="#66707d">RETIREMENT</text>
-        </svg>
-        <p class="nl-sub" style="margin-top:6px">Illustrative — the shape of his argument in <i>Towards a Zero-Cost Economy</i>, not a statistical series.</p>
-      </div>
-    </div>
-
-    <div class="nl-card nl-follow">
-      <h3>Follow the money over time</h3>
-      <p class="nl-sub">Drag the year. The curve is the money one family has <b>recovered by then</b> under his examples — insurance halved and the car savings from year one, electricity free after year 7, the mortgage finished at year 10 instead of year 30.</p>
-      <svg id="nlChart" viewBox="0 0 640 300" style="width:100%;margin-top:10px" role="img" aria-label="Interactive chart: cumulative money recovered under Dr. Khavari's examples across a 40-year working life"></svg>
-      <div class="nl-scrub">
-        <label for="nlYear">Year <b id="nlYearLabel">40</b> of a working life</label>
-        <input type="range" id="nlYear" min="0" max="40" step="1" value="40">
-      </div>
-      <div class="nl-readouts">
-        <div class="nl-read"><span class="nl-read-n" id="nlRecovered">$0</span><span class="nl-read-d">recovered by this year</span></div>
-        <div class="nl-read"><span class="nl-read-n" id="nlPerYear">$0</span><span class="nl-read-d">kept every year from here</span></div>
-        <div class="nl-read"><span class="nl-read-n">$0</span><span class="nl-read-d">upfront cost to the family — the change is policy, not a purchase</span></div>
-      </div>
-      <p class="nl-note" id="nlPhase"></p>
-    </div>
-
-    <div class="nl-grid nl-tiles">
-      <div class="nl-tile"><div class="n">Millions</div><div class="d">of secure jobs — his &ldquo;SuperJobs&rdquo;: work whose product permanently lowers everyone&rsquo;s costs, solar first among them.</div></div>
-      <div class="nl-tile"><div class="n">One</div><div class="d">universal insurance policy covering health, car, life and disaster — instead of five rising premiums.</div></div>
-      <div class="nl-tile"><div class="n">$0</div><div class="d">in new taxes. The plan runs on policy changes and money the system already wastes.</div></div>
-      <div class="nl-tile"><div class="n">Zero</div><div class="d">interest as the end goal — and subprime lending outlawed on the way there.</div></div>
-      <div class="nl-tile"><div class="n">Free</div><div class="d">education, kindergarten through university — no student debt at the start of adult life.</div></div>
-    </div>
-
-    <h3 class="nl-secttl">How it would be implemented</h3>
-    <div class="nl-grid nl-steps">
-      <div class="nl-step"><span class="no">01</span><h4>Change the policies</h4><p>No new taxes and no bigger paycheck required — the existing rules that attach costs to everything are rewritten.</p></div>
-      <div class="nl-step"><span class="no">02</span><h4>Build the engines</h4><p>A Bank of the State earns billions for the treasury; SuperJobs in energy, housing and care permanently lower living costs.</p></div>
-      <div class="nl-step"><span class="no">03</span><h4>Freeze, reduce, eliminate</h4><p>Costs stop rising first. Then they fall. Where a cost serves no purpose, it is removed altogether.</p></div>
-      <div class="nl-step"><span class="no">04</span><h4>Families keep the difference</h4><p>What stops leaking becomes savings and wealth — progress he would measure with an Economic Security Index, not GDP.</p></div>
-    </div>
-
-    <p class="nl-source">All figures and claims are Dr. Khavari&rsquo;s, drawn from his published framework at zerocosteconomy.com (Short Description · The Problem · Economic System Comparisons). <a href="https://www.zerocosteconomy.com/description.html" target="_blank" rel="noopener">Read his original explanation &#8599;</a></p>
-  </div>
-</div>
-
-<script>
-(function(){
-  var overlay=document.getElementById('numbersLab');
-  var openBtn=document.getElementById('openNumbers');
-  var closeBtn=document.getElementById('closeNumbers');
-  function openLab(){overlay.hidden=false;requestAnimationFrame(function(){overlay.classList.add('open')});document.body.style.overflow='hidden';closeBtn.focus();}
-  function closeLab(){overlay.classList.remove('open');overlay.hidden=true;document.body.style.overflow='';openBtn.focus();}
-  openBtn.addEventListener('click',openLab);
-  closeBtn.addEventListener('click',closeLab);
-  overlay.addEventListener('click',function(e){if(e.target===overlay)closeLab();});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!overlay.hidden)closeLab();});
-
-  // Follow-the-money model, built from his published examples (per year):
-  // insurance halved ~ $2,500/yr; car (free electricity, 15-year life) ~ $3,750/yr;
-  // electricity ~ $2,900/yr after a 7-year payoff; mortgage: payments avoided yrs 11-30 ~ $15,168/yr.
-  function recovered(t){
-    var ins=2500*t, car=3750*t;
-    var elec=2900*Math.max(0,t-7);
-    var mort=15168*Math.max(0,Math.min(t,30)-10);
-    return ins+car+elec+mort;
-  }
-  function perYear(t){return 2500+3750+(t>7?2900:0)+((t>10&&t<=30)?15168:0);}
-  function money(v){return '$'+Math.round(v).toLocaleString('en-US');}
-
-  var W=640,H=300,L=56,R=16,T=18,B=32,maxY=680000;
-  function X(t){return L+(W-L-R)*t/40;}
-  function Y(v){return T+(H-T-B)*(1-v/maxY);}
-  var svg=document.getElementById('nlChart');
-  var NS='http://www.w3.org/2000/svg';
-  function el(name,attrs){var e=document.createElementNS(NS,name);for(var k in attrs)e.setAttribute(k,attrs[k]);return e;}
-  [0,200000,400000,600000].forEach(function(v){
-    svg.appendChild(el('line',{x1:L,y1:Y(v),x2:W-R,y2:Y(v),stroke:'#e5e0d2','stroke-width':1}));
-    var tx=el('text',{x:L-8,y:Y(v)+4,'text-anchor':'end','font-size':11,fill:'#66707d'});
-    tx.textContent=v===0?'$0':'$'+(v/1000)+'K';svg.appendChild(tx);
-  });
-  [0,10,20,30,40].forEach(function(t){
-    var tx=el('text',{x:X(t),y:H-8,'text-anchor':'middle','font-size':11,fill:'#66707d'});
-    tx.textContent='Year '+t;svg.appendChild(tx);
-  });
-  var d='',da='';
-  for(var t=0;t<=40;t++){var px=X(t),py=Y(recovered(t));d+=(t===0?'M':'L')+px.toFixed(1)+','+py.toFixed(1)+' ';}
-  da=d+'L'+X(40)+','+Y(0)+' L'+X(0)+','+Y(0)+' Z';
-  svg.appendChild(el('path',{d:da,fill:'#c9a86a','fill-opacity':0.18}));
-  svg.appendChild(el('path',{d:d,fill:'none',stroke:'#25382d','stroke-width':3,'stroke-linecap':'round'}));
-  [{t:7,label:'Year 7 — electricity free',dx:-6,anchor:'end'},
-   {t:10,label:'Year 10 — mortgage done, 20 years early',dx:8,anchor:'start'},
-   {t:30,label:'Year 30 — the old mortgage would only now end',dx:-6,anchor:'end'}].forEach(function(m){
-    svg.appendChild(el('circle',{cx:X(m.t),cy:Y(recovered(m.t)),r:4.5,fill:'#a52a21'}));
-    var tx=el('text',{x:X(m.t)+m.dx,y:Y(recovered(m.t))-12,'text-anchor':m.anchor,'font-size':11.5,'font-weight':'bold',fill:'#a52a21'});
-    tx.textContent=m.label;svg.appendChild(tx);
-  });
-  var guide=el('line',{y1:T,y2:Y(0),stroke:'#c9a86a','stroke-width':1.5,'stroke-dasharray':'4 4'});
-  svg.appendChild(guide);
-  var dot=el('circle',{r:6,fill:'#c9a86a',stroke:'#25382d','stroke-width':2});
-  svg.appendChild(dot);
-
-  var yearIn=document.getElementById('nlYear'), yLab=document.getElementById('nlYearLabel'),
-      rec=document.getElementById('nlRecovered'), per=document.getElementById('nlPerYear'),
-      phase=document.getElementById('nlPhase');
-  function phaseText(t){
-    if(t<=0)return 'Today: the family pays every cost in full, and the leak is at full strength.';
-    if(t<7)return 'Insurance is halved and the car is already saving — the first money starts staying.';
-    if(t<10)return 'Electricity is now free for the rest of the family&rsquo;s life. The curve bends upward.';
-    if(t<=30)return 'The mortgage is gone — twenty years early — and its payment now piles up as savings.';
-    return 'Every cost in this example has done its work. The family keeps the difference, every year, on the same income.';
-  }
-  function update(){
-    var t=+yearIn.value, v=recovered(t);
-    yLab.textContent=t;
-    rec.textContent=money(v);
-    per.textContent=money(perYear(t))+'/yr';
-    phase.innerHTML=phaseText(t);
-    guide.setAttribute('x1',X(t));guide.setAttribute('x2',X(t));
-    dot.setAttribute('cx',X(t));dot.setAttribute('cy',Y(v));
-  }
-  yearIn.addEventListener('input',update);
-  update();
-})();
-</script>
 
 <script>
 const tl=[
