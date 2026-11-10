@@ -40,6 +40,12 @@ body{font-family:'Helvetica Neue',Arial,sans-serif;color:var(--cream);padding:18
 .tlabel{font-size:12.5px;color:var(--mut);letter-spacing:.1em;min-width:86px;text-align:right}
 .bookbtn{display:inline-block;background:var(--amber);color:#191c20;font-weight:700;letter-spacing:.14em;font-size:13px;padding:11px 18px;text-decoration:none;text-transform:uppercase}
 @media(max-width:640px){body{padding:10px 8px 14px}.film{padding:18px 14px 14px}.badge{display:none}.tlabel{display:none}}
+
+body.mini .film-head{display:none}
+body.mini .stage{padding:8px 8px 2px}
+body.mini .scenes{display:none}
+body.mini .controls{padding:6px 10px 10px;gap:8px}
+body.mini .capbar{display:none}
 </style>
 </head>
 <body>
@@ -116,6 +122,9 @@ body{font-family:'Helvetica Neue',Arial,sans-serif;color:var(--cream);padding:18
             <line x1="468" y1="208" x2="468" y2="236" stroke="#8a8f83" stroke-width="1.6"/>
             <path d="M463,232 L468,242 L473,232 Z" fill="#8a8f83"/>
           </g>
+          <g id="chipF" opacity="0"><rect x="150" y="84" width="180" height="32" fill="#bfe3ea"/><text x="240" y="106" text-anchor="middle" font-size="14.5" font-weight="700" letter-spacing="1.6" fill="#191c20">1 &#183; FREEZE</text></g>
+          <g id="chipR" opacity="0"><rect x="390" y="84" width="180" height="32" fill="#c9a86a"/><text x="480" y="106" text-anchor="middle" font-size="14.5" font-weight="700" letter-spacing="1.6" fill="#191c20">2 &#183; REDUCE</text></g>
+          <g id="chipE" opacity="0"><rect x="630" y="84" width="180" height="32" fill="#e8a820"/><text x="720" y="106" text-anchor="middle" font-size="14.5" font-weight="700" letter-spacing="1.6" fill="#191c20">3 &#183; ELIMINATE</text></g>
           <text id="saveLab" x="618" y="252" text-anchor="middle" font-size="18.5" font-weight="700" letter-spacing="2.2" fill="#f5bc3a" opacity="0">TRUE SAVINGS &amp; WEALTH</text>
           <g id="chipDec" opacity="0">
             <rect x="684" y="384" width="196" height="29" fill="#e8a820"/>
@@ -142,7 +151,7 @@ body{font-family:'Helvetica Neue',Arial,sans-serif;color:var(--cream);padding:18
 
     <button class="bigplay" id="bigPlay" type="button" aria-label="Play the graphic presentation">
       <span class="disc"><svg width="34" height="34" viewBox="0 0 24 24"><path d="M7 4 L20 12 L7 20 Z" fill="#191c20"/></svg></span>
-      <span class="bp-label">Play &middot; 15 seconds</span>
+      <span class="bp-label">Play &middot; 30 seconds</span>
     </button>
   </div>
 
@@ -161,16 +170,16 @@ body{font-family:'Helvetica Neue',Arial,sans-serif;color:var(--cream);padding:18
       <button class="cbtn scene-btn" id="sc1" type="button">1 &middot; The Trap</button>
       <button class="cbtn scene-btn" id="sc2" type="button">2 &middot; The Way Out</button>
     </div>
-    <div class="tlabel" id="tlabel">0:00 / 0:15</div>
+    <div class="tlabel" id="tlabel">0:00 / 0:30</div>
   </div>
 </div>
 
 <script>
 (function(){
-  var D=15000, t=0, playing=false, lastTs=null, ended=false;
+  var D=30000, t=0, playing=false, lastTs=null, ended=false;
   var $=function(id){return document.getElementById(id)};
   var els={income:$('income'),chipInc:$('chipInc'),cost1:$('cost1'),wedge1:$('wedge1'),anno1:$('anno1'),chipRise:$('chipRise'),debtLab:$('debtLab'),
-           act2:$('act2'),cost2:$('cost2'),wedge2:$('wedge2'),anno2a:$('anno2a'),anno2b:$('anno2b'),saveLab:$('saveLab'),chipDec:$('chipDec'),
+           act2:$('act2'),cost2:$('cost2'),wedge2:$('wedge2'),anno2a:$('anno2a'),anno2b:$('anno2b'),saveLab:$('saveLab'),chipDec:$('chipDec'),chipF:$('chipF'),chipR:$('chipR'),chipE:$('chipE'),
            title:$('titleCard'),close:$('closeCard'),chart:$('chart'),fill:$('fill'),head:$('head'),tlabel:$('tlabel'),
            bigPlay:$('bigPlay'),playBtn:$('playBtn'),caps:[$('cap0'),$('cap1'),$('cap2'),$('cap3')],sc1:$('sc1'),sc2:$('sc2')};
   function seg(t,a,b){if(t<=a)return 0;if(t>=b)return 1;return (t-a)/(b-a)}
@@ -183,26 +192,28 @@ body{font-family:'Helvetica Neue',Arial,sans-serif;color:var(--cream);padding:18
   function apply(ms){
     t=Math.max(0,Math.min(D,ms));
     /* title card */
-    fadeOut(els.title,t,2000,2600);
-    els.chart.setAttribute('opacity',(0.25+0.75*seg(t,2100,2700)).toFixed(3));
-    /* act 1 */
-    draw(els.income,t,2700,3900); fade(els.chipInc,t,3500,4000);
-    draw(els.cost1,t,4100,6700); fade(els.anno1,t,5300,5800);
-    fade(els.wedge1,t,6100,7000); fade(els.debtLab,t,6500,7000); fade(els.chipRise,t,6300,6800);
-    var a1out=seg(t,7300,7900);
+    fadeOut(els.title,t,3600,4400);
+    els.chart.setAttribute('opacity',(0.25+0.75*seg(t,3900,4800)).toFixed(3));
+    /* act 1 : the trap, given room to sink in */
+    draw(els.income,t,4800,7000); fade(els.chipInc,t,6400,7200);
+    draw(els.cost1,t,7400,12200); fade(els.anno1,t,9600,10600);
+    fade(els.wedge1,t,11800,13800); fade(els.debtLab,t,12600,13800); fade(els.chipRise,t,11400,12200);
+    var a1out=seg(t,14200,15200);
     $('act1').setAttribute('opacity',(1-a1out).toFixed(3));
-    /* act 2 */
-    fade(els.act2,t,7800,8100);
-    draw(els.cost2,t,8100,10700); fade(els.anno2a,t,9300,9800); fade(els.anno2b,t,10000,10500);
-    fade(els.wedge2,t,10100,11100); fade(els.saveLab,t,10800,11300); fade(els.chipDec,t,10400,10900);
+    /* act 2 : the way out, the bigger half */
+    fade(els.act2,t,15000,15600);
+    draw(els.cost2,t,15800,22500);
+    fade(els.chipF,t,16500,17300); fade(els.chipR,t,19300,20100); fade(els.chipE,t,22300,23100);
+    fade(els.anno2a,t,18600,19400); fade(els.anno2b,t,20400,21200);
+    fade(els.wedge2,t,21500,24500); fade(els.saveLab,t,23000,24200); fade(els.chipDec,t,22800,23600);
     /* closing */
-    var dim=seg(t,11700,12500);
-    els.chart.setAttribute('opacity',((0.25+0.75*seg(t,2100,2700))*(1-0.72*dim)).toFixed(3));
-    fade(els.close,t,12100,12900);
+    var dim=seg(t,26800,27600);
+    els.chart.setAttribute('opacity',((0.25+0.75*seg(t,3900,4800))*(1-0.72*dim)).toFixed(3));
+    fade(els.close,t,27200,28400);
     /* captions + scenes */
-    cap(t<3900?0:(t<7900?1:(t<11700?2:3)));
-    els.sc1.classList.toggle('on',t>=3900&&t<7900);
-    els.sc2.classList.toggle('on',t>=7900&&t<11700);
+    cap(t<6800?0:(t<15200?1:(t<26800?2:3)));
+    els.sc1.classList.toggle('on',t>=6800&&t<15200);
+    els.sc2.classList.toggle('on',t>=15200&&t<26800);
     /* progress */
     els.fill.style.width=(t/D*100)+'%'; els.head.style.left=(t/D*100)+'%';
     els.tlabel.textContent=fmt(t)+' / '+fmt(D);
@@ -223,18 +234,27 @@ body{font-family:'Helvetica Neue',Arial,sans-serif;color:var(--cream);padding:18
   els.bigPlay.addEventListener('click',play);
   $('stage').addEventListener('click',function(e){if(e.target.closest('.bigplay'))return;if(t>0)toggle()});
   $('replayBtn').addEventListener('click',function(){apply(0);ended=false;play()});
-  els.sc1.addEventListener('click',function(){apply(3950);ended=false;play()});
-  els.sc2.addEventListener('click',function(){apply(7950);ended=false;play()});
+  els.sc1.addEventListener('click',function(){apply(4850);ended=false;play()});
+  els.sc2.addEventListener('click',function(){apply(15250);ended=false;play()});
   $('track').addEventListener('click',function(e){var r=this.getBoundingClientRect();apply((e.clientX-r.left)/r.width*D);ended=false;setPlayIcon()});
   var scene=new URLSearchParams(location.search).get('scene');
   var reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if(scene==='title'){apply(1200)}
-  else if(scene==='trap'){apply(7150)}
-  else if(scene==='way'){apply(11450)}
-  else if(scene==='closing'){apply(14500)}
-  else if(reduced){apply(11450);els.bigPlay.classList.add('hide')}
+  if(scene==='title'){apply(1500)}
+  else if(scene==='trap'){apply(14000)}
+  else if(scene==='way'){apply(25000)}
+  else if(scene==='closing'){apply(29500)}
+  else if(reduced){apply(25000);els.bigPlay.classList.add('hide')}
   else{apply(0)}
   if(scene){els.bigPlay.classList.add('hide')}
+})();
+</script>
+<script>
+(function(){var q=new URLSearchParams(location.search);
+ if(q.has('mini'))document.body.classList.add('mini');
+ var started=false;
+ function go(){if(started)return;started=true;if(window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;var b=document.getElementById('bigPlay')||document.getElementById('playBtn');if(b)b.click();}
+ window.addEventListener('message',function(e){if(e.data&&e.data.fkPlay)go()});
+ if(q.has('autoplay')){var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.intersecting){go();io.disconnect()}})},{threshold:.3});io.observe(document.body);}
 })();
 </script>
 </body>
