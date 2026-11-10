@@ -7,7 +7,7 @@
 <meta name="description" content="An interactive introduction to Zero-Cost Economics: enter your paycheck, watch your costs rise in today's economy, then flip Khavari's switches and watch them freeze, shrink and disappear. Your income never changes.">
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Libre+Caslon+Display&display=swap');
-:root{--bg:#091915;--bg2:#0d211a;--panel:#112720;--panel2:#0f2a20;--line:#29453a;--cream:#f4f0df;--muted:#a5baae;--mint:#70e5b1;--red:#f49f91;--redline:#d95f43;--gold:#e5c578;--frost:#bfe3ea;--green:#a4c639;--ink:#07120e}
+:root{--bg:#10141a;--bg2:#141920;--panel:#171b21;--panel2:#171b21;--line:#2c3138;--cream:#f4f0df;--muted:#a7aeb5;--mint:#e8a820;--red:#f49f91;--redline:#d95f43;--gold:#e5c578;--frost:#bfe3ea;--green:#a4c639;--ink:#0a0d11}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:var(--bg);color:var(--cream);font:15.5px/1.6 'DM Sans',Arial,sans-serif}
@@ -21,14 +21,14 @@ h2{font-size:clamp(30px,3.6vw,44px);line-height:1.12;margin:10px 0 8px}
 .lede{color:var(--muted);max-width:660px;font-size:16px;margin:0}
 section{padding:64px 0 8px}
 .tagchip{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:3px 9px;border-radius:20px;vertical-align:middle}
-.tag-prop{background:#29453a;color:var(--mint);border:1px solid #3c674e}
+.tag-prop{background:#2c3138;color:var(--mint);border:1px solid #7a5c14}
 .tag-lab{background:#3a2f14;color:var(--gold);border:1px solid #79663d}
 /* progress */
-.progress{position:sticky;top:0;z-index:40;background:#091915f2;border-bottom:1px solid var(--line);padding:10px 0}
+.progress{position:sticky;top:0;z-index:40;background:#10141af2;border-bottom:1px solid var(--line);padding:10px 0}
 .progress .wrap{display:flex;align-items:center;gap:14px}
 .progress .plabel{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
 .pbar{flex:1;display:flex;gap:5px}
-.pseg{flex:1;height:9px;border-radius:5px;background:#1c332a;position:relative;overflow:hidden}
+.pseg{flex:1;height:9px;border-radius:5px;background:#23282f;position:relative;overflow:hidden}
 .pseg i{position:absolute;inset:0;transform-origin:left;transform:scaleX(0);transition:transform .8s ease}
 .pseg.f i{background:var(--frost)}.pseg.r i{background:var(--mint)}.pseg.e i{background:var(--gold)}
 .progress .pstep{font-size:10.5px;color:var(--muted);white-space:nowrap}
@@ -37,16 +37,16 @@ section{padding:64px 0 8px}
 .entrance h1{font-size:clamp(42px,6.4vw,74px);line-height:1.05;margin:14px 0 12px}
 .entrance .sub{color:var(--muted);font-size:17px;max-width:600px;margin:0 auto 26px}
 .btn{display:inline-block;border:0;border-radius:4px;padding:15px 26px;font-weight:800;font-size:14px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none}
-.btn-mint{background:var(--mint);color:#09271a}
+.btn-mint{background:var(--mint);color:#141920}
 .btn-gold{background:var(--gold);color:#242719}
-.btn-ghost{background:transparent;color:var(--cream);border:1px solid #3c5547}
-.entrance .minirow{font-size:40px;letter-spacing:12px;margin-bottom:8px}
+.btn-ghost{background:transparent;color:var(--cream);border:1px solid #3a3f45}
+.entrance .minirow{display:flex;gap:16px;justify-content:center;color:var(--gold);opacity:.92;margin-bottom:10px}
 /* paycheck */
 .paygrid{display:grid;grid-template-columns:1.15fr .85fr;gap:34px;align-items:start;margin-top:26px}
 .chars{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .char{border:1px solid var(--line);background:var(--panel);border-radius:10px;padding:16px;text-align:left;color:var(--cream)}
 .char[aria-pressed="true"]{border-color:var(--mint);background:var(--panel2);box-shadow:0 0 0 1px var(--mint)}
-.char .ce{font-size:26px}
+.char .ce{display:block;color:var(--gold);line-height:0}
 .char b{display:block;font-size:16px;margin:4px 0 2px}
 .char span{font-size:12.5px;color:var(--muted);line-height:1.45;display:block}
 .incomebox{border:1px solid var(--line);background:var(--panel);border-radius:10px;padding:22px}
@@ -55,14 +55,14 @@ section{padding:64px 0 8px}
 .incrow .doll{font-size:30px;color:var(--gold)}
 #incomeNum{width:150px;background:var(--bg2);border:1px solid var(--line);color:var(--cream);font-size:26px;padding:8px 10px;border-radius:6px;font-variant-numeric:tabular-nums}
 input[type=range]{width:100%;accent-color:var(--mint);height:30px;cursor:pointer}
-.endpoints{display:flex;justify-content:space-between;color:#769585;font-size:11px}
+.endpoints{display:flex;justify-content:space-between;color:#8b939c;font-size:11px}
 /* jars */
 .jars{display:flex;gap:22px;align-items:flex-end;margin-top:8px}
 .jarwrap{text-align:center;flex:1}
-.jar{position:relative;height:170px;border:2px solid #3c5547;border-top:0;border-radius:6px 6px 16px 16px;background:#0a1f18;overflow:hidden;margin:0 auto;max-width:170px}
-.jar::before{content:"";position:absolute;top:0;left:8%;right:8%;height:8px;border:2px solid #3c5547;border-bottom:0;border-radius:6px 6px 0 0;background:#0a1f18}
+.jar{position:relative;height:170px;border:2px solid #3a3f45;border-top:0;border-radius:6px 6px 16px 16px;background:#0e1116;overflow:hidden;margin:0 auto;max-width:170px}
+.jar::before{content:"";position:absolute;top:0;left:8%;right:8%;height:8px;border:2px solid #3a3f45;border-bottom:0;border-radius:6px 6px 0 0;background:#0e1116}
 .jar .fill{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(180deg,#f5d98b,var(--gold));transition:height 1s ease}
-.jar.wealth .fill{background:linear-gradient(180deg,#9df0c8,var(--mint))}
+.jar.wealth .fill{background:linear-gradient(180deg,#f5bc3a,var(--mint))}
 .jar.debt .fill{background:linear-gradient(180deg,#e08a76,var(--redline))}
 .jar .coins{position:absolute;inset:0;background-image:radial-gradient(circle at 20% 80%,#0002 2px,transparent 3px),radial-gradient(circle at 70% 65%,#0002 2px,transparent 3px),radial-gradient(circle at 45% 88%,#0002 2px,transparent 3px)}
 .jarlab{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:10px}
@@ -70,16 +70,16 @@ input[type=range]{width:100%;accent-color:var(--mint);height:30px;cursor:pointer
 .pour{font-size:20px;text-align:center;color:var(--gold);animation:bob 1.6s ease-in-out infinite;padding-bottom:56px}
 @keyframes bob{50%{transform:translateY(7px)}}
 /* kitchen table */
-.tableScene{position:relative;border:1px solid var(--line);border-radius:16px;background:radial-gradient(ellipse at 50% -10%,#1a4c3555,transparent 60%),linear-gradient(180deg,#0e2a20,#0a1f18);padding:26px 22px 30px;overflow:hidden;margin-top:24px}
+.tableScene{position:relative;border:1px solid var(--line);border-radius:16px;background:radial-gradient(ellipse at 50% -10%,#3a3f4555,transparent 60%),linear-gradient(180deg,#171b21,#0e1116);padding:26px 22px 30px;overflow:hidden;margin-top:24px}
 .tableScene .frostlayer{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity 1.2s ease;background:radial-gradient(circle at 15% 20%,#bfe3ea33,transparent 40%),radial-gradient(circle at 85% 30%,#bfe3ea2e,transparent 45%),radial-gradient(circle at 50% 90%,#bfe3ea26,transparent 50%)}
 .tableScene.frozen .frostlayer{opacity:1}
 .tableScene.frozen .costcard .tag{border-color:var(--frost);color:var(--frost)}
 .costgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:14px;position:relative}
-.costcard{border:1px solid var(--line);background:#10281fd9;border-radius:12px;padding:14px 12px 12px;text-align:center;position:relative;transition:transform .5s ease,opacity .5s ease}
+.costcard{border:1px solid var(--line);background:#141920d9;border-radius:12px;padding:14px 12px 12px;text-align:center;position:relative;transition:transform .5s ease,opacity .5s ease}
 .costcard .ic{height:56px;display:flex;align-items:flex-end;justify-content:center}
 .costcard .ic svg{transition:transform .5s ease}
 .costcard .nm{font-size:12.5px;font-weight:600;margin-top:7px;line-height:1.3}
-.costcard .tag{display:inline-block;margin-top:6px;background:var(--bg);border:1px solid #3c5547;border-radius:5px;padding:3px 10px;font-weight:800;font-size:15px;font-variant-numeric:tabular-nums;cursor:pointer;color:var(--cream)}
+.costcard .tag{display:inline-block;margin-top:6px;background:var(--bg);border:1px solid #3a3f45;border-radius:5px;padding:3px 10px;font-weight:800;font-size:15px;font-variant-numeric:tabular-nums;cursor:pointer;color:var(--cream)}
 .costcard .tag:hover{border-color:var(--mint)}
 .costcard .sub2{font-size:11px;color:var(--muted);margin-top:4px;line-height:1.4}
 .costcard .intpart{color:var(--red);font-weight:700}
@@ -93,12 +93,12 @@ input[type=range]{width:100%;accent-color:var(--mint);height:30px;cursor:pointer
 .flowline .neg{color:var(--red)}
 /* timeline */
 .timectl{display:flex;gap:16px;align-items:center;margin-top:22px;flex-wrap:wrap}
-.playbtn{background:var(--mint);border:0;color:#09271a;border-radius:50%;width:50px;height:50px;font-size:19px;flex-shrink:0}
-.yearpill{font-size:12px;color:var(--mint);border:1px solid #3c674e;border-radius:30px;padding:7px 15px;white-space:nowrap;font-weight:700}
+.playbtn{background:var(--mint);border:0;color:#141920;border-radius:50%;width:50px;height:50px;font-size:19px;flex-shrink:0}
+.yearpill{font-size:12px;color:var(--mint);border:1px solid #7a5c14;border-radius:30px;padding:7px 15px;white-space:nowrap;font-weight:700}
 .timeline{flex:1;min-width:200px}
 .chartbox{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:18px 20px 8px;margin-top:18px}
 .chartbox svg{width:100%;height:auto;display:block}
-.narrator{margin-top:16px;background:#173728;border-left:3px solid var(--mint);padding:13px 16px;font-size:14.5px;color:#dce6d8;border-radius:0 8px 8px 0}
+.narrator{margin-top:16px;background:#1a1f26;border-left:3px solid var(--mint);padding:13px 16px;font-size:14.5px;color:#dce6d8;border-radius:0 8px 8px 0}
 .surprise{min-height:30px;margin-top:10px;font-size:14px;color:var(--gold);font-weight:600}
 /* breakdown */
 .breakcard{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:22px 24px;margin-top:20px}
@@ -115,21 +115,21 @@ input[type=range]{width:100%;accent-color:var(--mint);height:30px;cursor:pointer
 .swgroup h3{font-size:13px;letter-spacing:.2em;text-transform:uppercase;margin:0 0 12px;display:flex;align-items:center;gap:10px}
 .swrow{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
 .swcard{border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:16px 17px;display:flex;gap:14px;align-items:flex-start;text-align:left;color:var(--cream);width:100%}
-.swcard .swtrack{flex-shrink:0;width:52px;height:29px;border-radius:20px;background:#1c332a;border:1px solid #3c5547;position:relative;transition:background .3s;margin-top:2px}
-.swcard .swtrack::after{content:"";position:absolute;top:3px;left:4px;width:21px;height:21px;border-radius:50%;background:#769585;transition:left .3s,background .3s}
+.swcard .swtrack{flex-shrink:0;width:52px;height:29px;border-radius:20px;background:#23282f;border:1px solid #3a3f45;position:relative;transition:background .3s;margin-top:2px}
+.swcard .swtrack::after{content:"";position:absolute;top:3px;left:4px;width:21px;height:21px;border-radius:50%;background:#8b939c;transition:left .3s,background .3s}
 .swcard[aria-checked="true"]{border-color:var(--mint)}
-.swcard[aria-checked="true"] .swtrack{background:#1e4d38}
+.swcard[aria-checked="true"] .swtrack{background:#3a3f45}
 .swcard[aria-checked="true"] .swtrack::after{left:25px;background:var(--mint)}
 .swcard b{font-size:15.5px;display:block;line-height:1.3}
 .swcard span{font-size:12.5px;color:var(--muted);display:block;margin-top:3px;line-height:1.45}
 .swcard:disabled{opacity:.45;cursor:not-allowed}
-.propcard{margin-top:14px;border:1px dashed #3c674e;border-radius:10px;padding:14px 17px;font-size:14px;color:#dce6d8;background:#0f2a20;display:none}
+.propcard{margin-top:14px;border:1px dashed #7a5c14;border-radius:10px;padding:14px 17px;font-size:14px;color:#dce6d8;background:#171b21;display:none}
 .propcard.show{display:block}
 .propcard b{color:var(--mint)}
 /* results */
 .resgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
 .rescol{border:1px solid var(--line);border-radius:14px;padding:22px;background:var(--panel)}
-.rescol.khav{border-color:#3c674e;background:linear-gradient(180deg,#12352777,transparent),var(--panel)}
+.rescol.khav{border-color:#7a5c14;background:linear-gradient(180deg,#171b2177,transparent),var(--panel)}
 .rescol h3{margin:0 0 4px;font-family:'Libre Caslon Display',Georgia,serif;font-weight:400;font-size:24px}
 .resrow{display:flex;justify-content:space-between;gap:10px;border-top:1px solid var(--line);padding:11px 0;font-size:14.5px}
 .resrow:first-of-type{border-top:0}
@@ -140,11 +140,11 @@ input[type=range]{width:100%;accent-color:var(--mint);height:30px;cursor:pointer
 .tray span{border:1px solid #79663d;background:#3a2f1455;color:var(--gold);border-radius:20px;padding:5px 13px;font-size:12.5px;font-weight:600}
 /* zoom */
 .zoomrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
-.zoombtn{border:1px solid var(--line);background:var(--panel);color:var(--cream);border-radius:30px;padding:10px 19px}
+.grocbtn svg,.zoombtn svg{vertical-align:-4px;margin-right:2px}.zoombtn{border:1px solid var(--line);background:var(--panel);color:var(--cream);border-radius:30px;padding:10px 19px}
 .zoombtn[aria-pressed="true"]{border-color:var(--mint);color:var(--mint)}
 .goalcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin-top:16px}
 .goalcard{border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:var(--panel)}
-.goalcard b{display:block;margin-bottom:4px}
+.goalcard b{display:flex;align-items:center;gap:8px;margin-bottom:4px}.goalcard b svg{flex:none;color:var(--gold)}
 .goalcard p{margin:0;font-size:13.5px;color:var(--muted)}
 /* badges */
 .badgerow{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
@@ -166,6 +166,18 @@ details.assump li{font-size:13.5px;color:var(--muted);margin:5px 0}
  section{padding:46px 0 4px}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+
+.labbooks{padding:64px 0 8px;border-top:1px solid var(--line)}
+.lbtrack-wrap{overflow:hidden;max-width:1180px;margin:0 auto;padding:6px 0 10px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
+.lbtrack{display:flex;gap:20px;width:max-content;animation:labslide 58s linear infinite}
+.labbooks:hover .lbtrack{animation-play-state:paused}
+@keyframes labslide{to{transform:translateX(-50%)}}
+.lbook{width:132px;flex:none;text-decoration:none}
+.lbook img{width:132px;height:198px;object-fit:cover;border-radius:3px;box-shadow:0 12px 26px rgba(0,0,0,.45);display:block;transition:transform .25s ease}
+.lbook:hover img{transform:translateY(-5px)}
+.lbook span{display:block;font-size:11.5px;color:var(--mut);margin-top:8px;line-height:1.35}
+@media(max-width:640px){.lbtrack{animation:none}.lbtrack-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;mask-image:none;-webkit-mask-image:none}.lbook{width:112px}.lbook img{width:112px;height:168px}#lab-film iframe{height:430px!important}}
+@media(prefers-reduced-motion:reduce){.lbtrack{animation:none}.lbtrack-wrap{overflow-x:auto}}
 </style>
 </head>
 <body>
@@ -177,7 +189,7 @@ details.assump li{font-size:13.5px;color:var(--muted);margin:5px 0}
 </div></div>
 
 <header class="entrance"><div class="wrap">
-  <div class="minirow" aria-hidden="true">🏠 💡 ⛽ 🧺</div>
+  <div class="minirow" aria-hidden="true"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11.2 12 4l8 7.2M6.2 9.6V20h11.6V9.6M10 20v-5.2h4V20"/></svg> <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 18.2h5M10.3 21h3.4M12 3a6 6 0 0 1 3.5 10.9c-.7.5-1 1-1 1.9h-5c0-.9-.3-1.4-1-1.9A6 6 0 0 1 12 3Z"/></svg> <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20.5v-15a1.5 1.5 0 0 1 1.5-1.5h5A1.5 1.5 0 0 1 13 5.5v15M3.5 20.5h12M7 7.5h4v4H7zM13 10l2.8-2 2.2 3.2v5a1.8 1.8 0 0 0 3.6 0V9.8L19 5.5"/></svg> <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 9.5h14l-1.6 9.3a2 2 0 0 1-2 1.7H8.6a2 2 0 0 1-2-1.7L5 9.5ZM8.5 9.5 12 3.8l3.5 5.7M9.3 13.5v3.4M14.7 13.5v3.4"/></svg></div>
   <div style="font-family:Georgia,serif;font-size:clamp(19px,2.6vw,27px);letter-spacing:.14em;color:#a4c639;text-transform:uppercase;margin-bottom:12px">The Institute for a Zero-Cost Economy</div>
   <div class="k">The Economy Lab · An interactive introduction to Zero-Cost Economics</div>
   <h1>What does your life cost?</h1>
@@ -195,10 +207,10 @@ details.assump li{font-size:13.5px;color:var(--muted);margin:5px 0}
   <div class="paygrid">
     <div>
       <div class="chars" role="group" aria-label="Choose a character">
-        <button class="char" data-char="renter" aria-pressed="false"><span class="ce" aria-hidden="true">🧑</span><b>Young renter</b><span>Single, rents an apartment, has a car and student loans. Age 26.</span></button>
-        <button class="char" data-char="family" aria-pressed="true"><span class="ce" aria-hidden="true">👨‍👩‍👧‍👦</span><b>Family of four</b><span>A mortgage, two cars, kids, and every bill that comes with them. Age 38.</span></button>
-        <button class="char" data-char="retiree" aria-pressed="false"><span class="ce" aria-hidden="true">👵</span><b>Retiree</b><span>Fixed income, owns her home, health costs are the big one. Age 67.</span></button>
-        <button class="char" data-char="biz" aria-pressed="false"><span class="ce" aria-hidden="true">🧑‍🔧</span><b>Small business owner</b><span>Rents a shop, high energy and insurance bills. Age 45.</span></button>
+        <button class="char" data-char="renter" aria-pressed="false"><span class="ce" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.4"/><path d="M5.5 19.5c.8-3.2 3.4-5 6.5-5s5.7 1.8 6.5 5"/></svg></span><b>Young renter</b><span>Single, rents an apartment, has a car and student loans. Age 26.</span></button>
+        <button class="char" data-char="family" aria-pressed="true"><span class="ce" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="9" r="2.8"/><circle cx="16.5" cy="10.5" r="2.1"/><path d="M3.8 19c.6-2.8 2.6-4.3 5.2-4.3 1.5 0 2.8.5 3.8 1.4M13.5 15.9c2.3-.3 4.6.5 5.7 2.6"/></svg></span><b>Family of four</b><span>A mortgage, two cars, kids, and every bill that comes with them. Age 38.</span></button>
+        <button class="char" data-char="retiree" aria-pressed="false"><span class="ce" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="8" r="3.2"/><path d="M5 19.5c.7-3 2.7-4.7 5.5-4.7 1.2 0 2.3.3 3.2.9M16.5 13.5v7M14.8 20.5h3.4"/></svg></span><b>Retiree</b><span>Fixed income, owns her home, health costs are the big one. Age 67.</span></button>
+        <button class="char" data-char="biz" aria-pressed="false"><span class="ce" aria-hidden="true"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 9.5 6 4.5h12L19.5 9.5M4.5 9.5h15M4.5 9.5v10h15v-10M9.5 19.5v-5h5v5"/><path d="M4.5 9.5a2.4 2.4 0 0 0 4.8 0 2.4 2.4 0 0 0 4.9 0 2.4 2.4 0 0 0 5.3 0"/></svg></span><b>Small business owner</b><span>Rents a shop, high energy and insurance bills. Age 45.</span></button>
       </div>
       <div class="incomebox" style="margin-top:14px">
         <label for="incomeNum">What do you take home each month?</label>
@@ -210,7 +222,7 @@ details.assump li{font-size:13.5px;color:var(--muted);margin:5px 0}
     <div aria-label="The jars">
       <div class="jars">
         <div class="jarwrap"><div class="jar" id="payJar"><div class="fill" id="payFill" style="height:100%"></div><div class="coins"></div></div><div class="jarlab">Paycheck Jar</div><div class="jarval" id="payVal">$7,800</div></div>
-        <div class="pour" aria-hidden="true">🪙<br>⬇</div>
+        <div class="pour" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 4v13M6.5 12 12 17.5 17.5 12"/></svg></div>
         <div class="jarwrap"><div class="jar wealth" id="wealthJar"><div class="fill" id="wealthFill" style="height:20%"></div><div class="coins"></div></div><div class="jarlab">Wealth Jar · what's left</div><div class="jarval" id="wealthVal">$0</div></div>
       </div>
       <p style="color:var(--muted);font-size:13px;margin-top:14px">Each month, coins pour out of your paycheck into every cost on the table below. Whatever is left drips into the Wealth Jar. If the table costs more than the paycheck, the Wealth Jar runs red — that's debt.</p>
@@ -246,8 +258,8 @@ details.assump li{font-size:13.5px;color:var(--muted);margin:5px 0}
       <g id="chartGrid"></g><path id="wedgeFill" fill="#d95f43" opacity="0.13"></path>
       <path id="costLine" fill="none" stroke="#d95f43" stroke-width="3"></path>
       <path id="khavLine" fill="none" stroke="#a4c639" stroke-width="3" style="display:none"></path>
-      <path id="incLine" fill="none" stroke="#8ba621" stroke-width="2.5" stroke-dasharray="7 5"></path>
-      <line id="cursor" stroke="#769585" stroke-width="1" stroke-dasharray="3 6" y1="18" y2="262"></line>
+      <path id="incLine" fill="none" stroke="#c9a13b" stroke-width="2.5" stroke-dasharray="7 5"></path>
+      <line id="cursor" stroke="#8b939c" stroke-width="1" stroke-dasharray="3 6" y1="18" y2="262"></line>
       <g id="chartTicks"></g>
       <text id="labInc" fill="#a4c639" font-size="12" font-weight="700">STAGNATING INCOME</text>
       <text id="labCost" fill="#f49f91" font-size="12" font-weight="700">TOTAL COSTS</text>
@@ -263,9 +275,9 @@ details.assump li{font-size:13.5px;color:var(--muted);margin:5px 0}
   <h2 id="s4h">Why does an egg cost what it costs?</h2>
   <p class="lede">Tap an item and its price splits open. <b style="color:var(--gold)">Energy, transport and interest light up</b> — because those are the costs hiding inside almost everything else, and they're the ones Khavari's plan goes after.</p>
   <div class="grocbtns" role="group" aria-label="Choose an item to open up">
-    <button class="grocbtn" data-item="eggs" aria-pressed="true">🥚 A dozen eggs</button>
-    <button class="grocbtn" data-item="milk" aria-pressed="false">🥛 A gallon of milk</button>
-    <button class="grocbtn" data-item="gas" aria-pressed="false">⛽ A gallon of gasoline</button>
+    <button class="grocbtn" data-item="eggs" aria-pressed="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5c2.9 0 5.5 4.6 5.5 9.2a5.5 5.5 0 1 1-11 0C6.5 8.1 9.1 3.5 12 3.5Z"/></svg> A dozen eggs</button>
+    <button class="grocbtn" data-item="milk" aria-pressed="false"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.5 3.5h5v3l1.5 2.5v11.5h-8V9L9.5 6.5v-3Z"/><path d="M8 14h8"/></svg> A gallon of milk</button>
+    <button class="grocbtn" data-item="gas" aria-pressed="false"> A gallon of gasoline</button>
   </div>
   <div class="breakcard" id="breakCard" aria-live="polite"></div>
   <div class="narrator"><b>Khavari's point:</b> costs are hidden inside other costs. Make energy nearly free and money nearly interest-free, and food gets cheaper — without anyone being paid less. <span class="tagchip tag-prop">Khavari's proposal</span></div>
@@ -315,28 +327,33 @@ details.assump li{font-size:13.5px;color:var(--muted);margin:5px 0}
   <h2 id="s7h">What if a whole city did this?</h2>
   <p class="lede">Your household's numbers, multiplied. The multiplication is a <span class="tagchip tag-lab">Lab estimate</span>; the cards beside it are <span class="tagchip tag-prop">Khavari's proposal</span> — his stated goals, not Lab results.</p>
   <div class="zoomrow" role="group" aria-label="Choose a scale">
-    <button class="zoombtn" data-zoom="500" aria-pressed="false">🏘️ A neighborhood · 500 homes</button>
-    <button class="zoombtn" data-zoom="250000" aria-pressed="true">🌆 A city · 250,000 homes</button>
-    <button class="zoombtn" data-zoom="8900000" aria-pressed="false">🌴 Florida · 8.9 million homes</button>
+    <button class="zoombtn" data-zoom="500" aria-pressed="false"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 11 7.5 7l4 4M5.5 9.5V19h4v-9.5M13 12.5l3.5-3 3.5 3M14.8 11v6.5h4.4V11"/></svg> A neighborhood · 500 homes</button>
+    <button class="zoombtn" data-zoom="250000" aria-pressed="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20.5V5.8h7v14.7M11 10h6.5v10.5M2.5 20.5h19"/><path d="M6.8 9h1.4M6.8 12.5h1.4M6.8 16h1.4M14 13.5h1.3M14 16.8h1.3"/></svg> A city · 250,000 homes</button>
+    <button class="zoombtn" data-zoom="8900000" aria-pressed="false"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.5 21c-.6-4.5-.4-9 .8-13.5M13.3 8C11 5.9 8 5.4 5.2 6.4M13.3 8c.4-2.8 2-4.9 4.5-6M13.5 8.2c2-1.9 4.7-2.4 7.3-1.6M13.2 8.4c-2.5-.6-5 .1-6.9 1.9"/></svg> Florida · 8.9 million homes</button>
   </div>
   <div class="bigstat" id="zoomStat" style="margin-top:16px;color:var(--mint)">—</div>
   <div style="color:var(--muted);font-size:13.5px" id="zoomSub">kept by households every year, at your current switch settings.</div>
   <div class="goalcards">
-    <div class="goalcard"><b>☀️ Florida, the "Solar Wonderland"</b><p>Decentralized solar everywhere — on roofs, over parking lots — making energy nearly free once it's paid for. <span class="tagchip tag-prop">Khavari's proposal</span></p></div>
-    <div class="goalcard"><b>👷 Full employment, building it</b><p>His plan employs people making and installing solar, converting vehicles to electric, and building clinics — secure jobs created by the transition itself. <span class="tagchip tag-prop">Khavari's proposal</span></p></div>
-    <div class="goalcard"><b>🏠 Homes that cost nothing to run</b><p>Prefab, hurricane-safe, energy-free homes in low-income areas, financed at 0% — true ownership within about a decade. <span class="tagchip tag-prop">Khavari's proposal</span></p></div>
-    <div class="goalcard"><b>🎓 A leisure- and knowledge-based society</b><p>When costs stop eating the paycheck, his endgame: retirement near 50, free education through university, and time becoming the real wealth. He calls it Carefreeism. <span class="tagchip tag-prop">Khavari's proposal</span></p></div>
+    <div class="goalcard"><b><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 3v2.4M12 18.6V21M3 12h2.4M18.6 12H21M5.6 5.6l1.7 1.7M16.7 16.7l1.7 1.7M18.4 5.6l-1.7 1.7M7.3 16.7l-1.7 1.7"/></svg> Florida, the "Solar Wonderland"</b><p>Decentralized solar everywhere — on roofs, over parking lots — making energy nearly free once it's paid for. <span class="tagchip tag-prop">Khavari's proposal</span></p></div>
+    <div class="goalcard"><b><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 16.5a7.5 7.5 0 0 1 6-7.3V6a1.5 1.5 0 0 1 3 0v3.2a7.5 7.5 0 0 1 6 7.3M3 16.5h18v3H3z"/></svg> Full employment, building it</b><p>His plan employs people making and installing solar, converting vehicles to electric, and building clinics — secure jobs created by the transition itself. <span class="tagchip tag-prop">Khavari's proposal</span></p></div>
+    <div class="goalcard"><b><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11.2 12 4l8 7.2M6.2 9.6V20h11.6V9.6M10 20v-5.2h4V20"/></svg> Homes that cost nothing to run</b><p>Prefab, hurricane-safe, energy-free homes in low-income areas, financed at 0% — true ownership within about a decade. <span class="tagchip tag-prop">Khavari's proposal</span></p></div>
+    <div class="goalcard"><b><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5 2.8 9.7 12 14.4l9.2-4.7L12 5ZM6 11.8v4.4c0 1.3 2.7 2.8 6 2.8s6-1.5 6-2.8v-4.4M21.2 9.7v5"/></svg> A leisure- and knowledge-based society</b><p>When costs stop eating the paycheck, his endgame: retirement near 50, free education through university, and time becoming the real wealth. He calls it Carefreeism. <span class="tagchip tag-prop">Khavari's proposal</span></p></div>
   </div>
 </section>
 
+
+<section id="lab-film" style="padding-top:8px">
+  <div class="wrap"><span class="k">Where It Started · 2009</span><h2>The drawing that started it all</h2><p class="sub">Before the Lab, there was the presentation — his whole argument as one animated drawing, restored. It plays on its own as you reach it.</p></div>
+  <iframe title="The Graphic Presentation — Zero Cost Economics" src="grafico-film.html?embed=1&autoplay=1" style="display:block;width:100%;height:660px;border:0;background:#10141a" scrolling="no" loading="lazy"></iframe>
+</section>
 <section id="badges" aria-labelledby="s8h">
   <span class="k">Step 8 · Challenges & badges</span>
   <h2 id="s8h">Missions, if you want them.</h2>
   <div class="chalrow">
-    <div class="goalcard"><b>🎯 Beat the trap with $0 raise</b><p>Get your Wealth Jar positive by year 5 — without touching the income slider. Switches only.</p></div>
-    <div class="goalcard"><b>🏖️ Retire by 55</b><p>Bring the Khavari-side retirement age down to 55 or under.</p></div>
-    <div class="goalcard"><b>🌩️ Survive the storm</b><p>Hurricane, hospital bill, gas spike — in today's economy they'd all land at once. See which economy still stands.</p></div>
-    <div class="goalcard"><b>🥚 Cheaper breakfast</b><p>Cut the egg and milk prices by 20% using only the energy and transport switches. (Open Step 4 and watch the lit-up segments shrink.)</p></div>
+    <div class="goalcard"><b><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.2"/><circle cx="12" cy="12" r="4.6"/><circle cx="12" cy="12" r="1.2"/></svg> Beat the trap with $0 raise</b><p>Get your Wealth Jar positive by year 5 — without touching the income slider. Switches only.</p></div>
+    <div class="goalcard"><b><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 21V4.5M6 5c3-1.8 5.5 1.4 9 .4v8.7c-3.5 1-6-2.2-9-.4"/></svg> Retire by 55</b><p>Bring the Khavari-side retirement age down to 55 or under.</p></div>
+    <div class="goalcard"><b><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 15a5 5 0 1 1 .9-9.9A6 6 0 0 1 19.5 7 4.2 4.2 0 0 1 18.5 15H7ZM12.5 14.5 9.8 18h2.5l-1.6 3 4.2-4.2h-2.6l1.7-2.3h-1.5Z"/></svg> Survive the storm</b><p>Hurricane, hospital bill, gas spike — in today's economy they'd all land at once. See which economy still stands.</p></div>
+    <div class="goalcard"><b><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5c2.9 0 5.5 4.6 5.5 9.2a5.5 5.5 0 1 1-11 0C6.5 8.1 9.1 3.5 12 3.5Z"/></svg> Cheaper breakfast</b><p>Cut the egg and milk prices by 20% using only the energy and transport switches. (Open Step 4 and watch the lit-up segments shrink.)</p></div>
   </div>
   <div class="badgerow" id="badgeRow" aria-live="polite"></div>
 </section>
@@ -369,6 +386,11 @@ details.assump li{font-size:13.5px;color:var(--muted);margin:5px 0}
 </div>
 
 </main>
+
+<section class="labbooks" aria-label="Books by Farid A. Khavari">
+  <div class="wrap"><span class="k">The Books Behind the Lab</span><h2 style="font-size:clamp(24px,3.4vw,34px);margin:8px 0 4px">Read the plan in his own words</h2><p style="color:var(--mut);margin:0 0 20px">Every switch in this Lab comes from these books. The shelf, in motion — tap any cover to find it.</p></div>
+  <div class="lbtrack-wrap"><div class="lbtrack"><a class="lbook" href="https://www.amazon.com/dp/B0H94TFG83" target="_blank" rel="noopener"><img src="assets/cover-leaving-liberal-dystopia.jpg" alt="Cover of Leaving Liberal Dystopia" loading="lazy"><span>Leaving Liberal Dystopia</span></a><a class="lbook" href="https://www.amazon.com/dp/1440121680" target="_blank" rel="noopener"><img src="assets/cover-towards-zero-cost.jpg" alt="Cover of Towards a Zero-Cost Economy" loading="lazy"><span>Towards a Zero-Cost Economy</span></a><a class="lbook" href="https://www.amazon.com/s?k=Zero+Cost+Economics%3A+A+New+Framework+for+Universal+Prosperity+Farid+A.+Khavari" target="_blank" rel="noopener"><img src="assets/cover-new-framework.jpg" alt="Cover of Zero Cost Economics: A New Framework for Universal Prosperity" loading="lazy"><span>Zero Cost Economics: A New Framework for Universal Prosperity</span></a><a class="lbook" href="https://www.amazon.com/s?k=Zero+Cost+Economics%3A+An+Action+Plan+Farid+A.+Khavari" target="_blank" rel="noopener"><img src="assets/cover-action-plan.jpg" alt="Cover of Zero Cost Economics: An Action Plan" loading="lazy"><span>Zero Cost Economics: An Action Plan</span></a><a class="lbook" href="https://www.amazon.com/s?k=China+vs.+U.S.A.+Farid+A.+Khavari" target="_blank" rel="noopener"><img src="assets/cover-china-vs-usa.jpg" alt="Cover of China vs. U.S.A." loading="lazy"><span>China vs. U.S.A.</span></a><a class="lbook" href="https://www.amazon.com/s?k=Trumpocracy+Forming+Dollar-Bloc+Nations+Farid+A.+Khavari" target="_blank" rel="noopener"><img src="assets/cover-trumpocracy.jpg" alt="Cover of Trumpocracy" loading="lazy"><span>Trumpocracy</span></a><a class="lbook" href="https://www.amazon.com/s?k=Manifesto+of+an+Unconventional+Economist+Farid+A.+Khavari" target="_blank" rel="noopener"><img src="assets/cover-manifesto.jpg" alt="Cover of Manifesto of an Unconventional Economist" loading="lazy"><span>Manifesto of an Unconventional Economist</span></a><a class="lbook" href="https://www.amazon.com/dp/027594462X" target="_blank" rel="noopener"><img src="assets/cover-environomics.jpg" alt="Cover of Environomics" loading="lazy"><span>Environomics</span></a><a class="lbook" href="https://www.amazon.com/s?k=The+Final+Reckoning+Farid+A.+Khavari" target="_blank" rel="noopener"><img src="assets/cover-final-reckoning.jpg" alt="Cover of The Final Reckoning" loading="lazy"><span>The Final Reckoning</span></a><a class="lbook" href="https://www.amazon.com/dp/B0H94TFG83" target="_blank" rel="noopener"><img src="assets/cover-leaving-liberal-dystopia.jpg" alt="Cover of Leaving Liberal Dystopia" loading="lazy"><span>Leaving Liberal Dystopia</span></a><a class="lbook" href="https://www.amazon.com/dp/1440121680" target="_blank" rel="noopener"><img src="assets/cover-towards-zero-cost.jpg" alt="Cover of Towards a Zero-Cost Economy" loading="lazy"><span>Towards a Zero-Cost Economy</span></a><a class="lbook" href="https://www.amazon.com/s?k=Zero+Cost+Economics%3A+A+New+Framework+for+Universal+Prosperity+Farid+A.+Khavari" target="_blank" rel="noopener"><img src="assets/cover-new-framework.jpg" alt="Cover of Zero Cost Economics: A New Framework for Universal Prosperity" loading="lazy"><span>Zero Cost Economics: A New Framework for Universal Prosperity</span></a><a class="lbook" href="https://www.amazon.com/s?k=Zero+Cost+Economics%3A+An+Action+Plan+Farid+A.+Khavari" target="_blank" rel="noopener"><img src="assets/cover-action-plan.jpg" alt="Cover of Zero Cost Economics: An Action Plan" loading="lazy"><span>Zero Cost Economics: An Action Plan</span></a><a class="lbook" href="https://www.amazon.com/s?k=China+vs.+U.S.A.+Farid+A.+Khavari" target="_blank" rel="noopener"><img src="assets/cover-china-vs-usa.jpg" alt="Cover of China vs. U.S.A." loading="lazy"><span>China vs. U.S.A.</span></a><a class="lbook" href="https://www.amazon.com/s?k=Trumpocracy+Forming+Dollar-Bloc+Nations+Farid+A.+Khavari" target="_blank" rel="noopener"><img src="assets/cover-trumpocracy.jpg" alt="Cover of Trumpocracy" loading="lazy"><span>Trumpocracy</span></a><a class="lbook" href="https://www.amazon.com/s?k=Manifesto+of+an+Unconventional+Economist+Farid+A.+Khavari" target="_blank" rel="noopener"><img src="assets/cover-manifesto.jpg" alt="Cover of Manifesto of an Unconventional Economist" loading="lazy"><span>Manifesto of an Unconventional Economist</span></a><a class="lbook" href="https://www.amazon.com/dp/027594462X" target="_blank" rel="noopener"><img src="assets/cover-environomics.jpg" alt="Cover of Environomics" loading="lazy"><span>Environomics</span></a><a class="lbook" href="https://www.amazon.com/s?k=The+Final+Reckoning+Farid+A.+Khavari" target="_blank" rel="noopener"><img src="assets/cover-final-reckoning.jpg" alt="Cover of The Final Reckoning" loading="lazy"><span>The Final Reckoning</span></a></div></div>
+</section>
 <footer class="wrap foot">
   <span>Farid A. Khavari, Ph.D. · Economist · Inventor · Author</span>
   <span>The Economy Lab — an independent educational illustration of Zero-Cost Economics. Illustration, not prediction.</span>
@@ -382,17 +404,17 @@ const cash=n=>(n<0?'\u2212':'')+'$'+Math.abs(Math.round(n)).toLocaleString('en-U
 const REDUCED=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const ICONS={
-home:'<svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="#70e5b1" stroke-width="2.4" stroke-linejoin="round"><path d="M6 24 L24 8 L42 24"/><path d="M11 22 V40 H37 V22"/><path d="M20 40 V29 H28 V40"/></svg>',
+home:'<svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="#e8a820" stroke-width="2.4" stroke-linejoin="round"><path d="M6 24 L24 8 L42 24"/><path d="M11 22 V40 H37 V22"/><path d="M20 40 V29 H28 V40"/></svg>',
 power:'<svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="#e5c578" stroke-width="2.4" stroke-linecap="round"><path d="M24 5 a10 10 0 0 1 6 18 c-1.5 1-2 2.4-2 4 H20 c0-1.6-.5-3-2-4 a10 10 0 0 1 6-18z"/><path d="M20 32 h8 M21 37 h6"/></svg>',
 gas:'<svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="#f49f91" stroke-width="2.4" stroke-linejoin="round"><rect x="8" y="8" width="18" height="32" rx="2"/><rect x="12" y="13" width="10" height="9"/><path d="M26 16 l7-5 v13 a4 4 0 0 0 8 0 V20 a4 4 0 0 0-4-4"/></svg>',
-car:'<svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="#70e5b1" stroke-width="2.4" stroke-linejoin="round"><path d="M7 30 l4-11 a4 4 0 0 1 4-3 h18 a4 4 0 0 1 4 3 l4 11"/><rect x="5" y="30" width="38" height="7" rx="2"/><circle cx="13" cy="39" r="3"/><circle cx="35" cy="39" r="3"/></svg>',
+car:'<svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="#e8a820" stroke-width="2.4" stroke-linejoin="round"><path d="M7 30 l4-11 a4 4 0 0 1 4-3 h18 a4 4 0 0 1 4 3 l4 11"/><rect x="5" y="30" width="38" height="7" rx="2"/><circle cx="13" cy="39" r="3"/><circle cx="35" cy="39" r="3"/></svg>',
 groceries:'<svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="#a4c639" stroke-width="2.4" stroke-linejoin="round"><path d="M10 18 h28 l-4 20 a3 3 0 0 1-3 2 H17 a3 3 0 0 1-3-2 z"/><path d="M17 18 l7-11 M31 18 l-7-11"/><ellipse cx="20" cy="28" rx="3.4" ry="4.4" stroke="#f4f0df"/><path d="M29 24 v9 M25 28 h8" stroke="#f4f0df"/></svg>',
 insurance:'<svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="#bfe3ea" stroke-width="2.4" stroke-linecap="round"><path d="M24 6 a17 17 0 0 1 17 17 H7 a17 17 0 0 1 17-17z"/><path d="M24 23 v12 a4 4 0 0 0 8 0"/></svg>',
 health:'<svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="#f49f91" stroke-width="2.4" stroke-linejoin="round"><rect x="9" y="9" width="30" height="30" rx="5"/><path d="M24 16 v16 M16 24 h16"/></svg>',
 education:'<svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="#e5c578" stroke-width="2.4" stroke-linejoin="round"><path d="M24 10 L44 19 L24 28 L4 19 z"/><path d="M12 23 v10 c0 3 24 3 24 0 V23"/><path d="M44 19 v11"/></svg>',
 credit:'<svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="#f49f91" stroke-width="2.4"><rect x="5" y="12" width="38" height="25" rx="3"/><path d="M5 20 h38"/><path d="M10 31 h9"/></svg>',
-proptax:'<svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="#a5baae" stroke-width="2.4" stroke-linejoin="round"><rect x="7" y="13" width="34" height="23" rx="2"/><path d="M7 15 l17 12 L41 15"/></svg>',
-other:'<svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="#a5baae" stroke-width="2.4" stroke-linejoin="round"><path d="M11 16 h26 l-2 24 a3 3 0 0 1-3 3 H16 a3 3 0 0 1-3-3 z"/><path d="M18 16 v-3 a6 6 0 0 1 12 0 v3"/></svg>'};
+proptax:'<svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="#a7aeb5" stroke-width="2.4" stroke-linejoin="round"><rect x="7" y="13" width="34" height="23" rx="2"/><path d="M7 15 l17 12 L41 15"/></svg>',
+other:'<svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="#a7aeb5" stroke-width="2.4" stroke-linejoin="round"><path d="M11 16 h26 l-2 24 a3 3 0 0 1-3 3 H16 a3 3 0 0 1-3-3 z"/><path d="M18 16 v-3 a6 6 0 0 1 12 0 v3"/></svg>'};
 
 const COST_DEFS=[
  {k:'home',label:'Home',g:.03},{k:'power',label:'Electricity & power',g:.04},{k:'gas',label:'Gasoline',g:.03},
@@ -408,9 +430,9 @@ const CHARACTERS={
  biz:{age:45,income:6200,mortgage:null,homeowner:false,costs:{home:1900,power:480,gas:260,car:450,groceries:700,insurance:950,health:300,education:0,credit:340,proptax:0,other:800}}};
 
 const BREAKDOWNS={
- eggs:{name:'A dozen eggs',price:3.84,segs:[['Feed & farming',38,'#8ba621',0],['Energy — barn heat, refrigeration',12,'#e5c578',1],['Transport — diesel trucks',11,'#d95f43',1],['Interest — farm & store loans',7,'#f49f91',1],['Insurance',5,'#bfe3ea',0],['Packaging & store costs',19,'#769585',0],['Profit',8,'#a5baae',0]],cuts:{1:.8,2:.7,3:.9}},
- milk:{name:'A gallon of milk',price:4.05,segs:[['Feed & farming',41,'#8ba621',0],['Energy — cooling & processing',13,'#e5c578',1],['Transport — refrigerated trucks',12,'#d95f43',1],['Interest — farm & store loans',6,'#f49f91',1],['Insurance',4,'#bfe3ea',0],['Packaging & store costs',16,'#769585',0],['Profit',8,'#a5baae',0]],cuts:{1:.8,2:.7,3:.9}},
- gas:{name:'A gallon of gasoline',price:3.45,segs:[['Crude oil',52,'#769585',0],['Refining',19,'#a5baae',0],['Transport — pipelines & trucks',11,'#d95f43',1],['Interest — financing the chain',4,'#f49f91',1],['Taxes',14,'#bfe3ea',0]],cuts:{2:.7,3:.9}}};
+ eggs:{name:'A dozen eggs',price:3.84,segs:[['Feed & farming',38,'#c9a13b',0],['Energy — barn heat, refrigeration',12,'#e5c578',1],['Transport — diesel trucks',11,'#d95f43',1],['Interest — farm & store loans',7,'#f49f91',1],['Insurance',5,'#bfe3ea',0],['Packaging & store costs',19,'#8b939c',0],['Profit',8,'#a7aeb5',0]],cuts:{1:.8,2:.7,3:.9}},
+ milk:{name:'A gallon of milk',price:4.05,segs:[['Feed & farming',41,'#c9a13b',0],['Energy — cooling & processing',13,'#e5c578',1],['Transport — refrigerated trucks',12,'#d95f43',1],['Interest — farm & store loans',6,'#f49f91',1],['Insurance',4,'#bfe3ea',0],['Packaging & store costs',16,'#8b939c',0],['Profit',8,'#a7aeb5',0]],cuts:{1:.8,2:.7,3:.9}},
+ gas:{name:'A gallon of gasoline',price:3.45,segs:[['Crude oil',52,'#8b939c',0],['Refining',19,'#a7aeb5',0],['Transport — pipelines & trucks',11,'#d95f43',1],['Interest — financing the chain',4,'#f49f91',1],['Taxes',14,'#bfe3ea',0]],cuts:{2:.7,3:.9}}};
 
 const SWITCHES=[
  {id:'freeze',group:'F',name:'Freeze the cost of living',desc:'Frost spreads over every price tag. The ticking stops.',prop:'<b>Khavari\u2019s proposal:</b> the first step of his plan — freeze costs where they are, so the paycheck stops losing ground. Only then can reducing and eliminating do their work. (zerocosteconomy.com)'},
@@ -564,8 +586,8 @@ function renderChart(){
   const maxY=Math.max(state.income*1.9,totalAt(30,false)*1.05);
   const grid=$('chartGrid'),ticks=$('chartTicks');grid.innerHTML='';ticks.innerHTML='';
   const ns='http://www.w3.org/2000/svg';
-  for(let i=0;i<=4;i++){const v=maxY*i/4,y=CY(v);const l=document.createElementNS(ns,'line');l.setAttribute('x1',58);l.setAttribute('x2',692);l.setAttribute('y1',y);l.setAttribute('y2',y);l.setAttribute('stroke','#29453a');grid.appendChild(l);const tx=document.createElementNS(ns,'text');tx.setAttribute('x',50);tx.setAttribute('y',y+4);tx.setAttribute('text-anchor','end');tx.setAttribute('fill','#8ea798');tx.setAttribute('font-size','10');tx.textContent='$'+Math.round(v/100)/10+'k';ticks.appendChild(tx);}
-  for(let t=0;t<=30;t+=5){const tx=document.createElementNS(ns,'text');tx.setAttribute('x',CX(t));tx.setAttribute('y',282);tx.setAttribute('text-anchor','middle');tx.setAttribute('fill','#8ea798');tx.setAttribute('font-size','10');tx.textContent=t===0?'Today':t+'y';ticks.appendChild(tx);}
+  for(let i=0;i<=4;i++){const v=maxY*i/4,y=CY(v);const l=document.createElementNS(ns,'line');l.setAttribute('x1',58);l.setAttribute('x2',692);l.setAttribute('y1',y);l.setAttribute('y2',y);l.setAttribute('stroke','#2c3138');grid.appendChild(l);const tx=document.createElementNS(ns,'text');tx.setAttribute('x',50);tx.setAttribute('y',y+4);tx.setAttribute('text-anchor','end');tx.setAttribute('fill','#8b939c');tx.setAttribute('font-size','10');tx.textContent='$'+Math.round(v/100)/10+'k';ticks.appendChild(tx);}
+  for(let t=0;t<=30;t+=5){const tx=document.createElementNS(ns,'text');tx.setAttribute('x',CX(t));tx.setAttribute('y',282);tx.setAttribute('text-anchor','middle');tx.setAttribute('fill','#8b939c');tx.setAttribute('font-size','10');tx.textContent=t===0?'Today':t+'y';ticks.appendChild(tx);}
   $('incLine').setAttribute('d','M'+CX(0)+','+CY(state.income)+' L'+CX(30)+','+CY(state.income));
   $('costLine').setAttribute('d',linePath(t=>totalAt(t,false)));
   const kh=$('khavLine'),kl=$('labKhav');
@@ -591,11 +613,11 @@ function renderBreakdown(){
   let segHtml='',listHtml='';
   b.segs.forEach((s,idx)=>{segHtml+='<div style="width:'+(vals[idx]/totalFactor*100)+'%;background:'+s[2]+'" title="'+s[0]+'"></div>';
     listHtml+='<div><span class="sw" style="background:'+s[2]+'"></span><span class="'+(s[3]?'hot':'')+'">'+s[0]+'</span> — '+(s[3]&&activeCut(idx)?'<s>'+s[1]+'%</s> <b>'+vals[idx].toFixed(1)+'%</b>':s[1]+'%')+'</div>';});
-  $('breakCard').innerHTML='<div style="display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:baseline"><b style="font-size:19px">'+(state.item==='eggs'?'🥚':state.item==='milk'?'🥛':'⛽')+' '+b.name+'</b><span style="font-size:22px;font-weight:800">'+(Math.abs(newPrice-b.price)>.005?'<s style="color:var(--muted);font-size:16px">$'+b.price.toFixed(2)+'</s> $'+newPrice.toFixed(2):'$'+b.price.toFixed(2))+'</span></div><div class="segbar">'+segHtml+'</div><div class="seglist">'+listHtml+'</div><p style="color:var(--muted);font-size:12.5px;margin:12px 0 0">Shares are approximate, in the pattern of USDA food-dollar breakdowns. <span class="tagchip tag-lab">Lab estimate</span>'+(state.item==='gas'&&sw.ev?' You don\u2019t buy gasoline anymore — this is what a gallon used to contain.':'')+'</p>';
+  $('breakCard').innerHTML='<div style="display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:baseline"><b style="font-size:19px">'+(state.item==='eggs'?'':state.item==='milk'?'':'')+' '+b.name+'</b><span style="font-size:22px;font-weight:800">'+(Math.abs(newPrice-b.price)>.005?'<s style="color:var(--muted);font-size:16px">$'+b.price.toFixed(2)+'</s> $'+newPrice.toFixed(2):'$'+b.price.toFixed(2))+'</span></div><div class="segbar">'+segHtml+'</div><div class="seglist">'+listHtml+'</div><p style="color:var(--muted);font-size:12.5px;margin:12px 0 0">Shares are approximate, in the pattern of USDA food-dollar breakdowns. <span class="tagchip tag-lab">Lab estimate</span>'+(state.item==='gas'&&sw.ev?' You don\u2019t buy gasoline anymore — this is what a gallon used to contain.':'')+'</p>';
 }
 function buildSwitchboard(){
   const host=$('swGroups');host.innerHTML='';
-  [['F','❄️ Freeze','Stop the bleeding first'],['R','⬇️ Reduce','Cut what can be cut'],['E','✖️ Eliminate','Remove the cost entirely']].forEach(([g,ttl,sub])=>{
+  [['F','Freeze','Stop the bleeding first'],['R','Reduce','Cut what can be cut'],['E','Eliminate','Remove the cost entirely']].forEach(([g,ttl,sub])=>{
     const div=document.createElement('div');div.className='swgroup';
     div.innerHTML='<h3><span>'+ttl+'</span><span style="color:var(--muted);letter-spacing:.02em;text-transform:none;font-size:12.5px">'+sub+'</span></h3><div class="swrow"></div>';
     const row=div.querySelector('.swrow');
@@ -645,24 +667,24 @@ function renderResults(){
   const rk=retireAge(true);set('rKhavRetire',rk?rk+'':'Past 90');
   set('rKhavScore',securityScore(true)+' / 100');
   const tray=[];
-  if(state.switches.zeroloan&&CHARACTERS[state.char].mortgage)tray.push('🏠 Mortgage — paid off in 10 years');
-  if(state.switches.freecollege&&state.costs.education>0)tray.push('🎓 Education costs — gone');
-  if(state.switches.solar)tray.push('☀️ Power bill — $25 upkeep after year 12');
-  if(state.switches.ev)tray.push('⛽ Gasoline — gone');
-  if(state.switches.proptax&&state.age>=50&&CHARACTERS[state.char].homeowner)tray.push('✉️ Property tax — $0');
+  if(state.switches.zeroloan&&CHARACTERS[state.char].mortgage)tray.push(' Mortgage — paid off in 10 years');
+  if(state.switches.freecollege&&state.costs.education>0)tray.push(' Education costs — gone');
+  if(state.switches.solar)tray.push(' Power bill — $25 upkeep after year 12');
+  if(state.switches.ev)tray.push(' Gasoline — gone');
+  if(state.switches.proptax&&state.age>=50&&CHARACTERS[state.char].homeowner)tray.push(' Property tax — $0');
   $('goneTray').innerHTML=tray.length?tray.map(t=>'<span>'+t+'</span>').join(''):'<span style="opacity:.6">Nothing yet — flip some switches</span>';
   const diff=Math.max(0,leftoverAt(10,true)-leftoverAt(10,false));
   $('zoomStat').textContent=cash(diff*12*state.zoom)+' a year';
   $('zoomSub').textContent='kept by '+state.zoom.toLocaleString('en-US')+' households like this one, every year, at your current switch settings (the year-10 monthly difference, times twelve). Turn switches on to watch it move.';
   $('endLine').textContent='Same paycheck. In today\u2019s economy you retire at '+(rt?rt:'past 90')+'. In Khavari\u2019s, at '+(rk?rk:'past 90')+'.';
   const badges=[];
-  if(state.switches.freeze&&['solar','ev','zeroloan','localfood'].filter(i=>state.switches[i]).length>=2)badges.push('❄️ Freeze Master');
-  if(state.switches.zeroloan||state.char==='retiree')badges.push('🏠 Debt-Free Home');
-  if(state.switches.solar&&state.switches.ev)badges.push('⚡ Energy Independent');
-  if(state.switches.zeroloan)badges.push('🔑 True Owner');
-  if(securityScore(true)>=80)badges.push('🌴 Carefree');
-  const all=['❄️ Freeze Master','🏠 Debt-Free Home','⚡ Energy Independent','🔑 True Owner','🌴 Carefree'];
-  $('badgeRow').innerHTML=all.map(b=>'<span class="badge'+(badges.includes(b)?' earned':'')+'">'+b+(badges.includes(b)?' ✓':'')+'</span>').join('');
+  if(state.switches.freeze&&['solar','ev','zeroloan','localfood'].filter(i=>state.switches[i]).length>=2)badges.push(' Freeze Master');
+  if(state.switches.zeroloan||state.char==='retiree')badges.push(' Debt-Free Home');
+  if(state.switches.solar&&state.switches.ev)badges.push(' Energy Independent');
+  if(state.switches.zeroloan)badges.push(' True Owner');
+  if(securityScore(true)>=80)badges.push(' Carefree');
+  const all=[' Freeze Master',' Debt-Free Home',' Energy Independent',' True Owner',' Carefree'];
+  $('badgeRow').innerHTML=all.map(b=>'<span class="badge'+(badges.includes(b)?' earned':'')+'">'+b+(badges.includes(b)?' · earned':'')+'</span>').join('');
 }
 function renderAll(){renderJars();renderTable();renderChart();renderNarrator();renderBreakdown();renderResults();}
 function selectChar(k){
@@ -682,9 +704,9 @@ function stopPlay(){state.playing=false;clearInterval(playTimer);$('playBtn').te
 $('playBtn').addEventListener('click',()=>{
   if(state.playing){stopPlay();return;}
   if(state.year>=30){state.year=0;shownSurprises.clear();}
-  state.playing=true;$('playBtn').textContent='❚❚';$('playBtn').setAttribute('aria-label','Pause');
+  state.playing=true;$('playBtn').textContent='';$('playBtn').setAttribute('aria-label','Pause');
   const step=()=>{state.year=Math.min(30,state.year+(REDUCED?30:.3));$('yearRange').value=state.year;$('yearPill').textContent='YEAR '+Math.round(state.year);
-    [[6,'⚡ Surprise — hospital visit: −$4,200. He called this an "unexpected cost."'],[11,'⛽ Surprise — gas spike: +30% for two years.'],[16,'🎉 Surprise — a $1,000 bonus. An "unexpected income" — notice it barely moves the line.']].forEach(([y,msg])=>{if(state.year>=y&&!shownSurprises.has(y)){shownSurprises.add(y);$('surprise').textContent=msg;setTimeout(()=>{if(!state.playing)$('surprise').textContent='';},4200);}});
+    [[6,' Surprise — hospital visit: −$4,200. He called this an "unexpected cost."'],[11,' Surprise — gas spike: +30% for two years.'],[16,' Surprise — a $1,000 bonus. An "unexpected income" — notice it barely moves the line.']].forEach(([y,msg])=>{if(state.year>=y&&!shownSurprises.has(y)){shownSurprises.add(y);$('surprise').textContent=msg;setTimeout(()=>{if(!state.playing)$('surprise').textContent='';},4200);}});
     renderJars();renderTable();renderChart();renderNarrator();
     if(state.year>=30)stopPlay();};
   if(REDUCED){step();stopPlay();}else playTimer=setInterval(step,110);
@@ -699,14 +721,14 @@ $('allOffBtn').addEventListener('click',()=>{state.switches={};$('propCard').cla
 $('againBtn').addEventListener('click',()=>{document.getElementById('paycheck').scrollIntoView({behavior:REDUCED?'auto':'smooth'});});
 $('shareBtn').addEventListener('click',()=>{
   const cv=$('shareCanvas'),x=cv.getContext('2d');
-  x.fillStyle='#091915';x.fillRect(0,0,1200,630);
+  x.fillStyle='#10141a';x.fillRect(0,0,1200,630);
   x.strokeStyle='#e5c578';x.lineWidth=3;x.strokeRect(26,26,1148,578);
-  x.fillStyle='#70e5b1';x.font='700 30px Arial';x.fillText('THE ECONOMY LAB · FARIDKHAVARI.COM',70,110);
+  x.fillStyle='#e8a820';x.font='700 30px Arial';x.fillText('THE ECONOMY LAB · FARIDKHAVARI.COM',70,110);
   x.fillStyle='#f4f0df';x.font='64px Georgia';x.fillText('Same paycheck.',70,215);x.fillText('Different economy.',70,295);
   const rt=retireAge(false),rk=retireAge(true);
   x.font='700 44px Arial';x.fillStyle='#f49f91';x.fillText('Today: retire at '+(rt?rt:'90+'),70,400);
-  x.fillStyle='#70e5b1';x.fillText('Khavari: retire at '+(rk?rk:'90+'),70,465);
-  x.font='30px Arial';x.fillStyle='#a5baae';x.fillText('Wealth after 30 years: '+cash(wealthAt(30,false))+'  →  '+cash(wealthAt(30,true)),70,535);
+  x.fillStyle='#e8a820';x.fillText('Khavari: retire at '+(rk?rk:'90+'),70,465);
+  x.font='30px Arial';x.fillStyle='#a7aeb5';x.fillText('Wealth after 30 years: '+cash(wealthAt(30,false))+'  →  '+cash(wealthAt(30,true)),70,535);
   x.fillStyle='#e5c578';x.font='24px Arial';x.fillText('Zero Cost equals Wealth — an illustration, not a prediction.',70,580);
   const a=document.createElement('a');a.download='my-economy-lab-results.png';a.href=cv.toDataURL('image/png');a.click();
   $('shareNote').textContent='Your card downloaded — post it anywhere. It was made entirely in your browser.';
