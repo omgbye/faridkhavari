@@ -1,0 +1,718 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Economy Lab — Farid A. Khavari</title>
+<meta name="description" content="An interactive introduction to Zero-Cost Economics: enter your paycheck, watch your costs rise in today's economy, then flip Khavari's switches and watch them freeze, shrink and disappear. Your income never changes.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Libre+Caslon+Display&display=swap');
+:root{--bg:#091915;--bg2:#0d211a;--panel:#112720;--panel2:#0f2a20;--line:#29453a;--cream:#f4f0df;--muted:#a5baae;--mint:#70e5b1;--red:#f49f91;--redline:#d95f43;--gold:#e5c578;--frost:#bfe3ea;--green:#a4c639;--ink:#07120e}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--cream);font:15.5px/1.6 'DM Sans',Arial,sans-serif}
+a{color:inherit}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--mint);outline-offset:3px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 26px}
+.k{font-size:11.5px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+h1,h2{font-family:'Libre Caslon Display',Georgia,serif;font-weight:400}
+h2{font-size:clamp(30px,3.6vw,44px);line-height:1.12;margin:10px 0 8px}
+.lede{color:var(--muted);max-width:660px;font-size:16px;margin:0}
+section{padding:64px 0 8px}
+.tagchip{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;padding:3px 9px;border-radius:20px;vertical-align:middle}
+.tag-prop{background:#29453a;color:var(--mint);border:1px solid #3c674e}
+.tag-lab{background:#3a2f14;color:var(--gold);border:1px solid #79663d}
+/* progress */
+.progress{position:sticky;top:0;z-index:40;background:#091915f2;border-bottom:1px solid var(--line);padding:10px 0}
+.progress .wrap{display:flex;align-items:center;gap:14px}
+.progress .plabel{font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.pbar{flex:1;display:flex;gap:5px}
+.pseg{flex:1;height:9px;border-radius:5px;background:#1c332a;position:relative;overflow:hidden}
+.pseg i{position:absolute;inset:0;transform-origin:left;transform:scaleX(0);transition:transform .8s ease}
+.pseg.f i{background:var(--frost)}.pseg.r i{background:var(--mint)}.pseg.e i{background:var(--gold)}
+.progress .pstep{font-size:10.5px;color:var(--muted);white-space:nowrap}
+/* entrance */
+.entrance{padding:74px 0 30px;text-align:center;position:relative;overflow:hidden}
+.entrance h1{font-size:clamp(42px,6.4vw,74px);line-height:1.05;margin:14px 0 12px}
+.entrance .sub{color:var(--muted);font-size:17px;max-width:600px;margin:0 auto 26px}
+.btn{display:inline-block;border:0;border-radius:4px;padding:15px 26px;font-weight:800;font-size:14px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none}
+.btn-mint{background:var(--mint);color:#09271a}
+.btn-gold{background:var(--gold);color:#242719}
+.btn-ghost{background:transparent;color:var(--cream);border:1px solid #3c5547}
+.entrance .minirow{font-size:40px;letter-spacing:12px;margin-bottom:8px}
+/* paycheck */
+.paygrid{display:grid;grid-template-columns:1.15fr .85fr;gap:34px;align-items:start;margin-top:26px}
+.chars{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.char{border:1px solid var(--line);background:var(--panel);border-radius:10px;padding:16px;text-align:left;color:var(--cream)}
+.char[aria-pressed="true"]{border-color:var(--mint);background:var(--panel2);box-shadow:0 0 0 1px var(--mint)}
+.char .ce{font-size:26px}
+.char b{display:block;font-size:16px;margin:4px 0 2px}
+.char span{font-size:12.5px;color:var(--muted);line-height:1.45;display:block}
+.incomebox{border:1px solid var(--line);background:var(--panel);border-radius:10px;padding:22px}
+.incomebox label{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:block}
+.incrow{display:flex;align-items:center;gap:14px;margin:10px 0 4px}
+.incrow .doll{font-size:30px;color:var(--gold)}
+#incomeNum{width:150px;background:var(--bg2);border:1px solid var(--line);color:var(--cream);font-size:26px;padding:8px 10px;border-radius:6px;font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--mint);height:30px;cursor:pointer}
+.endpoints{display:flex;justify-content:space-between;color:#769585;font-size:11px}
+/* jars */
+.jars{display:flex;gap:22px;align-items:flex-end;margin-top:8px}
+.jarwrap{text-align:center;flex:1}
+.jar{position:relative;height:170px;border:2px solid #3c5547;border-top:0;border-radius:6px 6px 16px 16px;background:#0a1f18;overflow:hidden;margin:0 auto;max-width:170px}
+.jar::before{content:"";position:absolute;top:0;left:8%;right:8%;height:8px;border:2px solid #3c5547;border-bottom:0;border-radius:6px 6px 0 0;background:#0a1f18}
+.jar .fill{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(180deg,#f5d98b,var(--gold));transition:height 1s ease}
+.jar.wealth .fill{background:linear-gradient(180deg,#9df0c8,var(--mint))}
+.jar.debt .fill{background:linear-gradient(180deg,#e08a76,var(--redline))}
+.jar .coins{position:absolute;inset:0;background-image:radial-gradient(circle at 20% 80%,#0002 2px,transparent 3px),radial-gradient(circle at 70% 65%,#0002 2px,transparent 3px),radial-gradient(circle at 45% 88%,#0002 2px,transparent 3px)}
+.jarlab{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-top:10px}
+.jarval{font-size:21px;font-weight:700;font-variant-numeric:tabular-nums}
+.pour{font-size:20px;text-align:center;color:var(--gold);animation:bob 1.6s ease-in-out infinite;padding-bottom:56px}
+@keyframes bob{50%{transform:translateY(7px)}}
+/* kitchen table */
+.tableScene{position:relative;border:1px solid var(--line);border-radius:16px;background:radial-gradient(ellipse at 50% -10%,#1a4c3555,transparent 60%),linear-gradient(180deg,#0e2a20,#0a1f18);padding:26px 22px 30px;overflow:hidden;margin-top:24px}
+.tableScene .frostlayer{position:absolute;inset:0;pointer-events:none;opacity:0;transition:opacity 1.2s ease;background:radial-gradient(circle at 15% 20%,#bfe3ea33,transparent 40%),radial-gradient(circle at 85% 30%,#bfe3ea2e,transparent 45%),radial-gradient(circle at 50% 90%,#bfe3ea26,transparent 50%)}
+.tableScene.frozen .frostlayer{opacity:1}
+.tableScene.frozen .costcard .tag{border-color:var(--frost);color:var(--frost)}
+.costgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:14px;position:relative}
+.costcard{border:1px solid var(--line);background:#10281fd9;border-radius:12px;padding:14px 12px 12px;text-align:center;position:relative;transition:transform .5s ease,opacity .5s ease}
+.costcard .ic{height:56px;display:flex;align-items:flex-end;justify-content:center}
+.costcard .ic svg{transition:transform .5s ease}
+.costcard .nm{font-size:12.5px;font-weight:600;margin-top:7px;line-height:1.3}
+.costcard .tag{display:inline-block;margin-top:6px;background:var(--bg);border:1px solid #3c5547;border-radius:5px;padding:3px 10px;font-weight:800;font-size:15px;font-variant-numeric:tabular-nums;cursor:pointer;color:var(--cream)}
+.costcard .tag:hover{border-color:var(--mint)}
+.costcard .sub2{font-size:11px;color:var(--muted);margin-top:4px;line-height:1.4}
+.costcard .intpart{color:var(--red);font-weight:700}
+.costcard.gone{opacity:.42}
+.costcard .ribbon{position:absolute;top:10px;right:-30px;transform:rotate(38deg);background:var(--gold);color:#242719;font-size:9px;font-weight:800;letter-spacing:.1em;padding:3px 34px;text-transform:uppercase}
+.costcard .editrow{display:none;margin-top:8px;gap:6px;justify-content:center}
+.costcard.editing .editrow{display:flex}
+.costcard .editrow input{width:86px;background:var(--bg);border:1px solid var(--mint);color:var(--cream);border-radius:5px;padding:5px 7px;font-size:14px}
+.flowline{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:18px;font-size:13px;color:var(--muted)}
+.flowline b{color:var(--cream);font-variant-numeric:tabular-nums}
+.flowline .neg{color:var(--red)}
+/* timeline */
+.timectl{display:flex;gap:16px;align-items:center;margin-top:22px;flex-wrap:wrap}
+.playbtn{background:var(--mint);border:0;color:#09271a;border-radius:50%;width:50px;height:50px;font-size:19px;flex-shrink:0}
+.yearpill{font-size:12px;color:var(--mint);border:1px solid #3c674e;border-radius:30px;padding:7px 15px;white-space:nowrap;font-weight:700}
+.timeline{flex:1;min-width:200px}
+.chartbox{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:18px 20px 8px;margin-top:18px}
+.chartbox svg{width:100%;height:auto;display:block}
+.narrator{margin-top:16px;background:#173728;border-left:3px solid var(--mint);padding:13px 16px;font-size:14.5px;color:#dce6d8;border-radius:0 8px 8px 0}
+.surprise{min-height:30px;margin-top:10px;font-size:14px;color:var(--gold);font-weight:600}
+/* breakdown */
+.breakcard{border:1px solid var(--line);border-radius:14px;background:var(--panel);padding:22px 24px;margin-top:20px}
+.segbar{display:flex;height:44px;border-radius:8px;overflow:hidden;margin:14px 0 6px;border:1px solid var(--line)}
+.segbar div{position:relative;min-width:0}
+.seglist{display:grid;grid-template-columns:1fr 1fr;gap:5px 26px;font-size:13.5px;margin-top:10px}
+.seglist .sw{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:8px;vertical-align:-1px}
+.seglist .hot{color:var(--gold);font-weight:700}
+.grocbtns{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px}
+.grocbtn{border:1px solid var(--line);background:var(--panel);color:var(--cream);border-radius:30px;padding:9px 17px;font-size:14px}
+.grocbtn[aria-pressed="true"]{border-color:var(--gold);color:var(--gold)}
+/* switchboard */
+.swgroup{margin-top:26px}
+.swgroup h3{font-size:13px;letter-spacing:.2em;text-transform:uppercase;margin:0 0 12px;display:flex;align-items:center;gap:10px}
+.swrow{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+.swcard{border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:16px 17px;display:flex;gap:14px;align-items:flex-start;text-align:left;color:var(--cream);width:100%}
+.swcard .swtrack{flex-shrink:0;width:52px;height:29px;border-radius:20px;background:#1c332a;border:1px solid #3c5547;position:relative;transition:background .3s;margin-top:2px}
+.swcard .swtrack::after{content:"";position:absolute;top:3px;left:4px;width:21px;height:21px;border-radius:50%;background:#769585;transition:left .3s,background .3s}
+.swcard[aria-checked="true"]{border-color:var(--mint)}
+.swcard[aria-checked="true"] .swtrack{background:#1e4d38}
+.swcard[aria-checked="true"] .swtrack::after{left:25px;background:var(--mint)}
+.swcard b{font-size:15.5px;display:block;line-height:1.3}
+.swcard span{font-size:12.5px;color:var(--muted);display:block;margin-top:3px;line-height:1.45}
+.swcard:disabled{opacity:.45;cursor:not-allowed}
+.propcard{margin-top:14px;border:1px dashed #3c674e;border-radius:10px;padding:14px 17px;font-size:14px;color:#dce6d8;background:#0f2a20;display:none}
+.propcard.show{display:block}
+.propcard b{color:var(--mint)}
+/* results */
+.resgrid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:24px}
+.rescol{border:1px solid var(--line);border-radius:14px;padding:22px;background:var(--panel)}
+.rescol.khav{border-color:#3c674e;background:linear-gradient(180deg,#12352777,transparent),var(--panel)}
+.rescol h3{margin:0 0 4px;font-family:'Libre Caslon Display',Georgia,serif;font-weight:400;font-size:24px}
+.resrow{display:flex;justify-content:space-between;gap:10px;border-top:1px solid var(--line);padding:11px 0;font-size:14.5px}
+.resrow:first-of-type{border-top:0}
+.resrow b{font-variant-numeric:tabular-nums;text-align:right}
+.bigstat{font-size:clamp(26px,3vw,36px);font-weight:800;font-variant-numeric:tabular-nums;line-height:1.2}
+.gauge{display:flex;align-items:center;gap:16px}
+.tray{display:flex;flex-wrap:wrap;gap:9px;margin-top:12px}
+.tray span{border:1px solid #79663d;background:#3a2f1455;color:var(--gold);border-radius:20px;padding:5px 13px;font-size:12.5px;font-weight:600}
+/* zoom */
+.zoomrow{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.zoombtn{border:1px solid var(--line);background:var(--panel);color:var(--cream);border-radius:30px;padding:10px 19px}
+.zoombtn[aria-pressed="true"]{border-color:var(--mint);color:var(--mint)}
+.goalcards{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin-top:16px}
+.goalcard{border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:var(--panel)}
+.goalcard b{display:block;margin-bottom:4px}
+.goalcard p{margin:0;font-size:13.5px;color:var(--muted)}
+/* badges */
+.badgerow{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.badge{border:1px solid var(--line);border-radius:12px;padding:12px 16px;font-size:14px;background:var(--panel);opacity:.45}
+.badge.earned{opacity:1;border-color:var(--gold);color:var(--gold);font-weight:700}
+.chalrow{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px;margin-top:14px}
+.endcard{border:1px solid #79663d;border-radius:14px;padding:30px;text-align:center;margin:34px 0 70px;background:radial-gradient(ellipse at 50% 0%,#64542d33,transparent 65%),var(--panel)}
+.endcard h2{margin-top:0}
+details.assump{border:1px solid var(--line);border-radius:12px;padding:6px 20px 14px;margin-top:26px;background:var(--panel)}
+details.assump summary{cursor:pointer;color:var(--gold);font-weight:700;padding:12px 0 4px}
+details.assump li{font-size:13.5px;color:var(--muted);margin:5px 0}
+.foot{border-top:1px solid var(--line);padding:22px 0 40px;color:var(--muted);font-size:12.5px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media(max-width:820px){
+ .paygrid{grid-template-columns:1fr}
+ .resgrid{grid-template-columns:1fr}
+ .seglist{grid-template-columns:1fr}
+ .chars{grid-template-columns:1fr 1fr}
+ .jar{height:140px}
+ section{padding:46px 0 4px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<div class="progress" aria-hidden="true"><div class="wrap">
+  <span class="plabel">The Khavari Plan</span>
+  <div class="pbar"><div class="pseg f"><i id="psegF"></i></div><div class="pseg r"><i id="psegR"></i></div><div class="pseg e"><i id="psegE"></i></div></div>
+  <span class="pstep" id="pstep">No switches on yet</span>
+</div></div>
+
+<header class="entrance"><div class="wrap">
+  <div class="minirow" aria-hidden="true">🏠 💡 ⛽ 🧺</div>
+  <div style="font-family:Georgia,serif;font-size:clamp(19px,2.6vw,27px);letter-spacing:.14em;color:#a4c639;text-transform:uppercase;margin-bottom:12px">The Institute for a Zero-Cost Economy</div>
+  <div class="k">The Economy Lab · An interactive introduction to Zero-Cost Economics</div>
+  <h1>What does your life cost?</h1>
+  <p class="sub">Enter your paycheck. Watch your real costs rise in today's economy — then flip Dr. Khavari's switches and watch them freeze, shrink and disappear. <b style="color:var(--cream)">Your income never changes.</b></p>
+  <a class="btn btn-mint" href="#paycheck">Start the experiment</a>
+  <p style="color:var(--muted);font-size:12.5px;margin-top:14px">Nothing you type is stored or sent anywhere. It all stays in your browser.</p>
+</div></header>
+
+<main class="wrap">
+
+<section id="paycheck" aria-labelledby="s1h">
+  <span class="k">Step 1 · Your paycheck</span>
+  <h2 id="s1h">Same paycheck. Two economies.</h2>
+  <p class="lede">Pick a character to play as, or type in your own take-home pay. Every cost below starts from the character — and every number can be changed.</p>
+  <div class="paygrid">
+    <div>
+      <div class="chars" role="group" aria-label="Choose a character">
+        <button class="char" data-char="renter" aria-pressed="false"><span class="ce" aria-hidden="true">🧑</span><b>Young renter</b><span>Single, rents an apartment, has a car and student loans. Age 26.</span></button>
+        <button class="char" data-char="family" aria-pressed="true"><span class="ce" aria-hidden="true">👨‍👩‍👧‍👦</span><b>Family of four</b><span>A mortgage, two cars, kids, and every bill that comes with them. Age 38.</span></button>
+        <button class="char" data-char="retiree" aria-pressed="false"><span class="ce" aria-hidden="true">👵</span><b>Retiree</b><span>Fixed income, owns her home, health costs are the big one. Age 67.</span></button>
+        <button class="char" data-char="biz" aria-pressed="false"><span class="ce" aria-hidden="true">🧑‍🔧</span><b>Small business owner</b><span>Rents a shop, high energy and insurance bills. Age 45.</span></button>
+      </div>
+      <div class="incomebox" style="margin-top:14px">
+        <label for="incomeNum">What do you take home each month?</label>
+        <div class="incrow"><span class="doll">$</span><input id="incomeNum" type="number" min="1500" max="20000" step="50" value="7800" inputmode="numeric"><span style="color:var(--muted)">/ month</span></div>
+        <input id="incomeRange" type="range" min="1500" max="20000" step="50" value="7800" aria-label="Monthly take-home pay, slider">
+        <div class="endpoints"><span>$1,500</span><span>$20,000</span></div>
+      </div>
+    </div>
+    <div aria-label="The jars">
+      <div class="jars">
+        <div class="jarwrap"><div class="jar" id="payJar"><div class="fill" id="payFill" style="height:100%"></div><div class="coins"></div></div><div class="jarlab">Paycheck Jar</div><div class="jarval" id="payVal">$7,800</div></div>
+        <div class="pour" aria-hidden="true">🪙<br>⬇</div>
+        <div class="jarwrap"><div class="jar wealth" id="wealthJar"><div class="fill" id="wealthFill" style="height:20%"></div><div class="coins"></div></div><div class="jarlab">Wealth Jar · what's left</div><div class="jarval" id="wealthVal">$0</div></div>
+      </div>
+      <p style="color:var(--muted);font-size:13px;margin-top:14px">Each month, coins pour out of your paycheck into every cost on the table below. Whatever is left drips into the Wealth Jar. If the table costs more than the paycheck, the Wealth Jar runs red — that's debt.</p>
+    </div>
+  </div>
+</section>
+
+<section id="table" aria-labelledby="s2h">
+  <span class="k">Step 2 · The kitchen table</span>
+  <h2 id="s2h">Every cost, as a thing you can see.</h2>
+  <p class="lede">Bigger picture, bigger cost. <b style="color:var(--cream)">Tap any price tag to change it.</b> The interest hiding inside the house payment is shown in red — Dr. Khavari calls interest a cost inside every other cost.</p>
+  <div class="tableScene" id="tableScene">
+    <div class="frostlayer" aria-hidden="true"></div>
+    <div class="costgrid" id="costGrid"></div>
+    <div class="flowline" id="flowLine" aria-live="polite"></div>
+  </div>
+</section>
+
+<section id="today" aria-labelledby="s3h">
+  <span class="k">Step 3 · Today's economy</span>
+  <h2 id="s3h">Press play. Thirty years go by.</h2>
+  <p class="lede">This is Dr. Khavari's 2009 scene — "the current situation" — made playable. Price tags tick upward. The paycheck stays exactly the same.</p>
+  <div class="timectl">
+    <button class="playbtn" id="playBtn" aria-label="Play the thirty years">▶</button>
+    <div class="timeline"><input id="yearRange" type="range" min="0" max="30" step="0.1" value="0" aria-label="Year, 0 to 30"><div class="endpoints"><span>Today</span><span>Year 15</span><span>Year 30</span></div></div>
+    <span class="yearpill" id="yearPill">YEAR 0</span>
+  </div>
+  <div class="surprise" id="surprise" aria-live="polite"></div>
+  <div class="chartbox">
+    <svg id="chart" viewBox="0 0 720 300" role="img" aria-labelledby="chartTitle chartDesc">
+      <title id="chartTitle">Income stays flat while total costs climb, in today's economy</title>
+      <desc id="chartDesc"></desc>
+      <g id="chartGrid"></g><path id="wedgeFill" fill="#d95f43" opacity="0.13"></path>
+      <path id="costLine" fill="none" stroke="#d95f43" stroke-width="3"></path>
+      <path id="khavLine" fill="none" stroke="#a4c639" stroke-width="3" style="display:none"></path>
+      <path id="incLine" fill="none" stroke="#8ba621" stroke-width="2.5" stroke-dasharray="7 5"></path>
+      <line id="cursor" stroke="#769585" stroke-width="1" stroke-dasharray="3 6" y1="18" y2="262"></line>
+      <g id="chartTicks"></g>
+      <text id="labInc" fill="#a4c639" font-size="12" font-weight="700">STAGNATING INCOME</text>
+      <text id="labCost" fill="#f49f91" font-size="12" font-weight="700">TOTAL COSTS</text>
+      <text id="labKhav" fill="#a4c639" font-size="12" font-weight="700" style="display:none">KHAVARI'S ECONOMY — TOTAL COSTS</text>
+    </svg>
+    <p style="color:var(--muted);font-size:12px;margin:6px 2px 10px">Monthly totals at each year. <span class="tagchip tag-lab">Lab estimate</span> Growth rates are illustrative defaults (see Assumptions) — not figures Dr. Khavari supplied.</p>
+  </div>
+  <div class="narrator" id="narrator">"This is the current situation. The paycheck didn't shrink. Everything else grew."</div>
+</section>
+
+<section id="chain" aria-labelledby="s4h">
+  <span class="k">Step 4 · Inside the price</span>
+  <h2 id="s4h">Why does an egg cost what it costs?</h2>
+  <p class="lede">Tap an item and its price splits open. <b style="color:var(--gold)">Energy, transport and interest light up</b> — because those are the costs hiding inside almost everything else, and they're the ones Khavari's plan goes after.</p>
+  <div class="grocbtns" role="group" aria-label="Choose an item to open up">
+    <button class="grocbtn" data-item="eggs" aria-pressed="true">🥚 A dozen eggs</button>
+    <button class="grocbtn" data-item="milk" aria-pressed="false">🥛 A gallon of milk</button>
+    <button class="grocbtn" data-item="gas" aria-pressed="false">⛽ A gallon of gasoline</button>
+  </div>
+  <div class="breakcard" id="breakCard" aria-live="polite"></div>
+  <div class="narrator"><b>Khavari's point:</b> costs are hidden inside other costs. Make energy nearly free and money nearly interest-free, and food gets cheaper — without anyone being paid less. <span class="tagchip tag-prop">Khavari's proposal</span></div>
+</section>
+
+<section id="switchboard" aria-labelledby="s5h">
+  <span class="k">Step 5 · The Khavari Switchboard</span>
+  <h2 id="s5h">Freeze → Reduce → Eliminate.</h2>
+  <p class="lede">Flip the switches and watch the table. Each one animates what it touches, changes the numbers, and shows you the proposal behind it — in his words, from his site.</p>
+  <div style="margin-top:18px"><button class="btn btn-gold" id="allOnBtn">Turn on the whole plan</button> <button class="btn btn-ghost" id="allOffBtn">Reset</button></div>
+  <div id="swGroups"></div>
+  <div class="propcard" id="propCard" aria-live="polite"></div>
+</section>
+
+<section id="results" aria-labelledby="s6h">
+  <span class="k">Step 6 · The results</span>
+  <h2 id="s6h">The same paycheck, in both economies.</h2>
+  <p class="lede">Nothing about the income changed. Only the costs did. <span class="tagchip tag-lab">Lab estimate</span> <span class="tagchip tag-prop">Khavari's proposal</span> — the plan is his; the arithmetic is this tool's illustration.</p>
+  <div class="resgrid">
+    <div class="rescol" aria-label="Today's economy results">
+      <h3>Today's economy</h3>
+      <div style="color:var(--muted);font-size:13px">Costs keep rising. The paycheck doesn't.</div>
+      <div class="resrow"><span>Costs per month (year 10)</span><b id="rTodayCost10">—</b></div>
+      <div class="resrow"><span>Money left each month (year 10)</span><b id="rTodayLeft10">—</b></div>
+      <div class="resrow"><span>Wealth Jar after 30 years</span><b class="bigstat" id="rTodayWealth" style="color:var(--red)">—</b></div>
+      <div class="resrow"><span>Wealth Jar runs dry</span><b id="rTodayDry">—</b></div>
+      <div class="resrow"><span>You could retire at</span><b id="rTodayRetire">—</b></div>
+      <div class="resrow"><span>Economic Security Score</span><b id="rTodayScore">—</b></div>
+    </div>
+    <div class="rescol khav" aria-label="Khavari's economy results">
+      <h3>Khavari's economy</h3>
+      <div style="color:var(--muted);font-size:13px">With the switches you've turned on, applied from today.</div>
+      <div class="resrow"><span>Costs per month (year 10)</span><b id="rKhavCost10">—</b></div>
+      <div class="resrow"><span>Money left each month (year 10)</span><b id="rKhavLeft10">—</b></div>
+      <div class="resrow"><span>Wealth Jar after 30 years</span><b class="bigstat" id="rKhavWealth" style="color:var(--mint)">—</b></div>
+      <div class="resrow"><span>Freedom year — costs fall below income for good</span><b id="rKhavFreedom">—</b></div>
+      <div class="resrow"><span>You could retire at</span><b id="rKhavRetire">—</b></div>
+      <div class="resrow"><span>Economic Security Score</span><b id="rKhavScore">—</b></div>
+      <div style="margin-top:14px"><div style="font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)">Paid off / gone from the table</div><div class="tray" id="goneTray"><span style="opacity:.6">Nothing yet — flip some switches</span></div></div>
+    </div>
+  </div>
+  <p style="color:var(--muted);font-size:13px;margin-top:14px">The security score is a simple illustration of Dr. Khavari's idea of measuring progress with <b>Economic Security Indices</b> instead of GDP alone: 40% cushion saved, 30% of income left over, 20% of essential costs fully owned, 10% low debt. Hover any result on the live page or read the Assumptions for the exact formula. <span class="tagchip tag-lab">Lab estimate</span></p>
+</section>
+
+<section id="zoom" aria-labelledby="s7h">
+  <span class="k">Step 7 · Zoom out</span>
+  <h2 id="s7h">What if a whole city did this?</h2>
+  <p class="lede">Your household's numbers, multiplied. The multiplication is a <span class="tagchip tag-lab">Lab estimate</span>; the cards beside it are <span class="tagchip tag-prop">Khavari's proposal</span> — his stated goals, not Lab results.</p>
+  <div class="zoomrow" role="group" aria-label="Choose a scale">
+    <button class="zoombtn" data-zoom="500" aria-pressed="false">🏘️ A neighborhood · 500 homes</button>
+    <button class="zoombtn" data-zoom="250000" aria-pressed="true">🌆 A city · 250,000 homes</button>
+    <button class="zoombtn" data-zoom="8900000" aria-pressed="false">🌴 Florida · 8.9 million homes</button>
+  </div>
+  <div class="bigstat" id="zoomStat" style="margin-top:16px;color:var(--mint)">—</div>
+  <div style="color:var(--muted);font-size:13.5px" id="zoomSub">kept by households every year, at your current switch settings.</div>
+  <div class="goalcards">
+    <div class="goalcard"><b>☀️ Florida, the "Solar Wonderland"</b><p>Decentralized solar everywhere — on roofs, over parking lots — making energy nearly free once it's paid for. <span class="tagchip tag-prop">Khavari's proposal</span></p></div>
+    <div class="goalcard"><b>👷 Full employment, building it</b><p>His plan employs people making and installing solar, converting vehicles to electric, and building clinics — secure jobs created by the transition itself. <span class="tagchip tag-prop">Khavari's proposal</span></p></div>
+    <div class="goalcard"><b>🏠 Homes that cost nothing to run</b><p>Prefab, hurricane-safe, energy-free homes in low-income areas, financed at 0% — true ownership within about a decade. <span class="tagchip tag-prop">Khavari's proposal</span></p></div>
+    <div class="goalcard"><b>🎓 A leisure- and knowledge-based society</b><p>When costs stop eating the paycheck, his endgame: retirement near 50, free education through university, and time becoming the real wealth. He calls it Carefreeism. <span class="tagchip tag-prop">Khavari's proposal</span></p></div>
+  </div>
+</section>
+
+<section id="badges" aria-labelledby="s8h">
+  <span class="k">Step 8 · Challenges & badges</span>
+  <h2 id="s8h">Missions, if you want them.</h2>
+  <div class="chalrow">
+    <div class="goalcard"><b>🎯 Beat the trap with $0 raise</b><p>Get your Wealth Jar positive by year 5 — without touching the income slider. Switches only.</p></div>
+    <div class="goalcard"><b>🏖️ Retire by 55</b><p>Bring the Khavari-side retirement age down to 55 or under.</p></div>
+    <div class="goalcard"><b>🌩️ Survive the storm</b><p>Hurricane, hospital bill, gas spike — in today's economy they'd all land at once. See which economy still stands.</p></div>
+    <div class="goalcard"><b>🥚 Cheaper breakfast</b><p>Cut the egg and milk prices by 20% using only the energy and transport switches. (Open Step 4 and watch the lit-up segments shrink.)</p></div>
+  </div>
+  <div class="badgerow" id="badgeRow" aria-live="polite"></div>
+</section>
+
+<details class="assump" id="assumptions">
+  <summary>Assumptions & sources — every rate, share and default</summary>
+  <ul>
+    <li><b>Price growth (today's economy), per year:</b> home/rent 3%, electricity 4%, gasoline 3%, car payment 0% (a fixed loan), groceries 3%, insurance 6%, health care 6%, education 5%, credit interest 0% (a fixed balance), property tax 3%, everything else 2.5%. Illustrative defaults in the ranges of recent BLS Consumer Price Index category movements and EIA energy price trends — check the live BLS CPI and EIA series for current values. <span class="tagchip tag-lab">Lab estimate</span></li>
+    <li><b>Mortgage math:</b> standard amortization, payment = P × r / (1 − (1 + r)^−n). Default loan: 6.5% over 30 years. The public-bank switch refinances the same balance at 3% over the same remaining term; the 0% switch pays the balance off over 10 years (payment = balance / 120 months), then $0 — his "paid off in 10 years instead of 30" example. <span class="tagchip tag-prop">Khavari's proposal</span></li>
+    <li><b>Solar:</b> a $18,000 rooftop system financed at 0% over 12 years ($125/month) plus $25/month maintenance; after payoff, maintenance only, with a "PAID OFF — yours" ribbon. The electric switch replaces gasoline with a $60/month charging cost ($25 with solar on the roof). Illustrative figures. <span class="tagchip tag-lab">Lab estimate</span></li>
+    <li><b>Groceries:</b> new price = price × (1 − energy share × 80% − transport share × 70% − interest share × 90%) when the energy/transport switches are on; local food self-sufficiency takes a further 7% off. Segment shares are approximate, in the pattern of USDA food-dollar breakdowns, and labeled approximate wherever shown. <span class="tagchip tag-lab">Lab estimate</span></li>
+    <li><b>Insurance:</b> the universal-policy switch reduces combined premiums by 35% (illustrative, adjustable in his full plan) to a single policy covering health, car, life, disaster, theft and flood — and halves out-of-pocket health-care costs, since the policy is what pays the hospital. Both figures are illustrative. <span class="tagchip tag-prop">Khavari's proposal</span></li>
+    <li><b>Wealth Jar:</b> wealth(t) = the sum of monthly leftovers × 12, with no investment returns — deliberately conservative. <b>Retirement age:</b> the first age at which the Wealth Jar could cover all remaining costs from that age to 90, in that economy. <b>Freedom year:</b> the first year costs fall below income and stay there.</li>
+    <li><b>Economic Security Score (0–100):</b> 40% × min(1, months of expenses saved ÷ 24) + 30% × share of income left over (capped at 50%) + 20% × share of essential costs fully owned or paid off + 10% × (1 − debt-to-income, floor 0). An illustration of his Economic Security Indices idea — not his formula. <span class="tagchip tag-lab">Lab estimate</span></li>
+    <li><b>Honesty rule:</b> anything labeled "Khavari's proposal" is his policy or claim, from <i>Towards a Zero-Cost Economy</i> (2009) and zerocosteconomy.com. Anything labeled "Lab estimate" is this tool's arithmetic on illustrative defaults. Neither is a forecast.</li>
+  </ul>
+</details>
+
+<div class="endcard">
+  <span class="k">The end of the Lab</span>
+  <h2>You just ran the experiment.<br>Dr. Khavari wrote the plan.</h2>
+  <p style="color:var(--muted);max-width:520px;margin:0 auto 20px" id="endLine">Same paycheck. Different economy.</p>
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+    <a class="btn btn-gold" href="index.html#books">Read the book →</a>
+    <button class="btn btn-mint" id="shareBtn">Share my results</button>
+    <button class="btn btn-ghost" id="againBtn">Try another character</button>
+  </div>
+  <p style="color:var(--muted);font-size:12.5px;margin-top:14px" id="shareNote">The share card is an image made in your browser: "Same paycheck. Different economy." plus your two retirement ages.</p>
+  <canvas id="shareCanvas" width="1200" height="630" style="display:none"></canvas>
+</div>
+
+</main>
+<footer class="wrap foot">
+  <span>Farid A. Khavari, Ph.D. · Economist · Inventor · Author</span>
+  <span>The Economy Lab — an independent educational illustration of Zero-Cost Economics. Illustration, not prediction.</span>
+  <a href="index.html">Back to the author website →</a>
+</footer>
+
+<script>
+'use strict';
+const $=id=>document.getElementById(id);
+const cash=n=>(n<0?'\u2212':'')+'$'+Math.abs(Math.round(n)).toLocaleString('en-US');
+const REDUCED=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const ICONS={
+home:'<svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="#70e5b1" stroke-width="2.4" stroke-linejoin="round"><path d="M6 24 L24 8 L42 24"/><path d="M11 22 V40 H37 V22"/><path d="M20 40 V29 H28 V40"/></svg>',
+power:'<svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="#e5c578" stroke-width="2.4" stroke-linecap="round"><path d="M24 5 a10 10 0 0 1 6 18 c-1.5 1-2 2.4-2 4 H20 c0-1.6-.5-3-2-4 a10 10 0 0 1 6-18z"/><path d="M20 32 h8 M21 37 h6"/></svg>',
+gas:'<svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="#f49f91" stroke-width="2.4" stroke-linejoin="round"><rect x="8" y="8" width="18" height="32" rx="2"/><rect x="12" y="13" width="10" height="9"/><path d="M26 16 l7-5 v13 a4 4 0 0 0 8 0 V20 a4 4 0 0 0-4-4"/></svg>',
+car:'<svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="#70e5b1" stroke-width="2.4" stroke-linejoin="round"><path d="M7 30 l4-11 a4 4 0 0 1 4-3 h18 a4 4 0 0 1 4 3 l4 11"/><rect x="5" y="30" width="38" height="7" rx="2"/><circle cx="13" cy="39" r="3"/><circle cx="35" cy="39" r="3"/></svg>',
+groceries:'<svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="#a4c639" stroke-width="2.4" stroke-linejoin="round"><path d="M10 18 h28 l-4 20 a3 3 0 0 1-3 2 H17 a3 3 0 0 1-3-2 z"/><path d="M17 18 l7-11 M31 18 l-7-11"/><ellipse cx="20" cy="28" rx="3.4" ry="4.4" stroke="#f4f0df"/><path d="M29 24 v9 M25 28 h8" stroke="#f4f0df"/></svg>',
+insurance:'<svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="#bfe3ea" stroke-width="2.4" stroke-linecap="round"><path d="M24 6 a17 17 0 0 1 17 17 H7 a17 17 0 0 1 17-17z"/><path d="M24 23 v12 a4 4 0 0 0 8 0"/></svg>',
+health:'<svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="#f49f91" stroke-width="2.4" stroke-linejoin="round"><rect x="9" y="9" width="30" height="30" rx="5"/><path d="M24 16 v16 M16 24 h16"/></svg>',
+education:'<svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="#e5c578" stroke-width="2.4" stroke-linejoin="round"><path d="M24 10 L44 19 L24 28 L4 19 z"/><path d="M12 23 v10 c0 3 24 3 24 0 V23"/><path d="M44 19 v11"/></svg>',
+credit:'<svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="#f49f91" stroke-width="2.4"><rect x="5" y="12" width="38" height="25" rx="3"/><path d="M5 20 h38"/><path d="M10 31 h9"/></svg>',
+proptax:'<svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="#a5baae" stroke-width="2.4" stroke-linejoin="round"><rect x="7" y="13" width="34" height="23" rx="2"/><path d="M7 15 l17 12 L41 15"/></svg>',
+other:'<svg width="46" height="46" viewBox="0 0 48 48" fill="none" stroke="#a5baae" stroke-width="2.4" stroke-linejoin="round"><path d="M11 16 h26 l-2 24 a3 3 0 0 1-3 3 H16 a3 3 0 0 1-3-3 z"/><path d="M18 16 v-3 a6 6 0 0 1 12 0 v3"/></svg>'};
+
+const COST_DEFS=[
+ {k:'home',label:'Home',g:.03},{k:'power',label:'Electricity & power',g:.04},{k:'gas',label:'Gasoline',g:.03},
+ {k:'car',label:'Car payment',g:0},{k:'groceries',label:'Groceries',g:.03},{k:'insurance',label:'Insurance',g:.06},
+ {k:'health',label:'Health care',g:.06},{k:'education',label:'Education & loans',g:.05},{k:'credit',label:'Credit cards & loans',g:0},
+ {k:'proptax',label:'Property tax',g:.03},{k:'other',label:'Everything else',g:.025}];
+const GROWTH={}; COST_DEFS.forEach(d=>GROWTH[d.k]=d.g);
+
+const CHARACTERS={
+ renter:{age:26,income:3400,mortgage:null,homeowner:false,costs:{home:1450,power:130,gas:190,car:340,groceries:520,insurance:210,health:120,education:260,credit:90,proptax:0,other:480}},
+ family:{age:38,income:7800,mortgage:{balance:310000,rate:.065,term:360},homeowner:true,costs:{home:1959,power:260,gas:340,car:620,groceries:1150,insurance:780,health:240,education:380,credit:210,proptax:420,other:900}},
+ retiree:{age:67,income:2900,mortgage:null,homeowner:true,costs:{home:0,power:190,gas:120,car:0,groceries:620,insurance:540,health:480,education:0,credit:60,proptax:260,other:420}},
+ biz:{age:45,income:6200,mortgage:null,homeowner:false,costs:{home:1900,power:480,gas:260,car:450,groceries:700,insurance:950,health:300,education:0,credit:340,proptax:0,other:800}}};
+
+const BREAKDOWNS={
+ eggs:{name:'A dozen eggs',price:3.84,segs:[['Feed & farming',38,'#8ba621',0],['Energy — barn heat, refrigeration',12,'#e5c578',1],['Transport — diesel trucks',11,'#d95f43',1],['Interest — farm & store loans',7,'#f49f91',1],['Insurance',5,'#bfe3ea',0],['Packaging & store costs',19,'#769585',0],['Profit',8,'#a5baae',0]],cuts:{1:.8,2:.7,3:.9}},
+ milk:{name:'A gallon of milk',price:4.05,segs:[['Feed & farming',41,'#8ba621',0],['Energy — cooling & processing',13,'#e5c578',1],['Transport — refrigerated trucks',12,'#d95f43',1],['Interest — farm & store loans',6,'#f49f91',1],['Insurance',4,'#bfe3ea',0],['Packaging & store costs',16,'#769585',0],['Profit',8,'#a5baae',0]],cuts:{1:.8,2:.7,3:.9}},
+ gas:{name:'A gallon of gasoline',price:3.45,segs:[['Crude oil',52,'#769585',0],['Refining',19,'#a5baae',0],['Transport — pipelines & trucks',11,'#d95f43',1],['Interest — financing the chain',4,'#f49f91',1],['Taxes',14,'#bfe3ea',0]],cuts:{2:.7,3:.9}}};
+
+const SWITCHES=[
+ {id:'freeze',group:'F',name:'Freeze the cost of living',desc:'Frost spreads over every price tag. The ticking stops.',prop:'<b>Khavari\u2019s proposal:</b> the first step of his plan — freeze costs where they are, so the paycheck stops losing ground. Only then can reducing and eliminating do their work. (zerocosteconomy.com)'},
+ {id:'publicbank',group:'R',name:'Public bank financing',desc:'The Bank of the State of Florida. Home loans capped at 3% — the red interest slice shrinks.',prop:'<b>Khavari\u2019s proposal:</b> a public Bank of the State of Florida lending at low rates — home loans at most 3%, other credit at most 5%, subprime banned — because interest is a hidden cost inside everything. (zerocosteconomy.com)'},
+ {id:'creditcap',group:'R',name:'Cap all credit at 5%',desc:'The credit card\u2019s interest tag drops to 5%.',prop:'<b>Khavari\u2019s proposal:</b> no loan above 5%. Interest is not a law of nature; it is a policy choice, and it is priced into everything you buy. (zerocosteconomy.com)'},
+ {id:'universalins',group:'R',name:'One universal insurance policy',desc:'The small umbrellas merge into one — one affordable premium for health, car, life, disaster, theft and flood.',prop:'<b>Khavari\u2019s proposal:</b> replace the stack of separate policies with one universal insurance everyone can afford. In the Lab it cuts combined premiums by an illustrative 35%. <span class="tagchip tag-lab">Lab estimate</span>'},
+ {id:'freecollege',group:'R',name:'Free college',desc:'The graduation cap turns gold. New education costs vanish.',prop:'<b>Khavari\u2019s proposal:</b> free education through university — part of moving to a leisure- and knowledge-based society. Existing loan balances are a separate question; new costs go to $0 here. (zerocosteconomy.com)'},
+ {id:'proptax',group:'R',name:'Property tax relief',desc:'The envelope shrinks — and it is $0 for homeowners over 50.',prop:'<b>Khavari\u2019s proposal:</b> cut property tax sharply, end it for homeowners over 50, and eliminate it as other costs fall. (zerocosteconomy.com)'},
+ {id:'farmenergy',group:'R',name:'Cheaper energy for farms & trucks',desc:'Needs solar + electric on. The energy and transport slices inside grocery prices shrink.',prop:'<b>Khavari\u2019s proposal:</b> costs are linked — cheap energy and electric transport make food itself cheaper. Open Step 4 and watch the lit-up segments shrink. (zerocosteconomy.com)',needs:s=>s.switches.solar&&s.switches.ev,needMsg:'Turn on rooftop solar and the electric switch first.'},
+ {id:'solar',group:'E',name:'Rooftop solar, 0% financing',desc:'A solar roof appears; the meter spins backward. Paid off in 12 years — then the power is yours.',prop:'<b>Khavari\u2019s proposal:</b> decentralized energy — rooftop solar financed at 0% — makes energy almost free once it is paid for, forever. Lab models a $18,000 system at $125/month for 12 years, then $25/month upkeep. <span class="tagchip tag-lab">Lab estimate</span>'},
+ {id:'ev',group:'E',name:'Switch to electric, 0% financing',desc:'The gas pump fades out. A charging plug fades in. The oil barrel rolls away.',prop:'<b>Khavari\u2019s proposal:</b> electric transport charged on decentralized power ends the gasoline bill — a small charging cost instead, near-zero with solar on the roof. (zerocosteconomy.com)'},
+ {id:'zeroloan',group:'E',name:'0% home loan — true ownership',desc:'The house is paid off in about 10 years instead of 30. Then: no payment at all.',prop:'<b>Khavari\u2019s proposal:</b> at 0% interest the same family pays off a $200,000 mortgage in 10 years instead of 30 and keeps $300,000+ of interest. The monthly payment is higher for a decade — then the house is truly yours. (zerocosteconomy.com)'},
+ {id:'localfood',group:'E',name:'Local food self-sufficiency',desc:'A garden and a small farm appear beside the basket. Groceries ease down.',prop:'<b>Khavari\u2019s proposal:</b> Miami-Dade growing far more of its own food — shorter chains, fewer hidden costs. The Lab takes an illustrative 7% off groceries and labels it his goal. <span class="tagchip tag-prop">Khavari\u2019s proposal</span>'}];
+
+let state={char:'family',income:7800,age:38,costs:Object.assign({},CHARACTERS.family.costs),switches:{},year:0,playing:false,item:'eggs',zoom:250000};
+const anySwitch=()=>Object.values(state.switches).some(Boolean);
+
+function mortgagePayment(balance,annualRate,months){const r=annualRate/12;if(r===0)return balance/months;return balance*r/(1-Math.pow(1+r,-months));}
+function homeCostAt(t,plan){
+  const ch=CHARACTERS[state.char],m=ch.mortgage;
+  if(!m){const g=plan&&state.switches.freeze?0:GROWTH.home;return state.costs.home*Math.pow(1+g,t);}
+  if(plan&&state.switches.zeroloan)return t<10?m.balance/120:0;
+  if(plan&&state.switches.publicbank)return mortgagePayment(m.balance,.03,m.term);
+  return state.costs.home;
+}
+function interestAt(t,plan){
+  const ch=CHARACTERS[state.char],m=ch.mortgage;if(!m)return 0;
+  let bal=m.balance,rate=m.rate,pay=state.costs.home;
+  if(plan&&state.switches.zeroloan)return 0;
+  if(plan&&state.switches.publicbank){rate=.03;pay=mortgagePayment(bal,.03,m.term);}
+  const r=rate/12;
+  for(let mo=0;mo<t*12;mo++){const i=bal*r;bal-=Math.max(0,pay-i);if(bal<=0)return 0;}
+  return Math.max(0,bal*r);
+}
+function costAt(k,t,plan){
+  const sw=state.switches,base=state.costs[k];
+  if(k==='home')return homeCostAt(t,plan);
+  if(plan){
+    if(k==='power'&&sw.solar)return t<12?150:25;
+    if(k==='gas'&&sw.ev)return sw.solar?25:60;
+    if(k==='education'&&sw.freecollege)return 0;
+    if(k==='proptax'&&sw.proptax)return (CHARACTERS[state.char].homeowner&&state.age>=50)?0:base*.25*(sw.freeze?1:Math.pow(1,GROWTH.proptax,t));
+  }
+  let g=GROWTH[k];if(plan&&sw.freeze)g=0;
+  let v=base*Math.pow(1+g,t);
+  if(plan){
+    if(k==='insurance'&&sw.universalins)v*=.65;
+    if(k==='health'&&sw.universalins)v*=.5;
+    if(k==='credit'&&sw.creditcap)v*=5/22;
+    if(k==='groceries'){
+      if(sw.farmenergy)v*=1-.12*.8-.11*.7-.07*.9;
+      if(sw.localfood)v*=.93;
+    }
+  }
+  if(k==='gas'&&t>=11&&t<13)v*=1.3;
+  return v;
+}
+const totalAt=(t,plan)=>COST_DEFS.reduce((s,d)=>s+costAt(d.k,t,plan),0);
+const leftoverAt=(t,plan)=>state.income-totalAt(t,plan);
+function wealthAt(Y,plan){let w=0;for(let y=0;y<Y;y++){w+=leftoverAt(y,plan)*12;if(!plan){if(y===6)w-=4200;if(y===16)w+=1000;}}return w;}
+function dryYear(){for(let y=1;y<=30;y++)if(wealthAt(y,false)<0)return y;return null;}
+function freedomYear(){for(let y=0;y<=30;y++){let ok=true;for(let t=y;t<=30;t++)if(leftoverAt(t,true)<=0){ok=false;break;}if(ok)return y;}return null;}
+function retireAge(plan){const start=state.age;for(let A=start;A<=90;A++){const Y=A-start;let rem=0;for(let t=Y;t<=90-start;t++)rem+=totalAt(t,plan)*12;if(wealthAt(Y,plan)>=rem)return A;}return null;}
+function securityScore(plan){
+  const w=wealthAt(30,plan),tc=totalAt(30,plan),left=leftoverAt(30,plan);
+  const cushion=40*Math.min(1,(tc>0?w/tc:24)/24);
+  const keep=30*Math.min(1,Math.max(0,left/state.income)/.5);
+  const ess=['home','power','gas','insurance','health','education','proptax'];
+  const essBase=ess.reduce((s,k)=>s+state.costs[k],0)||1;
+  let owned=0;
+  if(costAt('home',30,plan)===0&&state.costs.home>0)owned+=state.costs.home;
+  if(plan&&state.switches.solar)owned+=state.costs.power;
+  if(plan&&state.switches.freecollege)owned+=state.costs.education;
+  const ownedPart=20*Math.min(1,owned/essBase);
+  const debt=(CHARACTERS[state.char].mortgage?costAt('home',0,plan):0)+state.costs.car+state.costs.credit;
+  const dti=10*Math.max(0,1-debt/state.income);
+  return Math.round(Math.max(0,Math.min(100,cushion+keep+ownedPart+dti)));
+}
+
+/* ---------- rendering ---------- */
+const planMode=()=>anySwitch();
+function renderJars(){
+  const left=leftoverAt(state.year,planMode());
+  $('payVal').textContent=cash(state.income)+'/mo';
+  $('wealthVal').textContent=cash(left)+'/mo';
+  const pct=Math.max(0,Math.min(100,left/state.income*100));
+  $('wealthFill').style.height=pct+'%';
+  $('wealthJar').classList.toggle('debt',left<0);
+}
+function cardSub(k){
+  const sw=state.switches,m=CHARACTERS[state.char].mortgage,t=state.year,plan=planMode();
+  if(k==='home'&&m){const i=interestAt(t,plan);if(plan&&sw.zeroloan)return t<10?'0% loan — paid off in '+(10-Math.floor(t))+' yrs':'Paid off — no payment';return 'of which <span class="intpart">interest '+cash(i)+'</span>';}
+  if(k==='home'&&CHARACTERS[state.char].homeowner&&state.costs.home===0)return 'Owns it outright';
+  if(k==='power'&&plan&&sw.solar)return t<12?'Solar roof — 0% financing':'Solar roof — paid off, just upkeep';
+  if(k==='gas'&&plan&&sw.ev)return 'The pump is gone — charging plug';
+  if(k==='education'&&plan&&sw.freecollege)return 'Free through university';
+  if(k==='insurance'&&plan&&sw.universalins)return 'One policy for everything';
+  if(k==='proptax'&&plan&&sw.proptax)return state.age>=50&&CHARACTERS[state.char].homeowner?'Over 50 — $0':'Sharply reduced';
+  if(k==='credit'&&plan&&sw.creditcap)return 'Interest capped at 5%';
+  if(k==='groceries'&&plan&&(sw.farmenergy||sw.localfood))return 'Cheaper energy inside every price';
+  return '';
+}
+function ribbonFor(k){
+  const sw=state.switches,plan=planMode();
+  if(k==='home'&&state.costs.home===0&&CHARACTERS[state.char].homeowner)return 'TRUE OWNERSHIP';
+  if(k==='home'&&plan&&sw.zeroloan&&state.year>=10)return 'TRUE OWNERSHIP';
+  if(k==='power'&&plan&&sw.solar&&state.year>=12)return 'PAID OFF — YOURS';
+  return '';
+}
+function buildTable(){
+  const g=$('costGrid');g.innerHTML='';
+  COST_DEFS.forEach(d=>{
+    const el=document.createElement('div');el.className='costcard';el.id='card-'+d.k;
+    el.innerHTML='<div class="ribbon" style="display:none"></div><div class="ic">'+ICONS[d.k]+'</div><div class="nm">'+d.label+'</div><button class="tag" data-edit="'+d.k+'" aria-label="Edit the monthly cost of '+d.label+'">$0</button><div class="sub2"></div><div class="editrow"><input type="number" min="0" step="10" aria-label="New monthly cost"><button class="btn btn-mint" style="padding:7px 12px;font-size:11px">Set</button></div>';
+    g.appendChild(el);
+  });
+  g.querySelectorAll('[data-edit]').forEach(btn=>btn.addEventListener('click',()=>{
+    const card=btn.closest('.costcard');card.classList.add('editing');
+    const inp=card.querySelector('input');inp.value=Math.round(state.costs[btn.dataset.edit]);inp.focus();inp.select();
+  }));
+  g.querySelectorAll('.editrow').forEach(row=>{
+    const commit=()=>{
+      const card=row.closest('.costcard');const k=card.id.replace('card-','');const v=Math.max(0,+row.querySelector('input').value||0);
+      if(k==='home'&&CHARACTERS[state.char].mortgage){const m=CHARACTERS[state.char].mortgage;const r=m.rate/12;m.balance=v*(1-Math.pow(1+r,-m.term))/r;}
+      state.costs[k]=v;card.classList.remove('editing');renderAll();
+    };
+    row.querySelector('button').addEventListener('click',commit);
+    row.querySelector('input').addEventListener('keydown',e=>{if(e.key==='Enter')commit();});
+  });
+}
+function renderTable(){
+  const plan=planMode(),t=state.year;
+  const vals=COST_DEFS.map(d=>costAt(d.k,t,plan));const max=Math.max(...vals,1);
+  COST_DEFS.forEach((d,i)=>{
+    const card=$('card-'+d.k);if(!card)return;const v=vals[i];
+    card.querySelector('.tag').textContent=cash(v);
+    card.querySelector('.sub2').innerHTML=cardSub(d.k);
+    const rb=card.querySelector('.ribbon');const rt=ribbonFor(d.k);
+    rb.style.display=rt?'block':'none';rb.textContent=rt;
+    card.classList.toggle('gone',v===0&&state.costs[d.k]>0);
+    const sc=Math.max(.72,Math.min(1.28,.78+.5*(v/max)));
+    card.querySelector('.ic svg').style.transform='scale('+sc.toFixed(2)+')';
+  });
+  const tot=totalAt(t,plan),left=state.income-tot;
+  $('flowLine').innerHTML='<span>At year '+Math.round(t)+', '+(plan?'<b style="color:var(--mint)">with your switches on</b>':'<b>in today\u2019s economy</b>')+':</span><span>Costs <b>'+cash(tot)+'</b>/mo</span><span>Left over <b class="'+(left<0?'neg':'')+'">'+cash(left)+'</b>/mo</span><span>Wealth Jar so far <b>'+cash(wealthAt(Math.floor(t),plan))+'</b></span>';
+  $('tableScene').classList.toggle('frozen',plan&&state.switches.freeze);
+}
+const CX=t=>58+t/30*634, CY=v=>262-(v/ (Math.max(state.income*1.9,totalAt(30,false)*1.05)) )*244;
+function linePath(fn){let d='';for(let t=0;t<=30;t+=.5){d+=(t===0?'M':'L')+CX(t).toFixed(1)+','+CY(fn(t)).toFixed(1)+' ';}return d;}
+function renderChart(){
+  const maxY=Math.max(state.income*1.9,totalAt(30,false)*1.05);
+  const grid=$('chartGrid'),ticks=$('chartTicks');grid.innerHTML='';ticks.innerHTML='';
+  const ns='http://www.w3.org/2000/svg';
+  for(let i=0;i<=4;i++){const v=maxY*i/4,y=CY(v);const l=document.createElementNS(ns,'line');l.setAttribute('x1',58);l.setAttribute('x2',692);l.setAttribute('y1',y);l.setAttribute('y2',y);l.setAttribute('stroke','#29453a');grid.appendChild(l);const tx=document.createElementNS(ns,'text');tx.setAttribute('x',50);tx.setAttribute('y',y+4);tx.setAttribute('text-anchor','end');tx.setAttribute('fill','#8ea798');tx.setAttribute('font-size','10');tx.textContent='$'+Math.round(v/100)/10+'k';ticks.appendChild(tx);}
+  for(let t=0;t<=30;t+=5){const tx=document.createElementNS(ns,'text');tx.setAttribute('x',CX(t));tx.setAttribute('y',282);tx.setAttribute('text-anchor','middle');tx.setAttribute('fill','#8ea798');tx.setAttribute('font-size','10');tx.textContent=t===0?'Today':t+'y';ticks.appendChild(tx);}
+  $('incLine').setAttribute('d','M'+CX(0)+','+CY(state.income)+' L'+CX(30)+','+CY(state.income));
+  $('costLine').setAttribute('d',linePath(t=>totalAt(t,false)));
+  const kh=$('khavLine'),kl=$('labKhav');
+  if(planMode()){kh.style.display='';kl.style.display='';kh.setAttribute('d',linePath(t=>totalAt(t,true)));}else{kh.style.display='none';kl.style.display='none';}
+  let cross=null;for(let t=0;t<=30;t+=.5)if(totalAt(t,false)>state.income){cross=t;break;}
+  if(cross!==null){let d='M'+CX(cross)+','+CY(state.income);for(let t=cross;t<=30;t+=.5)d+=' L'+CX(t)+','+CY(totalAt(t,false));d+=' L'+CX(30)+','+CY(state.income)+' Z';$('wedgeFill').setAttribute('d',d);}else $('wedgeFill').setAttribute('d','');
+  const cur=$('cursor');cur.setAttribute('x1',CX(state.year));cur.setAttribute('x2',CX(state.year));
+  $('labInc').setAttribute('x',688);$('labInc').setAttribute('y',CY(state.income)-8);$('labInc').setAttribute('text-anchor','end');
+  $('labCost').setAttribute('x',688);$('labCost').setAttribute('y',CY(totalAt(30,false))+18);$('labCost').setAttribute('text-anchor','end');
+  if(planMode()){$('labKhav').setAttribute('x',688);$('labKhav').setAttribute('y',CY(totalAt(30,true))-10);$('labKhav').setAttribute('text-anchor','end');}
+  $('chartDesc').textContent='At year '+Math.round(state.year)+', monthly costs are '+cash(totalAt(state.year,false))+' in today\u2019s economy'+(planMode()?' and '+cash(totalAt(state.year,true))+' with your switches on':'')+', against a flat income of '+cash(state.income)+'. The gap between the lines is the trap Dr. Khavari drew in 2009.';
+}
+function renderNarrator(){
+  if(state.year>=29.9){const d=dryYear(),r=retireAge(false);
+    $('narrator').innerHTML='In this economy, '+(d?'your Wealth Jar runs dry in <b>year '+d+'</b>':'your Wealth Jar survives the 30 years — barely')+'. You retire at <b>'+(r?r:'past 90')+'</b>. Now flip the switches below and run it again.';
+  } else $('narrator').innerHTML='"This is the current situation. The paycheck didn\u2019t shrink. Everything else grew."';
+}
+function renderBreakdown(){
+  const b=BREAKDOWNS[state.item],sw=state.switches;
+  const activeCut=i=>{if(i===1)return sw.solar?.8:0;if(i===2)return sw.ev?.7:0;if(i===3)return (sw.publicbank||sw.creditcap)?.9:0;return 0;};
+  let totalFactor=0;const vals=b.segs.map((s,idx)=>{const cut=s[3]?activeCut(idx):0;const v=s[1]*(1-cut);totalFactor+=v;return v;});
+  const newPrice=b.price*totalFactor/100;
+  let segHtml='',listHtml='';
+  b.segs.forEach((s,idx)=>{segHtml+='<div style="width:'+(vals[idx]/totalFactor*100)+'%;background:'+s[2]+'" title="'+s[0]+'"></div>';
+    listHtml+='<div><span class="sw" style="background:'+s[2]+'"></span><span class="'+(s[3]?'hot':'')+'">'+s[0]+'</span> — '+(s[3]&&activeCut(idx)?'<s>'+s[1]+'%</s> <b>'+vals[idx].toFixed(1)+'%</b>':s[1]+'%')+'</div>';});
+  $('breakCard').innerHTML='<div style="display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;align-items:baseline"><b style="font-size:19px">'+(state.item==='eggs'?'🥚':state.item==='milk'?'🥛':'⛽')+' '+b.name+'</b><span style="font-size:22px;font-weight:800">'+(Math.abs(newPrice-b.price)>.005?'<s style="color:var(--muted);font-size:16px">$'+b.price.toFixed(2)+'</s> $'+newPrice.toFixed(2):'$'+b.price.toFixed(2))+'</span></div><div class="segbar">'+segHtml+'</div><div class="seglist">'+listHtml+'</div><p style="color:var(--muted);font-size:12.5px;margin:12px 0 0">Shares are approximate, in the pattern of USDA food-dollar breakdowns. <span class="tagchip tag-lab">Lab estimate</span>'+(state.item==='gas'&&sw.ev?' You don\u2019t buy gasoline anymore — this is what a gallon used to contain.':'')+'</p>';
+}
+function buildSwitchboard(){
+  const host=$('swGroups');host.innerHTML='';
+  [['F','❄️ Freeze','Stop the bleeding first'],['R','⬇️ Reduce','Cut what can be cut'],['E','✖️ Eliminate','Remove the cost entirely']].forEach(([g,ttl,sub])=>{
+    const div=document.createElement('div');div.className='swgroup';
+    div.innerHTML='<h3><span>'+ttl+'</span><span style="color:var(--muted);letter-spacing:.02em;text-transform:none;font-size:12.5px">'+sub+'</span></h3><div class="swrow"></div>';
+    const row=div.querySelector('.swrow');
+    SWITCHES.filter(s=>s.group===g).forEach(s=>{
+      const b=document.createElement('button');b.className='swcard';b.id='sw-'+s.id;b.setAttribute('role','switch');b.setAttribute('aria-checked','false');
+      b.innerHTML='<span class="swtrack" aria-hidden="true"></span><span><b>'+s.name+'</b><span>'+s.desc+'</span><span class="swnote" style="color:var(--gold)"></span></span>';
+      b.addEventListener('click',()=>toggleSwitch(s.id));
+      row.appendChild(b);
+    });
+    host.appendChild(div);
+  });
+}
+function refreshSwitches(){
+  SWITCHES.forEach(s=>{
+    const b=$('sw-'+s.id);if(!b)return;
+    b.setAttribute('aria-checked',state.switches[s.id]?'true':'false');
+    let dis=false,note='';
+    if(s.needs&&!s.needs(state)){dis=true;note=s.needMsg||'';}
+    if((s.id==='publicbank'||s.id==='zeroloan')&&!CHARACTERS[state.char].mortgage){dis=true;note='Needs a mortgage — the family of four has one.';}
+    b.disabled=dis;b.querySelector('.swnote').textContent=dis?note:'';
+    if(dis&&state.switches[s.id]){state.switches[s.id]=false;b.setAttribute('aria-checked','false');}
+  });
+  const on=SWITCHES.filter(s=>state.switches[s.id]).length;
+  $('psegF').style.transform='scaleX('+(state.switches.freeze?1:0)+')';
+  const rIds=['publicbank','creditcap','universalins','freecollege','proptax','farmenergy'];
+  $('psegR').style.transform='scaleX('+(rIds.filter(i=>state.switches[i]).length/rIds.length)+')';
+  const eIds=['solar','ev','zeroloan','localfood'];
+  $('psegE').style.transform='scaleX('+(eIds.filter(i=>state.switches[i]).length/eIds.length)+')';
+  $('pstep').textContent=on?on+' of '+SWITCHES.length+' switches on':'No switches on yet';
+}
+function toggleSwitch(id){
+  state.switches[id]=!state.switches[id];
+  const s=SWITCHES.find(x=>x.id===id);
+  if(state.switches[id]){$('propCard').innerHTML=s.prop;$('propCard').classList.add('show');}
+  refreshSwitches();renderAll();
+}
+function renderResults(){
+  const set=(id,v)=>{$(id).textContent=v;};
+  set('rTodayCost10',cash(totalAt(10,false)));set('rTodayLeft10',cash(leftoverAt(10,false)));
+  set('rTodayWealth',cash(wealthAt(30,false)));
+  const d=dryYear();set('rTodayDry',d?'Year '+d:'Never in 30 years');
+  const rt=retireAge(false);set('rTodayRetire',rt?rt+'':'Past 90');
+  set('rTodayScore',securityScore(false)+' / 100');
+  set('rKhavCost10',cash(totalAt(10,true)));set('rKhavLeft10',cash(leftoverAt(10,true)));
+  set('rKhavWealth',cash(wealthAt(30,true)));
+  const f=freedomYear();set('rKhavFreedom',f!==null?'Year '+f:'Not yet — more switches');
+  const rk=retireAge(true);set('rKhavRetire',rk?rk+'':'Past 90');
+  set('rKhavScore',securityScore(true)+' / 100');
+  const tray=[];
+  if(state.switches.zeroloan&&CHARACTERS[state.char].mortgage)tray.push('🏠 Mortgage — paid off in 10 years');
+  if(state.switches.freecollege&&state.costs.education>0)tray.push('🎓 Education costs — gone');
+  if(state.switches.solar)tray.push('☀️ Power bill — $25 upkeep after year 12');
+  if(state.switches.ev)tray.push('⛽ Gasoline — gone');
+  if(state.switches.proptax&&state.age>=50&&CHARACTERS[state.char].homeowner)tray.push('✉️ Property tax — $0');
+  $('goneTray').innerHTML=tray.length?tray.map(t=>'<span>'+t+'</span>').join(''):'<span style="opacity:.6">Nothing yet — flip some switches</span>';
+  const diff=Math.max(0,leftoverAt(10,true)-leftoverAt(10,false));
+  $('zoomStat').textContent=cash(diff*12*state.zoom)+' a year';
+  $('zoomSub').textContent='kept by '+state.zoom.toLocaleString('en-US')+' households like this one, every year, at your current switch settings (the year-10 monthly difference, times twelve). Turn switches on to watch it move.';
+  $('endLine').textContent='Same paycheck. In today\u2019s economy you retire at '+(rt?rt:'past 90')+'. In Khavari\u2019s, at '+(rk?rk:'past 90')+'.';
+  const badges=[];
+  if(state.switches.freeze&&['solar','ev','zeroloan','localfood'].filter(i=>state.switches[i]).length>=2)badges.push('❄️ Freeze Master');
+  if(state.switches.zeroloan||state.char==='retiree')badges.push('🏠 Debt-Free Home');
+  if(state.switches.solar&&state.switches.ev)badges.push('⚡ Energy Independent');
+  if(state.switches.zeroloan)badges.push('🔑 True Owner');
+  if(securityScore(true)>=80)badges.push('🌴 Carefree');
+  const all=['❄️ Freeze Master','🏠 Debt-Free Home','⚡ Energy Independent','🔑 True Owner','🌴 Carefree'];
+  $('badgeRow').innerHTML=all.map(b=>'<span class="badge'+(badges.includes(b)?' earned':'')+'">'+b+(badges.includes(b)?' ✓':'')+'</span>').join('');
+}
+function renderAll(){renderJars();renderTable();renderChart();renderNarrator();renderBreakdown();renderResults();}
+function selectChar(k){
+  state.char=k;const c=CHARACTERS[k];state.income=c.income;state.age=c.age;state.costs=Object.assign({},c.costs);
+  document.querySelectorAll('.char').forEach(b=>b.setAttribute('aria-pressed',b.dataset.char===k?'true':'false'));
+  $('incomeNum').value=c.income;$('incomeRange').value=c.income;
+  refreshSwitches();renderAll();
+}
+/* ---------- events ---------- */
+document.querySelectorAll('.char').forEach(b=>b.addEventListener('click',()=>selectChar(b.dataset.char)));
+const syncIncome=v=>{state.income=Math.max(1500,Math.min(20000,+v||0));$('incomeNum').value=state.income;$('incomeRange').value=state.income;renderAll();};
+$('incomeNum').addEventListener('change',e=>syncIncome(e.target.value));
+$('incomeRange').addEventListener('input',e=>syncIncome(e.target.value));
+$('yearRange').addEventListener('input',e=>{state.year=+e.target.value;$('yearPill').textContent='YEAR '+Math.round(state.year);renderJars();renderTable();renderChart();renderNarrator();});
+let playTimer=null,shownSurprises=new Set();
+function stopPlay(){state.playing=false;clearInterval(playTimer);$('playBtn').textContent='▶';$('playBtn').setAttribute('aria-label','Play the thirty years');}
+$('playBtn').addEventListener('click',()=>{
+  if(state.playing){stopPlay();return;}
+  if(state.year>=30){state.year=0;shownSurprises.clear();}
+  state.playing=true;$('playBtn').textContent='❚❚';$('playBtn').setAttribute('aria-label','Pause');
+  const step=()=>{state.year=Math.min(30,state.year+(REDUCED?30:.3));$('yearRange').value=state.year;$('yearPill').textContent='YEAR '+Math.round(state.year);
+    [[6,'⚡ Surprise — hospital visit: −$4,200. He called this an "unexpected cost."'],[11,'⛽ Surprise — gas spike: +30% for two years.'],[16,'🎉 Surprise — a $1,000 bonus. An "unexpected income" — notice it barely moves the line.']].forEach(([y,msg])=>{if(state.year>=y&&!shownSurprises.has(y)){shownSurprises.add(y);$('surprise').textContent=msg;setTimeout(()=>{if(!state.playing)$('surprise').textContent='';},4200);}});
+    renderJars();renderTable();renderChart();renderNarrator();
+    if(state.year>=30)stopPlay();};
+  if(REDUCED){step();stopPlay();}else playTimer=setInterval(step,110);
+});
+document.querySelectorAll('.grocbtn').forEach(b=>b.addEventListener('click',()=>{state.item=b.dataset.item;document.querySelectorAll('.grocbtn').forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));renderBreakdown();}));
+document.querySelectorAll('.zoombtn').forEach(b=>b.addEventListener('click',()=>{state.zoom=+b.dataset.zoom;document.querySelectorAll('.zoombtn').forEach(x=>x.setAttribute('aria-pressed',x===b?'true':'false'));renderResults();}));
+$('allOnBtn').addEventListener('click',()=>{
+  const ids=SWITCHES.map(s=>s.id);let i=0;
+  const next=()=>{if(i>=ids.length)return;const id=ids[i++];const btn=$('sw-'+id);if(btn&&!btn.disabled&&!state.switches[id])toggleSwitch(id);setTimeout(next,REDUCED?0:280);};next();
+});
+$('allOffBtn').addEventListener('click',()=>{state.switches={};$('propCard').classList.remove('show');refreshSwitches();renderAll();});
+$('againBtn').addEventListener('click',()=>{document.getElementById('paycheck').scrollIntoView({behavior:REDUCED?'auto':'smooth'});});
+$('shareBtn').addEventListener('click',()=>{
+  const cv=$('shareCanvas'),x=cv.getContext('2d');
+  x.fillStyle='#091915';x.fillRect(0,0,1200,630);
+  x.strokeStyle='#e5c578';x.lineWidth=3;x.strokeRect(26,26,1148,578);
+  x.fillStyle='#70e5b1';x.font='700 30px Arial';x.fillText('THE ECONOMY LAB · FARIDKHAVARI.COM',70,110);
+  x.fillStyle='#f4f0df';x.font='64px Georgia';x.fillText('Same paycheck.',70,215);x.fillText('Different economy.',70,295);
+  const rt=retireAge(false),rk=retireAge(true);
+  x.font='700 44px Arial';x.fillStyle='#f49f91';x.fillText('Today: retire at '+(rt?rt:'90+'),70,400);
+  x.fillStyle='#70e5b1';x.fillText('Khavari: retire at '+(rk?rk:'90+'),70,465);
+  x.font='30px Arial';x.fillStyle='#a5baae';x.fillText('Wealth after 30 years: '+cash(wealthAt(30,false))+'  →  '+cash(wealthAt(30,true)),70,535);
+  x.fillStyle='#e5c578';x.font='24px Arial';x.fillText('Zero Cost equals Wealth — an illustration, not a prediction.',70,580);
+  const a=document.createElement('a');a.download='my-economy-lab-results.png';a.href=cv.toDataURL('image/png');a.click();
+  $('shareNote').textContent='Your card downloaded — post it anywhere. It was made entirely in your browser.';
+});
+/* ---------- init ---------- */
+buildTable();buildSwitchboard();selectChar('family');
+</script>
+</body>
+</html>
