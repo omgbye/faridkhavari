@@ -158,8 +158,103 @@ footer .small{font-size:13px;color:#7e8794;margin-top:14px}
 @media(max-width:900px){.hero-inner{grid-template-columns:1fr}.hero-photo img{max-height:300px}.feature,.split,.two,.calc-grid{grid-template-columns:1fr}.shelf{grid-template-columns:1fr 1fr}}
 </style>
 <link rel="stylesheet" href="hero.css">
+<style>
+/* ===== INTRO MOCK v2 — white/contemporary: cost-of-living flash montage into the name ===== */
+#fk-intro{position:fixed;inset:0;z-index:999;background:#fbfbf6;overflow:hidden;font-family:'Helvetica Neue',Arial,sans-serif}
+#fk-intro .frame{position:absolute;inset:0;opacity:0}
+#fk-intro .frame img{width:100%;height:100%;object-fit:cover;filter:contrast(1.04);transform:scale(1.07)}
+#fk-intro .frame::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,0) 45%,rgba(20,22,18,.18));box-shadow:inset 0 0 0 2000px rgba(139,166,33,.05)}
+#fk-intro .stamp{position:absolute;left:5vw;bottom:7vh;display:flex;align-items:center;gap:13px;background:#ffffff;color:#20242a;font-weight:800;letter-spacing:.3em;font-size:clamp(14px,2.4vw,25px);text-transform:uppercase;padding:13px 20px 13px 16px;box-shadow:0 10px 34px rgba(20,22,18,.25)}
+#fk-intro .stamp::before{content:"";width:clamp(30px,4.4vw,50px);height:8px;background:#8ba621}
+#fk-intro.play .frame.on{opacity:1;transition:opacity .07s linear}
+#fk-intro.play .frame.on img{animation:fkpunch .48s ease-out both}
+@keyframes fkpunch{from{transform:scale(1.13)}to{transform:scale(1.05)}}
+#fk-intro .grid{position:absolute;inset:0;display:none;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:6px;background:#fbfbf6;border:6px solid #8ba621}
+#fk-intro .grid figure{overflow:hidden}
+#fk-intro .grid img{width:100%;height:100%;object-fit:cover;filter:contrast(1.04)}
+#fk-intro.collage .frame{display:none}
+#fk-intro.collage .grid{display:grid;animation:fkgrid .5s ease both}
+@keyframes fkgrid{from{transform:scale(1.05);opacity:.4}to{transform:scale(1);opacity:1}}
+#fk-intro .namewrap{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 20px;background:radial-gradient(circle at 85% 20%,rgba(139,166,33,.16) 1px,transparent 1.6px) 0 0/14px 14px,linear-gradient(180deg,#ffffff 55%,#f1f4e4)}
+#fk-intro.named .frame,#fk-intro.named .grid{display:none}
+#fk-intro.named .namewrap{display:flex}
+#fk-intro .sweep{width:min(560px,78vw);height:5px;background:#8ba621;margin-bottom:30px;transform-origin:left;animation:fksweep .7s cubic-bezier(.7,0,.2,1) both}
+@keyframes fksweep{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+#fk-intro .n1,#fk-intro .n2{font-family:'Arial Black',Arial,sans-serif;font-weight:900;line-height:.94;letter-spacing:.01em;text-transform:uppercase;font-size:clamp(46px,9.5vw,104px);animation:fkname .65s cubic-bezier(.2,.8,.25,1) both}
+#fk-intro .n1{color:#23272c}
+#fk-intro .n2{color:#8ba621;animation-delay:.13s}
+@keyframes fkname{from{opacity:0;transform:translateY(26px)}to{opacity:1;transform:none}}
+#fk-intro .nsub{margin-top:20px;font-family:Georgia,serif;font-style:italic;font-size:clamp(15px,2.2vw,20px);color:#4a4a41;animation:fkname .6s ease .45s both}
+#fk-intro.done{opacity:0;pointer-events:none;transition:opacity .55s ease}
+#fk-skip{position:absolute;right:22px;bottom:20px;z-index:5;background:rgba(20,22,18,.72);border:none;color:#fff;font-size:12px;letter-spacing:.22em;text-transform:uppercase;padding:10px 15px;border-radius:3px;cursor:pointer}
+#fk-replay{position:fixed;right:16px;bottom:16px;z-index:60;background:#fff;color:#20242a;border:1px solid #8ba621;font-size:12px;letter-spacing:.18em;text-transform:uppercase;padding:9px 13px;border-radius:3px;cursor:pointer;display:none}
+#fk-intro.posed .n1,#fk-intro.posed .n2,#fk-intro.posed .nsub{animation:none!important;opacity:1!important;transform:none!important}
+#fk-intro.posed .sweep{animation:none!important;transform:scaleX(1)!important}
+#fk-intro.posed .frame img{animation:none!important;transform:scale(1.05)!important}
+#fk-intro.posed .grid{animation:none!important;opacity:1!important;transform:none!important}
+@media(max-width:640px){#fk-intro .grid{grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(3,1fr)}#fk-intro .stamp{left:6vw;bottom:9vh}}
+@media(prefers-reduced-motion:reduce){#fk-intro .frame,#fk-intro .grid{display:none!important}}
+</style>
+
 </head>
 <body>
+<div id="fk-intro" class="play" aria-hidden="true">
+  <div class="frame" data-f="0"><img src="assets/intro/markets.jpg" alt=""><div class="stamp">The Markets</div></div>
+  <div class="frame" data-f="1"><img src="assets/intro/dollar.jpg" alt=""><div class="stamp">The Dollar</div></div>
+  <div class="frame" data-f="2"><img src="assets/intro/whitehouse.jpg" alt=""><div class="stamp">Washington</div></div>
+  <div class="frame" data-f="3"><img src="assets/intro/war.jpg" alt=""><div class="stamp">The Cost of War</div></div>
+  <div class="frame" data-f="4"><img src="assets/intro/groceries.jpg" alt=""><div class="stamp">The Grocery Bill</div></div>
+  <div class="frame" data-f="5"><img src="assets/intro/gasprice.jpg" alt=""><div class="stamp">The Price of Gas</div></div>
+  <div class="grid">
+    <figure><img src="assets/intro/markets.jpg" alt=""></figure>
+    <figure><img src="assets/intro/dollar.jpg" alt=""></figure>
+    <figure><img src="assets/intro/whitehouse.jpg" alt=""></figure>
+    <figure><img src="assets/intro/war.jpg" alt=""></figure>
+    <figure><img src="assets/intro/groceries.jpg" alt=""></figure>
+    <figure><img src="assets/intro/gasprice.jpg" alt=""></figure>
+  </div>
+  <div class="namewrap">
+    <div class="sweep"></div>
+    <div class="n1">Farid A.</div>
+    <div class="n2">Khavari</div>
+    <div class="nsub">Economist · Inventor · Author of Zero Cost Economics</div>
+  </div>
+  <button id="fk-skip" type="button">Skip intro</button>
+</div>
+<button id="fk-replay" type="button">↻ Replay intro</button>
+<script>
+(function(){
+  var intro=document.getElementById('fk-intro'), frames=intro.querySelectorAll('.frame'),
+      replay=document.getElementById('fk-replay'), timers=[], stage=new URLSearchParams(location.search).get('stage');
+  function clear(){timers.forEach(clearTimeout);timers=[]}
+  function finish(){clear();intro.classList.add('done');document.body.style.overflow='';replay.style.display='block';setTimeout(function(){intro.style.display='none'},600)}
+  function pose(s){
+    clear();intro.classList.add('posed');
+    if(s==='montage'){frames[5].classList.add('on')}
+    else if(s==='collage'){intro.classList.add('collage')}
+    else if(s==='name'){intro.classList.add('named')}
+    else if(s==='off'){intro.style.display='none';replay.style.display='block';return}
+    document.getElementById('fk-skip').style.display='none';
+  }
+  function run(){
+    intro.style.display='block';intro.classList.remove('done','collage','named');intro.classList.add('play');
+    frames.forEach(function(f){f.classList.remove('on')});replay.style.display='none';
+    document.body.style.overflow='hidden';
+    document.getElementById('fk-skip').style.display='block';
+    frames.forEach(function(f,i){timers.push(setTimeout(function(){frames.forEach(function(g){g.classList.remove('on')});f.classList.add('on')},i*470))});
+    timers.push(setTimeout(function(){intro.classList.add('collage')},frames.length*470+120));
+    timers.push(setTimeout(function(){intro.classList.add('named')},frames.length*470+950));
+    timers.push(setTimeout(finish,frames.length*470+2650));
+  }
+  document.getElementById('fk-skip').addEventListener('click',finish);
+  intro.addEventListener('click',function(e){if(e.target.id!=='fk-skip')finish()});
+  replay.addEventListener('click',run);
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches && !stage){intro.classList.add('named');timers.push(setTimeout(finish,900))}
+  else if(stage){pose(stage)}
+  else{run()}
+})();
+</script>
+
 
 <a class="skip-link" href="#idea">Skip to content</a>
 <div class="masthead"><a href="#home" aria-label="Farid A. Khavari home">FK<span>Farid A. Khavari <small>Ph.D.</small></span></a><a class="mast-link" href="#about">A lifetime of unconventional thinking <span>↗</span></a></div>
@@ -365,7 +460,7 @@ addEventListener('message',event=>{const frame=document.getElementById('prosperi
     <div>
       <b>Farid A. Khavari, Ph.D.</b>
       <div style="margin-top:8px;font-size:14.5px">Economist · Inventor · Author<br>Miami, Florida</div>
-      <div class="small">Books available on Amazon · Original site: ZeroCostEconomy.com</div><p style="margin-top:16px"><a href="https://www.zerocosteconomy.com/contact.html">Contact Dr. Khavari ↗</a></p>
+      <div class="small">Books available on Amazon · Original site: ZeroCostEconomy.com<br>Intro gas-price photo: “ARCO gas prices, Los Angeles” by Downtowngal, via Wikimedia Commons (CC BY-SA 4.0)</div><p style="margin-top:16px"><a href="https://www.zerocosteconomy.com/contact.html">Contact Dr. Khavari ↗</a></p>
     </div>
     <div>
       <div style="color:#fff;font-size:13px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px">Explore</div>
