@@ -221,6 +221,13 @@ footer .small{font-size:13px;color:#7e8794;margin-top:14px}
 @media(max-width:760px){.vticker{overflow-x:auto;-webkit-mask-image:none;mask-image:none}.vtrack{animation:none}.vcard{width:248px}.vcard.playing{transform:scale(1.03)}}
 @media(prefers-reduced-motion:reduce){.vtrack{animation:none}.vticker{overflow-x:auto}}
 </style>
+<style>
+.nav-inner a.nav-cta{background:var(--amber);color:#191c20;font-weight:800;border-radius:3px;padding-top:8px;padding-bottom:8px}
+.book-card{position:relative}
+.newrel{position:absolute;top:16px;right:-10px;z-index:5;background:#b02a20;color:#fff;font-family:'Helvetica Neue',Arial,sans-serif;font-weight:800;font-size:13px;letter-spacing:.14em;text-transform:uppercase;padding:8px 13px;transform:rotate(4deg);box-shadow:0 10px 22px rgba(90,10,5,.35);border-radius:2px;pointer-events:none}
+.newrel::after{content:"";position:absolute;right:0;bottom:-7px;border:4px solid transparent;border-top-color:#7e1a12;border-right-color:#7e1a12}
+.book-card.small .newrel{font-size:10.5px;top:10px;right:-6px;padding:6px 10px}
+</style>
 </head>
 <body>
 <div id="fk-intro" class="play" aria-hidden="true">
@@ -283,10 +290,10 @@ footer .small{font-size:13px;color:#7e8794;margin-top:14px}
 
 <a class="skip-link" href="#idea">Skip to content</a>
 <div class="masthead"><a href="#home" aria-label="Farid A. Khavari home">FK<span>Farid A. Khavari <small>Ph.D.</small></span></a><a class="mast-link" href="#about">A lifetime of unconventional thinking <span>↗</span></a></div>
-<details class="mobile-menu"><summary>Explore <span aria-hidden="true">＋</span></summary><nav aria-label="Mobile navigation"><a href="#home">Home</a><a href="#books">Books</a><a href="#about">About the author</a><a href="#idea">His economic vision</a><a href="#videos">Podcast &amp; Videos</a><a href="#history">History</a><a href="https://www.zerocosteconomy.com/contact.html">Contact Dr. Khavari ↗</a></nav></details>
+<details class="mobile-menu"><summary>Explore <span aria-hidden="true">＋</span></summary><nav aria-label="Mobile navigation"><a href="#home">Home</a><a href="#books">Books</a><a href="#about">About the author</a><a href="institute.html">The Institute</a><a href="#videos">Podcast &amp; Videos</a><a href="#history">History</a><a href="https://www.zerocosteconomy.com/contact.html">Contact Dr. Khavari ↗</a></nav></details>
 <!-- NAV -->
 <nav class="nav" aria-label="Main navigation"><div class="nav-inner">
-  <a href="#home">Home</a><a href="#about">About the Author</a><a href="#books">Books</a><a href="#idea">The Idea</a><a href="#videos">Podcast &amp; Videos</a><a href="#events">Events</a><a href="#history">History</a><a href="https://www.zerocosteconomy.com/contact.html">Contact</a>
+  <a href="#home">Home</a><a href="#about">About the Author</a><a href="#books">Books</a><a href="institute.html" class="nav-cta">The Institute</a><a href="#videos">Podcast &amp; Videos</a><a href="#events">Events</a><a href="#history">History</a><a href="https://www.zerocosteconomy.com/contact.html">Contact</a>
 </div></nav>
 
 <header class="hero" id="home">
@@ -302,14 +309,14 @@ footer .small{font-size:13px;color:#7e8794;margin-top:14px}
 </div>
 <figure class="hero-photo"><img src="assets/farid-khavari-portrait.jpg" alt="Farid A. Khavari in a dark suit and patterned tie" width="536" height="800" fetchpriority="high"><figcaption><span>THE AUTHOR &amp; HIS LIFE’S WORK</span><b>A different way<br>to think about prosperity.</b><a href="#about">Meet Dr. Khavari <span aria-hidden="true">↗</span></a></figcaption></figure>
 </div>
-<div class="hero-strip"><div><span class="strip-label">THE CENTRAL IDEA</span><p>Eliminate unnecessary costs.<br class="mobile-break"> Create enduring prosperity.</p><a href="#idea">Try the prosperity experiment <span aria-hidden="true">↓</span></a></div></div>
+<div class="hero-strip"><div><span class="strip-label">THE CENTRAL IDEA</span><p>Eliminate unnecessary costs.<br class="mobile-break"> Create enduring prosperity.</p><a href="institute.html">Enter the Institute <span aria-hidden="true">→</span></a></div></div>
 </header>
 <!-- FEATURED / NEWS -->
 <section>
   <div class="wrap">
     <div class="feature">
       <a class="book-card" href="https://www.amazon.com/dp/B0H94TFG83" target="_blank" rel="noopener">
-        <img class="cover-img" src="assets/cover-leaving-liberal-dystopia.jpg" alt="Cover of Leaving Liberal Dystopia — Book 2 of the Zero Cost Economics series, by Farid A. Khavari">
+        <img class="cover-img" src="assets/cover-leaving-liberal-dystopia.jpg" alt="Cover of Leaving Liberal Dystopia — Book 2 of the Zero Cost Economics series, by Farid A. Khavari"><span class="newrel">New Release!</span>
       </a>
       <div>
         <div class="sec-head"><span class="k">Featured Book</span></div>
@@ -336,7 +343,7 @@ footer .small{font-size:13px;color:#7e8794;margin-top:14px}
 </section>
 
 <!-- INTERACTIVE: THE PROSPERITY EXPERIMENT -->
-<section id="idea" class="experiment-section" aria-label="The Prosperity Experiment"><iframe id="prosperity-experiment" title="The Prosperity Experiment — interactive introduction to Zero Cost Economics" src="economic-lab.html?embed=1" style="display:block;width:100%;height:1800px;border:0;background:#091915" scrolling="no"></iframe></section>
+<section id="idea" style="background:#10141a;padding:72px 0 0" aria-label="His graphic presentation, restored"><div class="wrap"><div class="sec-head"><span class="k" style="color:var(--amber2)">His Graphic Presentation &middot; 2009, Restored</span><h2 style="color:var(--cream)">This is the current situation</h2></div><div class="rule"></div><p style="color:#c8cdd4;max-width:760px;font-size:17px;line-height:1.65;margin:0 0 26px">In 2009 Farid animated his whole argument as a graphic presentation for his first website: costs rising against incomes that stand still &mdash; and then the way out. Freeze, reduce, eliminate. Flash is gone; the diagram has been restored and rebuilt. Press play.</p></div><iframe id="grafico-film" title="The Graphic Presentation — Zero Cost Economics, restored and rebuilt" src="grafico-film.html?embed=1" style="display:block;width:100%;height:940px;border:0;background:#10141a" scrolling="no"></iframe><div class="wrap" style="padding:30px 0 64px"><div style="border:1px solid #2c3138;background:#171b21;padding:26px 28px;display:flex;gap:22px;align-items:center;flex-wrap:wrap"><div style="flex:1;min-width:280px"><div style="font-size:11.5px;letter-spacing:.22em;color:var(--amber2);text-transform:uppercase;font-weight:700">The Institute for a Zero-Cost Economy</div><p style="color:#c8cdd4;font-size:15.5px;line-height:1.6;margin:8px 0 0">This presentation, the interactive Prosperity Experiment, the mission and the goals &mdash; gathered on one dedicated page for the Institute.</p></div><a href="institute.html" style="background:var(--amber);color:#191c20;font-weight:800;font-size:14px;letter-spacing:.1em;text-transform:uppercase;padding:14px 22px;border-radius:3px;text-decoration:none;white-space:nowrap">Enter the Institute &rarr;</a></div></div></section>
 <script>
 addEventListener('message',event=>{const frame=document.getElementById('prosperity-experiment');if(event.source!==frame.contentWindow||event.origin!==location.origin)return;if(event.data?.type==='khavari-experiment-navigate'&&['home','books'].includes(event.data.hash)){location.hash=event.data.hash;return}if(event.data?.type==='khavari-experiment-height'&&Number.isFinite(event.data.height))frame.style.height=Math.max(500,Math.min(10000,event.data.height))+'px'});
 </script>
@@ -351,8 +358,8 @@ addEventListener('message',event=>{const frame=document.getElementById('prosperi
       <img class="cover-img" src="assets/cover-new-framework.jpg" alt="Cover of Zero Cost Economics: A New Framework for Universal Prosperity — Book 1">
       <div class="bt">Zero Cost Economics: A New Framework for Universal Prosperity</div><div class="bm">Book 1 · The Series</div>
     </a>
-    <a class="book-card" href="https://www.amazon.com/dp/B0H94TFG83" target="_blank" rel="noopener">
-      <img class="cover-img" src="assets/cover-leaving-liberal-dystopia.jpg" alt="Cover of Leaving Liberal Dystopia — Book 2">
+    <a class="book-card small" href="https://www.amazon.com/dp/B0H94TFG83" target="_blank" rel="noopener">
+      <img class="cover-img" src="assets/cover-leaving-liberal-dystopia.jpg" alt="Cover of Leaving Liberal Dystopia — Book 2"><span class="newrel">New Release!</span>
       <div class="bt">Leaving Liberal Dystopia: The Road to a Bright Future</div><div class="bm">Book 2 · 2026 · Paperback $14.99</div>
     </a>
     <a class="book-card" href="https://www.amazon.com/s?k=Zero+Cost+Economics%3A+An+Action+Plan+Farid+A.+Khavari" target="_blank" rel="noopener">
