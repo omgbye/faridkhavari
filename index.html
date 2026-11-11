@@ -178,17 +178,17 @@ section{padding:64px 24px}
 .stage .bd{color:#b9c0c9}
 .stage .bprice{color:var(--gold)}
 .stage .bnum{background:var(--amber);color:#231d05}
-.stage .buybtn{background:var(--amber);color:#231d05}
-.stage .buybtn:hover{background:var(--amber2)}
+.stage .buybtn{display:block;width:100%;box-sizing:border-box;margin-top:12px;background:transparent;border:1.5px solid var(--amber);color:var(--amber2);font-size:12px;letter-spacing:.1em;padding:11px 6px;white-space:nowrap;text-align:center}
+.stage .buybtn:hover{background:var(--amber);color:#231d05}
 .startline{position:relative;text-align:center;color:#b9c0c9;font-size:14px;margin:38px 0 0}
 .startline a{color:var(--gold);font-weight:700}
-@media(max-width:640px){.stage{padding:40px 16px 34px}.series-head.on-stage{margin-top:44px}}
+@media(max-width:640px){.stage{padding:40px 16px 34px}.series-head.on-stage{margin-top:44px}.stageword{font-size:7vw;letter-spacing:.03em}}
 
 /* ===== BOOKS — a calm, simple grid (2026-11-11) ===== */
 .bgrid{display:flex;flex-wrap:wrap;gap:32px 30px;justify-content:center;margin-top:12px}
-.btile{flex:0 1 172px;text-align:center}
+.btile{flex:0 1 172px;text-align:center;min-width:0}
 .series-head.on-stage.slim{margin:44px auto 24px}
-@media(max-width:640px){.bgrid{gap:24px 16px}.btile{flex-basis:calc(50% - 8px)}}
+@media(max-width:640px){.bgrid{gap:24px 16px}.btile{flex-basis:calc(50% - 8px)}.stage .buybtn{font-size:11px;letter-spacing:.05em;padding:10px 4px}}
 
 /* about / podcast / events / governor */
 .two{display:grid;grid-template-columns:1fr 1fr;gap:40px}
