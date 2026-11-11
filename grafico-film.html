@@ -39,7 +39,7 @@ body{font-family:'Helvetica Neue',Arial,sans-serif;color:var(--cream);padding:18
 .scene-btn.on{border-color:var(--amber);color:var(--amber2)}
 .tlabel{font-size:12.5px;color:var(--mut);letter-spacing:.1em;min-width:86px;text-align:right}
 .bookbtn{display:inline-block;background:var(--amber);color:#191c20;font-weight:700;letter-spacing:.14em;font-size:13px;padding:11px 18px;text-decoration:none;text-transform:uppercase}
-@media(max-width:640px){body{padding:10px 8px 14px}.film{padding:18px 14px 14px}.badge{display:none}.tlabel{display:none}}
+@media(max-width:640px){body{padding:10px 8px 14px}.film{padding:18px 14px 14px}.badge{display:none}.tlabel{display:none}.eyebrow{font-size:11.5px;letter-spacing:.24em;line-height:1.8}.film-head h1{font-size:22px;line-height:1.25}.film-head .sub{font-size:13px;line-height:1.55}.capbar p{font-size:14px;line-height:1.5}.scene-btn{font-size:12px;padding:0 9px}}
 
 body.mini .film-head{display:none}
 body.mini .stage{padding:8px 8px 2px}
@@ -261,6 +261,12 @@ body.mini .capbar{display:none}
  window.addEventListener('load',tryPlay);
  [700,1600,3000,5000].forEach(function(ms){setTimeout(tryPlay,ms)});
 })();
+</script>
+
+<script>
+(function(){function h(){try{parent.postMessage({fkHeight:document.documentElement.scrollHeight},'*')}catch(e){}}
+window.addEventListener('load',function(){h();[300,800,1500,2500].forEach(function(t){setTimeout(h,t)})});
+window.addEventListener('resize',h);})();
 </script>
 </body>
 </html>
