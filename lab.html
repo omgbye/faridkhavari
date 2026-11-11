@@ -208,6 +208,14 @@ details.assump li{font-size:13.5px;color:var(--muted);margin:5px 0}
 .vizout b{color:var(--gold)}
 .vizleg{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-top:8px}
 .vizleg i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+
+/* ===== LAB HERO + INDEX (2026-11-11) ===== */
+.labhero{margin:32px 0 4px}
+.labhero img{width:100%;height:auto;display:block;border-radius:10px;box-shadow:0 24px 60px rgba(0,0,0,.45)}
+.labhero figcaption{color:var(--muted);font-size:13.5px;margin-top:12px;text-align:center}
+.labindex{display:flex;flex-wrap:wrap;gap:8px;margin:28px 0 0}
+.labindex a{font-size:12.5px;font-weight:700;letter-spacing:.05em;color:var(--muted);border:1px solid var(--line);border-radius:20px;padding:7px 13px;text-decoration:none}
+.labindex a:hover{color:var(--cream);border-color:var(--gold)}
 </style>
 </head>
 <body>
@@ -238,9 +246,19 @@ details.assump li{font-size:13.5px;color:var(--muted);margin:5px 0}
   <p class="sub">Enter your paycheck. Watch your real costs rise in today's economy — then flip Dr. Khavari's switches and watch them freeze, shrink and disappear. <b style="color:var(--cream)">Your income never changes.</b></p>
   <a class="btn btn-mint" href="#paycheck">Start the experiment</a>
   <p style="color:var(--muted);font-size:12.5px;margin-top:14px">Nothing you type is stored or sent anywhere. It all stays in your browser.</p>
+  <figure class="labhero">
+    <picture>
+      <source media="(max-width:640px)" srcset="assets/lab-hero-portrait.webp">
+      <img src="assets/lab-hero.webp" width="1600" height="900" alt="Editorial collage of Dr. Farid A. Khavari at a podium: on the left, the cost trap — gas at $3.79, grocery and healthcare bills, electricity, interest at 24.99% and a rising red arrow; on the right, the zero-cost economy — affordable housing, lower gasoline costs, cheaper electricity, reduced healthcare costs, lower interest rates, a solar home and an electric car">
+    </picture>
+    <figcaption>The cost trap on the left. The way out on the right. Below, you run both economies on your own paycheck.</figcaption>
+  </figure>
 </div></header>
 
 <main class="wrap">
+<nav class="labindex" aria-label="On this page">
+  <a href="#paycheck">1 · Paycheck</a><a href="#table">2 · Kitchen table</a><a href="#today">3 · The player</a><a href="#chain">4 · Inside a price</a><a href="#switchboard">5 · Switchboard</a><a href="#results">6 · Results</a><a href="#pictures">In pictures</a><a href="#zoom">7 · Zoom out</a><a href="#labbooks">The books</a>
+</nav>
 
 <section id="paycheck" aria-labelledby="s1h">
   <span class="k">Step 1 · Your paycheck</span>
@@ -491,7 +509,7 @@ details.assump li{font-size:13.5px;color:var(--muted);margin:5px 0}
 
 </main>
 
-<section class="labbooks" aria-label="Books by Farid A. Khavari">
+<section class="labbooks" id="labbooks" aria-label="Books by Farid A. Khavari">
   <div class="wrap"><span class="k">The Books Behind the Lab</span><h2 style="font-size:clamp(24px,3.4vw,34px);margin:8px 0 4px">Read the plan in his own words</h2><p style="color:var(--mut);margin:0 0 20px">Every switch in this Lab comes from these books. The shelf, in motion — tap any cover to find it.</p></div>
   <div class="lbtrack-wrap"><div class="lbtrack"><a class="lbook" href="https://www.amazon.com/dp/B0H94TFG83" target="_blank" rel="noopener"><span class="bk"><img src="assets/cover-leaving-liberal-dystopia.jpg" alt="Cover of Leaving Liberal Dystopia" loading="lazy"></span><span>Leaving Liberal Dystopia</span></a><a class="lbook" href="https://www.amazon.com/dp/1440121680" target="_blank" rel="noopener"><span class="bk"><img src="assets/cover-towards-zero-cost.jpg" alt="Cover of Towards a Zero-Cost Economy" loading="lazy"></span><span>Towards a Zero-Cost Economy</span></a><a class="lbook" href="https://www.amazon.com/s?k=Zero+Cost+Economics%3A+A+New+Framework+for+Universal+Prosperity+Farid+A.+Khavari" target="_blank" rel="noopener"><span class="bk"><img src="assets/cover-new-framework.jpg" alt="Cover of Zero Cost Economics: A New Framework for Universal Prosperity" loading="lazy"></span><span>Zero Cost Economics: A New Framework for Universal Prosperity</span></a><a class="lbook" href="https://www.amazon.com/s?k=Zero+Cost+Economics%3A+An+Action+Plan+Farid+A.+Khavari" target="_blank" rel="noopener"><span class="bk"><img src="assets/cover-action-plan.jpg" alt="Cover of Zero Cost Economics: An Action Plan" loading="lazy"></span><span>Zero Cost Economics: An Action Plan</span></a><a class="lbook" href="https://www.amazon.com/s?k=China+vs.+U.S.A.+Farid+A.+Khavari" target="_blank" rel="noopener"><span class="bk"><img src="assets/cover-china-vs-usa.jpg" alt="Cover of China vs. U.S.A." loading="lazy"></span><span>China vs. U.S.A.</span></a><a class="lbook" href="https://www.amazon.com/s?k=Trumpocracy+Forming+Dollar-Bloc+Nations+Farid+A.+Khavari" target="_blank" rel="noopener"><span class="bk"><img src="assets/cover-trumpocracy.jpg" alt="Cover of Trumpocracy" loading="lazy"></span><span>Trumpocracy</span></a><a class="lbook" href="https://www.amazon.com/s?k=Manifesto+of+an+Unconventional+Economist+Farid+A.+Khavari" target="_blank" rel="noopener"><span class="bk"><img src="assets/cover-manifesto.jpg" alt="Cover of Manifesto of an Unconventional Economist" loading="lazy"></span><span>Manifesto of an Unconventional Economist</span></a><a class="lbook" href="https://www.amazon.com/dp/027594462X" target="_blank" rel="noopener"><span class="bk"><img src="assets/cover-environomics.jpg" alt="Cover of Environomics" loading="lazy"></span><span>Environomics</span></a><a class="lbook" href="https://www.amazon.com/s?k=The+Final+Reckoning+Farid+A.+Khavari" target="_blank" rel="noopener"><span class="bk"><img src="assets/cover-final-reckoning.jpg" alt="Cover of The Final Reckoning" loading="lazy"></span><span>The Final Reckoning</span></a><a class="lbook" href="https://www.amazon.com/dp/B0H94TFG83" target="_blank" rel="noopener"><span class="bk"><img src="assets/cover-leaving-liberal-dystopia.jpg" alt="Cover of Leaving Liberal Dystopia" loading="lazy"></span><span>Leaving Liberal Dystopia</span></a><a class="lbook" href="https://www.amazon.com/dp/1440121680" target="_blank" rel="noopener"><span class="bk"><img src="assets/cover-towards-zero-cost.jpg" alt="Cover of Towards a Zero-Cost Economy" loading="lazy"></span><span>Towards a Zero-Cost Economy</span></a><a class="lbook" href="https://www.amazon.com/s?k=Zero+Cost+Economics%3A+A+New+Framework+for+Universal+Prosperity+Farid+A.+Khavari" target="_blank" rel="noopener"><span class="bk"><img src="assets/cover-new-framework.jpg" alt="Cover of Zero Cost Economics: A New Framework for Universal Prosperity" loading="lazy"></span><span>Zero Cost Economics: A New Framework for Universal Prosperity</span></a><a class="lbook" href="https://www.amazon.com/s?k=Zero+Cost+Economics%3A+An+Action+Plan+Farid+A.+Khavari" target="_blank" rel="noopener"><span class="bk"><img src="assets/cover-action-plan.jpg" alt="Cover of Zero Cost Economics: An Action Plan" loading="lazy"></span><span>Zero Cost Economics: An Action Plan</span></a><a class="lbook" href="https://www.amazon.com/s?k=China+vs.+U.S.A.+Farid+A.+Khavari" target="_blank" rel="noopener"><span class="bk"><img src="assets/cover-china-vs-usa.jpg" alt="Cover of China vs. U.S.A." loading="lazy"></span><span>China vs. U.S.A.</span></a><a class="lbook" href="https://www.amazon.com/s?k=Trumpocracy+Forming+Dollar-Bloc+Nations+Farid+A.+Khavari" target="_blank" rel="noopener"><span class="bk"><img src="assets/cover-trumpocracy.jpg" alt="Cover of Trumpocracy" loading="lazy"></span><span>Trumpocracy</span></a><a class="lbook" href="https://www.amazon.com/s?k=Manifesto+of+an+Unconventional+Economist+Farid+A.+Khavari" target="_blank" rel="noopener"><span class="bk"><img src="assets/cover-manifesto.jpg" alt="Cover of Manifesto of an Unconventional Economist" loading="lazy"></span><span>Manifesto of an Unconventional Economist</span></a><a class="lbook" href="https://www.amazon.com/dp/027594462X" target="_blank" rel="noopener"><span class="bk"><img src="assets/cover-environomics.jpg" alt="Cover of Environomics" loading="lazy"></span><span>Environomics</span></a><a class="lbook" href="https://www.amazon.com/s?k=The+Final+Reckoning+Farid+A.+Khavari" target="_blank" rel="noopener"><span class="bk"><img src="assets/cover-final-reckoning.jpg" alt="Cover of The Final Reckoning" loading="lazy"></span><span>The Final Reckoning</span></a></div></div>
 </section>
