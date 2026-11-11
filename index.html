@@ -239,14 +239,10 @@ footer .small{font-size:13px;color:#7e8794;margin-top:14px}
 #fk-intro .namewrap2>*{position:relative}
 #fk-intro.named .namewrap2{opacity:1;transition:opacity .7s ease .05s}
 #fk-intro .n-rule{width:min(300px,60vw);height:2px;background:#c9a86a;margin-bottom:28px}
-#fk-intro .n-kick{font-size:11.5px;font-weight:800;letter-spacing:.34em;color:var(--amber2);text-transform:uppercase;margin-bottom:14px}
-#fk-intro .nm{font-family:Georgia,serif;font-weight:700;color:#f7f3ea;font-size:clamp(31px,6.8vw,64px);letter-spacing:.13em;text-transform:uppercase;line-height:1.12;-webkit-text-stroke:.6px rgba(247,243,234,.85);text-shadow:0 0 16px rgba(245,188,58,.50),0 0 46px rgba(232,168,32,.32),0 3px 10px rgba(0,0,0,.65),0 2px 30px rgba(0,0,0,.5)}
-@media(max-width:640px){#fk-intro .nm{font-size:clamp(21px,6.2vw,30px);letter-spacing:.07em}}
-#fk-intro.named .nm{animation:fkname .65s cubic-bezier(.2,.8,.25,1) both}
-#fk-intro .nsub2{margin-top:18px;font-size:clamp(11px,1.8vw,13.5px);font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:#f5bc3a}
-#fk-intro.named .nsub2{animation:fkname .6s ease .18s both}
-#fk-intro .nsub3{margin-top:11px;font-family:Georgia,serif;font-style:italic;font-size:clamp(14px,2.2vw,18px);color:#e8e4d8}
-#fk-intro.named .nsub3{animation:fkname .6s ease .34s both}
+#fk-intro .nm{font-family:Georgia,serif;font-weight:700;font-size:clamp(44px,8.5vw,88px);letter-spacing:.1em;text-transform:uppercase;line-height:1.08;background-image:linear-gradient(110deg,#f7f3ea 42%,#ffffff 50%,#f5bc3a 54%,#f7f3ea 62%);background-size:250% 100%;background-position:120% 0;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:.8px rgba(247,243,234,.9);filter:drop-shadow(0 0 16px rgba(245,188,58,.40)) drop-shadow(0 3px 12px rgba(0,0,0,.65))}
+@media(max-width:640px){#fk-intro .nm{font-size:clamp(26px,7.2vw,34px);letter-spacing:.04em}}
+#fk-intro.named .nm{animation:fkname .65s cubic-bezier(.2,.8,.25,1) both,fkshine 1.9s ease .25s both}
+@keyframes fkshine{from{background-position:120% 0}to{background-position:-120% 0}}
 @keyframes fkname{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 #fk-intro.done{opacity:0!important;pointer-events:none;transition:opacity .55s ease;animation:none}
 #fk-skip{position:absolute;right:22px;bottom:20px;z-index:5;background:rgba(247,243,234,.07);border:1px solid #2c3138;color:#c9cfd8;font-size:12px;letter-spacing:.22em;text-transform:uppercase;padding:10px 15px;border-radius:3px;cursor:pointer}
@@ -323,10 +319,7 @@ footer .small{font-size:13px;color:#7e8794;margin-top:14px}
     <div class="scrim"></div>
     <div class="namewrap2">
       <div class="n-rule"></div>
-      <div class="n-kick">The Unconventional Economist</div>
       <div class="nm">Farid A. Khavari</div>
-      <div class="nsub2">Freeze &middot; Reduce &middot; Eliminate</div>
-      <div class="nsub3">Towards a zero-cost economy</div>
     </div>
   </div>
   <button id="fk-skip" type="button">Skip intro</button>
