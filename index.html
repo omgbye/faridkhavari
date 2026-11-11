@@ -198,7 +198,7 @@ footer .small{font-size:13px;color:#7e8794;margin-top:14px}
 #fk-intro .artIn{position:absolute;inset:0}
 #fk-intro.settled .artIn{animation:fkdrift 16s ease-in-out infinite alternate}
 @keyframes fkdrift{from{transform:scale(1)}to{transform:scale(1.025)}}
-#fk-intro .tile{position:absolute;background-image:url('assets/intro-collage.webp');background-repeat:no-repeat;opacity:0;transform:translate(var(--dx),var(--dy)) rotate(var(--rot)) scale(1.06)}
+#fk-intro .tile{position:absolute;background-repeat:no-repeat;opacity:0;transform:translate(var(--dx),var(--dy)) rotate(var(--rot)) scale(1.06)}
 #fk-intro.play .tile{opacity:1;transform:none;transition:transform 1.15s cubic-bezier(.22,.8,.26,1),opacity .55s ease;transition-delay:var(--dl)}
 #fk-intro .scrim{position:absolute;left:0;right:0;bottom:0;height:52%;background:linear-gradient(180deg,rgba(24,20,12,0),rgba(24,20,12,.52) 58%,rgba(24,20,12,.74));opacity:0}
 #fk-intro.named .scrim{opacity:1;transition:opacity .85s ease}
@@ -232,6 +232,7 @@ footer .small{font-size:13px;color:#7e8794;margin-top:14px}
 #fk-intro.posed .mkt{stroke-dashoffset:0!important;animation:none!important}
 #fk-intro.posed .mfill{opacity:var(--fo,.12)!important;animation:none!important}
 #fk-intro.posed .mdot{opacity:1!important;animation:none!important}
+@media(max-width:640px){#fk-intro .art{aspect-ratio:9/16;width:min(430px,94vw)}#fk-intro .scrim{height:36%}}
 @media(prefers-reduced-motion:reduce){#fk-intro .artIn{animation:none}}
 </style>
 
@@ -267,7 +268,8 @@ footer .small{font-size:13px;color:#7e8794;margin-top:14px}
 .newrel::after{content:"";position:absolute;left:0;bottom:-7px;border:4px solid transparent;border-top-color:#7e1a12;border-left-color:#7e1a12}
 .book-card.small .newrel{font-size:10.5px;top:10px;right:-6px;padding:6px 10px}
 </style>
-<link rel="preload" as="image" href="assets/intro-collage.webp">
+<link rel="preload" as="image" media="(max-width:640px)" href="assets/intro-collage-portrait.webp">
+<link rel="preload" as="image" media="(min-width:641px)" href="assets/intro-collage.webp">
 </head>
 <body>
 <div id="fk-intro" aria-hidden="true">
@@ -296,10 +298,11 @@ footer .small{font-size:13px;color:#7e8794;margin-top:14px}
 <script>
 (function(){
   var intro=document.getElementById('fk-intro'), replay=document.getElementById('fk-replay'), tilesBox=document.getElementById('fk-tiles'), timers=[], stage=new URLSearchParams(location.search).get('stage');
-  var COLS=6, ROWS=4;
+  var PORTRAIT=window.matchMedia('(max-width:640px)').matches;
+  var COLS=PORTRAIT?4:6, ROWS=PORTRAIT?6:4, ART=PORTRAIT?'assets/intro-collage-portrait.webp':'assets/intro-collage.webp';
   for(var r=0;r<ROWS;r++)for(var c=0;c<COLS;c++){
     var i=r*COLS+c, t=document.createElement('div');
-    t.className='tile';
+    t.className='tile'; t.style.backgroundImage='url('+ART+')';
     t.style.left=(c*100/COLS)+'%'; t.style.top=(r*100/ROWS)+'%';
     t.style.width=(100/COLS)+'%'; t.style.height=(100/ROWS)+'%';
     t.style.backgroundSize=(COLS*100)+'% '+(ROWS*100)+'%';
