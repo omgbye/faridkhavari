@@ -211,17 +211,23 @@ footer .small{font-size:13px;color:#7e8794;margin-top:14px}
 #fk-intro{position:fixed;inset:0;z-index:999;background:#f8eddf;overflow:hidden;font-family:'Helvetica Neue',Arial,sans-serif;display:flex;align-items:center;justify-content:center;animation:fkfailsafe .6s ease 12s both}
 @keyframes fkfailsafe{to{opacity:0;visibility:hidden}}
 #fk-intro .art{position:relative;width:min(1060px,94vw);aspect-ratio:4/3;box-shadow:0 24px 60px rgba(96,74,24,.16);overflow:hidden;background:#f8eddf}
-#fk-intro .artIn{position:absolute;inset:0}
+#fk-intro .artIn{position:absolute;inset:0;transition:filter 1.6s ease}
+#fk-intro.mono .artIn{filter:grayscale(1) contrast(1.06)}
 #fk-intro.settled .artIn{animation:fkdrift 16s ease-in-out infinite alternate}
 @keyframes fkdrift{from{transform:scale(1)}to{transform:scale(1.025)}}
 #fk-intro .tile{position:absolute;background-repeat:no-repeat;opacity:0;transform:translate(var(--dx),var(--dy)) rotate(var(--rot)) scale(1.06)}
 #fk-intro.play .tile{opacity:1;transform:none;transition:transform 1.15s cubic-bezier(.22,.8,.26,1),opacity .55s ease;transition-delay:var(--dl)}
 #fk-intro .scrim{position:absolute;left:0;right:0;bottom:0;height:52%;background:linear-gradient(180deg,rgba(24,20,12,0),rgba(24,20,12,.52) 58%,rgba(24,20,12,.74));opacity:0}
 #fk-intro.named .scrim{opacity:1;transition:opacity .85s ease}
-#fk-intro .namewrap2{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;text-align:center;padding:0 20px 6.5%;opacity:0;pointer-events:none}
+#fk-intro .namewrap2{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 20px;opacity:0;pointer-events:none}
+#fk-intro .namewrap2::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 90% 56% at 50% 50%,rgba(18,15,8,.55),rgba(18,15,8,.22) 58%,rgba(18,15,8,0) 85%);opacity:0;transition:opacity .9s ease}
+#fk-intro.named .namewrap2::before{opacity:1}
+#fk-intro .namewrap2>*{position:relative}
 #fk-intro.named .namewrap2{opacity:1;transition:opacity .7s ease .05s}
 #fk-intro .n-rule{width:min(300px,60vw);height:2px;background:#c9a86a;margin-bottom:28px}
-#fk-intro .nm{font-family:Georgia,serif;color:#f7f3ea;font-size:clamp(29px,6.2vw,56px);letter-spacing:.13em;text-transform:uppercase;line-height:1.12;text-shadow:0 2px 26px rgba(0,0,0,.45)}
+#fk-intro .n-kick{font-size:11.5px;font-weight:800;letter-spacing:.34em;color:var(--amber2);text-transform:uppercase;margin-bottom:14px}
+#fk-intro .nm{font-family:Georgia,serif;color:#f7f3ea;font-size:clamp(31px,6.8vw,64px);letter-spacing:.13em;text-transform:uppercase;line-height:1.12;text-shadow:0 2px 26px rgba(0,0,0,.45)}
+@media(max-width:640px){#fk-intro .nm{font-size:clamp(21px,6.2vw,30px);letter-spacing:.07em}}
 #fk-intro.named .nm{animation:fkname .65s cubic-bezier(.2,.8,.25,1) both}
 #fk-intro .nsub2{margin-top:18px;font-size:clamp(11px,1.8vw,13.5px);font-weight:700;letter-spacing:.3em;text-transform:uppercase;color:#f5bc3a}
 #fk-intro.named .nsub2{animation:fkname .6s ease .18s both}
@@ -303,6 +309,7 @@ footer .small{font-size:13px;color:#7e8794;margin-top:14px}
     <div class="scrim"></div>
     <div class="namewrap2">
       <div class="n-rule"></div>
+      <div class="n-kick">The Unconventional Economist</div>
       <div class="nm">Farid A. Khavari</div>
       <div class="nsub2">Freeze &middot; Reduce &middot; Eliminate</div>
       <div class="nsub3">Towards a zero-cost economy</div>
@@ -333,7 +340,7 @@ footer .small{font-size:13px;color:#7e8794;margin-top:14px}
   function clear(){timers.forEach(clearTimeout);timers=[]}
   function finish(){clear();intro.classList.add('done');document.body.style.overflow='';replay.style.display='block';setTimeout(function(){intro.style.display='none'},600)}
   function pose(s){
-    clear();intro.classList.add('posed');
+    clear();intro.classList.add('posed');intro.classList.add('mono');
     if(s==='off'){intro.style.display='none';replay.style.display='block';return}
     if(s==='name'){intro.classList.add('named')}
     document.getElementById('fk-skip').style.display='none';
@@ -342,7 +349,8 @@ footer .small{font-size:13px;color:#7e8794;margin-top:14px}
     intro.style.display='flex';intro.classList.remove('done','named','posed','settled','play');void intro.offsetWidth;intro.classList.add('play');
     replay.style.display='none';document.body.style.overflow='hidden';document.getElementById('fk-skip').style.display='block';
     timers.push(setTimeout(function(){intro.classList.add('settled')},2800));
-    timers.push(setTimeout(function(){intro.classList.add('named')},3400));
+    timers.push(setTimeout(function(){intro.classList.add('mono')},3050));
+    timers.push(setTimeout(function(){intro.classList.add('named')},4300));
     timers.push(setTimeout(finish,7600));
   }
   document.getElementById('fk-skip').addEventListener('click',finish);
