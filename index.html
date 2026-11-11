@@ -169,15 +169,15 @@ footer .small{font-size:13px;color:#7e8794;margin-top:14px}
 <link rel="stylesheet" href="hero.css">
 <style>
 /* ===== INTRO v4 — "The Collage": his supplied artwork assembles tile by tile, settles, then the name lands. ===== */
-#fk-intro{position:fixed;inset:0;z-index:999;background:#10141a;overflow:hidden;font-family:'Helvetica Neue',Arial,sans-serif;display:flex;align-items:center;justify-content:center;animation:fkfailsafe .6s ease 12s both}
+#fk-intro{position:fixed;inset:0;z-index:999;background:#f8eddf;overflow:hidden;font-family:'Helvetica Neue',Arial,sans-serif;display:flex;align-items:center;justify-content:center;animation:fkfailsafe .6s ease 12s both}
 @keyframes fkfailsafe{to{opacity:0;visibility:hidden}}
-#fk-intro .art{position:relative;width:min(1060px,94vw);aspect-ratio:4/3;box-shadow:0 34px 90px rgba(0,0,0,.55);overflow:hidden;background:#f4efe4}
+#fk-intro .art{position:relative;width:min(1060px,94vw);aspect-ratio:4/3;box-shadow:0 24px 60px rgba(96,74,24,.16);overflow:hidden;background:#f8eddf}
 #fk-intro .artIn{position:absolute;inset:0}
 #fk-intro.settled .artIn{animation:fkdrift 16s ease-in-out infinite alternate}
 @keyframes fkdrift{from{transform:scale(1)}to{transform:scale(1.025)}}
 #fk-intro .tile{position:absolute;background-image:url('assets/intro-collage.webp');background-repeat:no-repeat;opacity:0;transform:translate(var(--dx),var(--dy)) rotate(var(--rot)) scale(1.06)}
-#fk-intro.play .tile{opacity:1;transform:none;transition:transform 1s cubic-bezier(.22,.8,.26,1),opacity .55s ease;transition-delay:var(--dl)}
-#fk-intro .scrim{position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,16,20,.34),rgba(13,16,20,.68));opacity:0}
+#fk-intro.play .tile{opacity:1;transform:none;transition:transform 1.15s cubic-bezier(.22,.8,.26,1),opacity .55s ease;transition-delay:var(--dl)}
+#fk-intro .scrim{position:absolute;left:0;right:0;bottom:0;height:52%;background:linear-gradient(180deg,rgba(24,20,12,0),rgba(24,20,12,.52) 58%,rgba(24,20,12,.74));opacity:0}
 #fk-intro.named .scrim{opacity:1;transition:opacity .85s ease}
 #fk-intro .namewrap2{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;text-align:center;padding:0 20px 6.5%;opacity:0;pointer-events:none}
 #fk-intro.named .namewrap2{opacity:1;transition:opacity .7s ease .05s}
@@ -195,6 +195,20 @@ footer .small{font-size:13px;color:#7e8794;margin-top:14px}
 #fk-intro.posed{animation:none}
 #fk-intro.posed .tile{opacity:1!important;transform:none!important;transition:none!important}
 #fk-intro.posed .nm,#fk-intro.posed .nsub2,#fk-intro.posed .nsub3{animation:none!important;opacity:1!important;transform:none!important}
+#fk-intro .mktbg{position:absolute;inset:0;width:100%;height:100%}
+#fk-intro .mkt{stroke-dasharray:100;stroke-dashoffset:100;fill:none;stroke-linejoin:round;stroke-linecap:round}
+#fk-intro.play .mkt-red{animation:mkdraw 1.3s cubic-bezier(.5,.1,.4,1) .3s both}
+#fk-intro.play .mkt-grn{animation:mkdraw 1.7s cubic-bezier(.5,.1,.4,1) 1.6s both}
+@keyframes mkdraw{to{stroke-dashoffset:0}}
+#fk-intro .mfill{opacity:0}
+#fk-intro.play .mfill-r{animation:mkfade 1s ease 1.2s both}
+#fk-intro.play .mfill-g{animation:mkfade 1.2s ease 2.7s both}
+@keyframes mkfade{to{opacity:var(--fo,.12)}}
+#fk-intro .mdot{opacity:0}
+#fk-intro.play .mdot{animation:mkfade .5s ease 3.3s both}
+#fk-intro.posed .mkt{stroke-dashoffset:0!important;animation:none!important}
+#fk-intro.posed .mfill{opacity:var(--fo,.12)!important;animation:none!important}
+#fk-intro.posed .mdot{opacity:1!important;animation:none!important}
 @media(prefers-reduced-motion:reduce){#fk-intro .artIn{animation:none}}
 </style>
 
@@ -234,6 +248,15 @@ footer .small{font-size:13px;color:#7e8794;margin-top:14px}
 </head>
 <body>
 <div id="fk-intro" aria-hidden="true">
+  <svg class="mktbg" viewBox="0 0 1440 810" preserveAspectRatio="none" aria-hidden="true">
+    <defs><pattern id="mgrid" width="90" height="90" patternUnits="userSpaceOnUse"><path d="M90,0H0V90" fill="none" stroke="rgba(96,74,24,.08)" stroke-width="1"/></pattern></defs>
+    <rect width="1440" height="810" fill="url(#mgrid)"/>
+    <path class="mfill mfill-r" style="--fo:.07" d="M-20,300 L120,330 L240,315 L360,360 L470,345 L580,395 L690,430 L690,810 L-20,810 Z" fill="#b02a20"/>
+    <path class="mfill mfill-g" style="--fo:.12" d="M690,430 L820,405 L950,350 L1080,300 L1210,225 L1340,160 L1470,95 L1470,810 L690,810 Z" fill="#a4c639"/>
+    <path class="mkt mkt-red" pathLength="100" d="M-20,300 L120,330 L240,315 L360,360 L470,345 L580,395 L690,430" stroke="#b02a20" stroke-width="3.5"/>
+    <path class="mkt mkt-grn" pathLength="100" d="M690,430 L820,405 L950,350 L1080,300 L1210,225 L1340,160 L1470,95" stroke="#7d9b26" stroke-width="3.5"/>
+    <circle class="mdot" style="--fo:1" cx="1452" cy="102" r="7" fill="#7d9b26"/>
+  </svg>
   <div class="art" role="img" aria-label="An editorial collage: Farid A. Khavari speaking into a microphone, surrounded by the Capitol, the stock exchange, a world map, war and its costs, money, solar panels and wind turbines">
     <div class="artIn" id="fk-tiles"></div>
     <div class="scrim"></div>
@@ -262,7 +285,7 @@ footer .small{font-size:13px;color:#7e8794;margin-top:14px}
     var dist=Math.sqrt(Math.pow(c-(COLS-1)/2,2)+Math.pow(r-(ROWS-1)/2,2));
     t.style.setProperty('--dx',dx+'px'); t.style.setProperty('--dy',dy+'px');
     t.style.setProperty('--rot',rot.toFixed(2)+'deg');
-    t.style.setProperty('--dl',Math.round(dist*115+(i%3)*35)+'ms');
+    t.style.setProperty('--dl',Math.round(dist*135+(i%3)*40)+'ms');
     tilesBox.appendChild(t);
   }
   function clear(){timers.forEach(clearTimeout);timers=[]}
@@ -276,9 +299,9 @@ footer .small{font-size:13px;color:#7e8794;margin-top:14px}
   function run(){
     intro.style.display='flex';intro.classList.remove('done','named','posed','settled','play');void intro.offsetWidth;intro.classList.add('play');
     replay.style.display='none';document.body.style.overflow='hidden';document.getElementById('fk-skip').style.display='block';
-    timers.push(setTimeout(function(){intro.classList.add('settled')},2300));
-    timers.push(setTimeout(function(){intro.classList.add('named')},2650));
-    timers.push(setTimeout(finish,5400));
+    timers.push(setTimeout(function(){intro.classList.add('settled')},2800));
+    timers.push(setTimeout(function(){intro.classList.add('named')},3400));
+    timers.push(setTimeout(finish,7600));
   }
   document.getElementById('fk-skip').addEventListener('click',finish);
   intro.addEventListener('click',function(e){if(e.target.id!=='fk-skip')finish()});
