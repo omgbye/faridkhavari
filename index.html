@@ -128,6 +128,12 @@ section{padding:64px 24px}
 .book-card:hover .cover{transform:translateY(-6px)}
 .cover-img{width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:4px;box-shadow:0 14px 30px rgba(0,0,0,.22);display:block;transition:transform .2s ease;background:#ddd}
 .book-card:hover .cover-img{transform:translateY(-6px)}
+/* ===== REAL-BOOK DEPTH — static dimension, no motion (2026-11-11) ===== */
+.bk{display:block;position:relative;z-index:0;line-height:0}
+.bk::before{content:"";position:absolute;top:2.2%;bottom:2.2%;right:-7px;width:7px;background:repeating-linear-gradient(90deg,#f6f1e2 0 1px,#cdc4a9 1px 2px);border-radius:0 2px 2px 0;z-index:-1;box-shadow:inset -1px 0 2px rgba(0,0,0,.18)}
+.bk::after{content:"";position:absolute;left:2%;right:-4px;bottom:-6px;height:6px;background:repeating-linear-gradient(180deg,#f6f1e2 0 1px,#cdc4a9 1px 2px);border-radius:0 0 2px 2px;z-index:-1}
+.bk .cover-img{box-shadow:inset 9px 0 16px -5px rgba(0,0,0,.42),inset 2px 0 3px rgba(0,0,0,.35),inset -1px 0 2px rgba(255,255,255,.28),inset 0 14px 18px -12px rgba(255,255,255,.30),0 16px 30px rgba(60,40,0,.30);border-radius:2px 5px 5px 2px;transition:none}
+.book-card:hover .cover-img,.book-card:hover .cover{transform:none}
 .connect-band{background:var(--navy);color:#fff;padding:54px 24px;text-align:center}
 .connect-band h2{font-weight:400;font-size:30px;margin-bottom:10px}
 .connect-band p{color:#c6cedb;max-width:680px;margin:0 auto 20px;font-size:16px}
@@ -312,7 +318,7 @@ footer .small{font-size:13px;color:#7e8794;margin-top:14px}
   <div class="wrap">
     <div class="feature">
       <a class="book-card" href="https://www.amazon.com/dp/B0H94TFG83" target="_blank" rel="noopener">
-        <img class="cover-img" src="assets/cover-leaving-liberal-dystopia.jpg" alt="Cover of Leaving Liberal Dystopia — Book 2 of the Zero Cost Economics series, by Farid A. Khavari"><span class="newrel">New Release!</span>
+        <span class="bk"><img class="cover-img" src="assets/cover-leaving-liberal-dystopia.jpg" alt="Cover of Leaving Liberal Dystopia — Book 2 of the Zero Cost Economics series, by Farid A. Khavari"></span><span class="newrel">New Release!</span>
       </a>
       <div>
         <div class="sec-head"><span class="k">Featured Book</span></div>
@@ -351,19 +357,19 @@ addEventListener('message',event=>{const frame=document.getElementById('prosperi
   <p class="swipe-hint">Swipe to discover the books →</p>
   <div class="shelf" tabindex="0" aria-label="Books — scroll horizontally to explore">
     <a class="book-card" href="https://www.amazon.com/s?k=Zero+Cost+Economics%3A+A+New+Framework+for+Universal+Prosperity+Farid+A.+Khavari" target="_blank" rel="noopener">
-      <img class="cover-img" src="assets/cover-new-framework.jpg" alt="Cover of Zero Cost Economics: A New Framework for Universal Prosperity — Book 1">
+      <span class="bk"><img class="cover-img" src="assets/cover-new-framework.jpg" alt="Cover of Zero Cost Economics: A New Framework for Universal Prosperity — Book 1"></span>
       <div class="bt">Zero Cost Economics: A New Framework for Universal Prosperity</div><div class="bm">Book 1 · The Series</div>
     </a>
     <a class="book-card" href="https://www.amazon.com/dp/B0H94TFG83" target="_blank" rel="noopener">
-      <img class="cover-img" src="assets/cover-leaving-liberal-dystopia.jpg" alt="Cover of Leaving Liberal Dystopia — Book 2">
+      <span class="bk"><img class="cover-img" src="assets/cover-leaving-liberal-dystopia.jpg" alt="Cover of Leaving Liberal Dystopia — Book 2"></span>
       <div class="bt">Leaving Liberal Dystopia: The Road to a Bright Future</div><div class="bm">Book 2 · 2026 · Paperback $14.99</div>
     </a>
     <a class="book-card" href="https://www.amazon.com/s?k=Zero+Cost+Economics%3A+An+Action+Plan+Farid+A.+Khavari" target="_blank" rel="noopener">
-      <img class="cover-img" src="assets/cover-action-plan.jpg" alt="Cover of Zero Cost Economics: An Action Plan — Book 3">
+      <span class="bk"><img class="cover-img" src="assets/cover-action-plan.jpg" alt="Cover of Zero Cost Economics: An Action Plan — Book 3"></span>
       <div class="bt">Zero Cost Economics: An Action Plan — The Road to World Peace and Prosperity Begins in Post-Mullah Iran</div><div class="bm">Book 3 · 2026 · $19.99 · Kindle $9.99</div>
     </a>
     <a class="book-card" href="https://www.amazon.com/s?k=China+vs.+U.S.A.+Farid+A.+Khavari" target="_blank" rel="noopener">
-      <img class="cover-img" src="assets/cover-china-vs-usa.jpg" alt="Cover of China vs. U.S.A. — Book 4">
+      <span class="bk"><img class="cover-img" src="assets/cover-china-vs-usa.jpg" alt="Cover of China vs. U.S.A. — Book 4"></span>
       <div class="bt">China vs. U.S.A.: A New Paradigm for Global Economic Leadership</div><div class="bm">Book 4 · 2026 · $14.99 · Kindle $9.99</div>
     </a>
     <a class="book-card" href="https://www.amazon.com/s?k=Zero+Cost+Economics%3A+An+Introduction+Farid+A.+Khavari" target="_blank" rel="noopener">
@@ -371,23 +377,23 @@ addEventListener('message',event=>{const frame=document.getElementById('prosperi
       <div class="bt">Zero Cost Economics: An Introduction to the Economics of an Economy</div><div class="bm">In the series · Start here</div>
     </a>
     <a class="book-card" href="https://www.amazon.com/s?k=Trumpocracy+Forming+Dollar-Bloc+Nations+Farid+A.+Khavari" target="_blank" rel="noopener">
-      <img class="cover-img" src="assets/cover-trumpocracy.jpg" alt="Cover of Trumpocracy: Forming Dollar-Bloc Nations — Book 7">
+      <span class="bk"><img class="cover-img" src="assets/cover-trumpocracy.jpg" alt="Cover of Trumpocracy: Forming Dollar-Bloc Nations — Book 7"></span>
       <div class="bt">Trumpocracy: Forming Dollar-Bloc Nations — The Blueprint for Global Economic Stability and Prosperity</div><div class="bm">Book 7 · The Series</div>
     </a>
     <a class="book-card" href="https://www.amazon.com/s?k=Manifesto+of+an+Unconventional+Economist+Farid+A.+Khavari" target="_blank" rel="noopener">
-      <img class="cover-img" src="assets/cover-manifesto.jpg" alt="Cover of Manifesto of an Unconventional Economist — Book 8">
+      <span class="bk"><img class="cover-img" src="assets/cover-manifesto.jpg" alt="Cover of Manifesto of an Unconventional Economist — Book 8"></span>
       <div class="bt">Manifesto of an Unconventional Economist: A Compilation of Economic Calls to Action</div><div class="bm">Book 8 · The Series</div>
     </a>
     <a class="book-card" href="https://www.amazon.com/dp/1440121680" target="_blank" rel="noopener">
-      <img class="cover-img" src="assets/cover-towards-zero-cost.jpg" alt="Cover of Towards a Zero-Cost Economy (2009)">
+      <span class="bk"><img class="cover-img" src="assets/cover-towards-zero-cost.jpg" alt="Cover of Towards a Zero-Cost Economy (2009)"></span>
       <div class="bt">Towards a Zero-Cost Economy: A Blueprint to Create General Economic Security in a Carefree Economy</div><div class="bm">2009 · The original blueprint</div>
     </a>
     <a class="book-card" href="https://www.amazon.com/dp/027594462X" target="_blank" rel="noopener">
-      <img class="cover-img" src="assets/cover-environomics.jpg" alt="Cover of Environomics (1993)">
+      <span class="bk"><img class="cover-img" src="assets/cover-environomics.jpg" alt="Cover of Environomics (1993)"></span>
       <div class="bt">Environomics: The Economics of Environmentally Safe Prosperity</div><div class="bm">1993 · Praeger</div>
     </a>
     <a class="book-card" href="https://www.amazon.com/s?k=The+Final+Reckoning+Farid+A.+Khavari" target="_blank" rel="noopener">
-      <img class="cover-img" src="assets/cover-final-reckoning.jpg" alt="Cover of The Final Reckoning: The Islamic Plot to Destroy the Dollar (1995)">
+      <span class="bk"><img class="cover-img" src="assets/cover-final-reckoning.jpg" alt="Cover of The Final Reckoning: The Islamic Plot to Destroy the Dollar (1995)"></span>
       <div class="bt">The Final Reckoning: The Islamic Plot to Destroy the Dollar</div><div class="bm">1995 · A novel of economic terrorism</div>
     </a>
     <a class="book-card" href="https://www.amazon.com/dp/0984881603" target="_blank" rel="noopener">
