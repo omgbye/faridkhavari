@@ -184,6 +184,19 @@ section{padding:64px 24px}
 .startline a{color:var(--gold);font-weight:700}
 @media(max-width:640px){.stage{padding:40px 16px 34px}.series-head.on-stage{margin-top:44px}}
 
+/* ===== BOOKS RIVERS — the sliding shelf (2026-11-11) ===== */
+.river{overflow:hidden;margin:6px -14px 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
+.rtrack{display:flex;width:max-content;animation:slide1 48s linear infinite}
+.river.r2 .rtrack{animation:slide2 40s linear infinite reverse}
+.river:hover .rtrack,.rtrack.paused{animation-play-state:paused}
+@keyframes slide1{to{transform:translateX(-33.3333%)}}
+@keyframes slide2{to{transform:translateX(-25%)}}
+.rcard{flex:0 0 200px;margin-right:38px;text-align:center}
+.rcard .bt{display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;min-height:3.85em}
+.series-head.on-stage.slim{margin:44px auto 24px}
+@media(max-width:640px){.rcard{flex-basis:168px;margin-right:26px}}
+@media(prefers-reduced-motion:reduce){.rtrack{animation:none}.river{overflow-x:auto}}
+
 /* about / podcast / events / governor */
 .two{display:grid;grid-template-columns:1fr 1fr;gap:40px}
 .about-photo{width:100%;border-radius:8px;border:1px solid var(--line)}
@@ -211,15 +224,16 @@ footer .small{font-size:13px;color:#7e8794;margin-top:14px}
 #fk-intro{position:fixed;inset:0;z-index:999;background:#f8eddf;overflow:hidden;font-family:'Helvetica Neue',Arial,sans-serif;display:flex;align-items:center;justify-content:center;animation:fkfailsafe .6s ease 12s both}
 @keyframes fkfailsafe{to{opacity:0;visibility:hidden}}
 #fk-intro .art{position:relative;width:min(1060px,94vw);aspect-ratio:4/3;box-shadow:0 24px 60px rgba(96,74,24,.16);overflow:hidden;background:#f8eddf}
-#fk-intro .artIn{position:absolute;inset:0;transition:filter 1.6s ease}
-#fk-intro.mono .artIn{filter:grayscale(1) contrast(1.06)}
-#fk-intro.settled .artIn{animation:fkdrift 16s ease-in-out infinite alternate}
-@keyframes fkdrift{from{transform:scale(1)}to{transform:scale(1.025)}}
-#fk-intro .tile{position:absolute;background-repeat:no-repeat;opacity:0;transform:translate(var(--dx),var(--dy)) rotate(var(--rot)) scale(1.06)}
-#fk-intro.play .tile{opacity:1;transform:none;transition:transform 1.15s cubic-bezier(.22,.8,.26,1),opacity .55s ease;transition-delay:var(--dl)}
+#fk-intro .artIn{position:absolute;inset:0;background-image:url(assets/intro-collage.webp);background-size:cover;background-position:center;filter:grayscale(1) contrast(1.06);opacity:0;transform:scale(1.045);transition:opacity 1.1s ease,transform 1.7s ease}
+#fk-intro.play .artIn,#fk-intro.posed .artIn{opacity:1;transform:none}
+#fk-intro.posed .artIn{transition:none}
+
+@media(max-width:640px){#fk-intro .artIn{background-image:url(assets/intro-collage-portrait.webp)}}
+
 #fk-intro .scrim{position:absolute;left:0;right:0;bottom:0;height:52%;background:linear-gradient(180deg,rgba(24,20,12,0),rgba(24,20,12,.52) 58%,rgba(24,20,12,.74));opacity:0}
 #fk-intro.named .scrim{opacity:1;transition:opacity .85s ease}
 #fk-intro .namewrap2{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 20px;opacity:0;pointer-events:none}
+@media(max-width:640px){#fk-intro .namewrap2{justify-content:flex-end;padding-bottom:24%}}
 #fk-intro .namewrap2::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 90% 56% at 50% 50%,rgba(18,15,8,.55),rgba(18,15,8,.22) 58%,rgba(18,15,8,0) 85%);opacity:0;transition:opacity .9s ease}
 #fk-intro.named .namewrap2::before{opacity:1}
 #fk-intro .namewrap2>*{position:relative}
@@ -238,9 +252,9 @@ footer .small{font-size:13px;color:#7e8794;margin-top:14px}
 #fk-skip{position:absolute;right:22px;bottom:20px;z-index:5;background:rgba(247,243,234,.07);border:1px solid #2c3138;color:#c9cfd8;font-size:12px;letter-spacing:.22em;text-transform:uppercase;padding:10px 15px;border-radius:3px;cursor:pointer}
 #fk-replay{position:fixed;right:16px;bottom:16px;z-index:60;background:#171b21;color:#f7f3ea;border:1px solid #e8a820;font-size:12px;letter-spacing:.18em;text-transform:uppercase;padding:9px 13px;border-radius:3px;cursor:pointer;display:none}
 #fk-intro.posed{animation:none}
-#fk-intro.posed .tile{opacity:1!important;transform:none!important;transition:none!important}
+
 #fk-intro.posed .nm,#fk-intro.posed .nsub2,#fk-intro.posed .nsub3{animation:none!important;opacity:1!important;transform:none!important}
-#fk-intro .mktbg{position:absolute;inset:0;width:100%;height:100%}
+#fk-intro .mktbg{position:absolute;inset:0;width:100%;height:100%;opacity:.5}
 #fk-intro .mkt{stroke-dasharray:100;stroke-dashoffset:100;fill:none;stroke-linejoin:round;stroke-linecap:round}
 #fk-intro.play .mkt-red{animation:mkdraw 1.3s cubic-bezier(.5,.1,.4,1) .3s both}
 #fk-intro.play .mkt-grn{animation:mkdraw 1.7s cubic-bezier(.5,.1,.4,1) 1.6s both}
@@ -321,26 +335,10 @@ footer .small{font-size:13px;color:#7e8794;margin-top:14px}
 <script>
 (function(){
   var intro=document.getElementById('fk-intro'), replay=document.getElementById('fk-replay'), tilesBox=document.getElementById('fk-tiles'), timers=[], stage=new URLSearchParams(location.search).get('stage');
-  var PORTRAIT=window.matchMedia('(max-width:640px)').matches;
-  var COLS=PORTRAIT?4:6, ROWS=PORTRAIT?6:4, ART=PORTRAIT?'assets/intro-collage-portrait.webp':'assets/intro-collage.webp';
-  for(var r=0;r<ROWS;r++)for(var c=0;c<COLS;c++){
-    var i=r*COLS+c, t=document.createElement('div');
-    t.className='tile'; t.style.backgroundImage='url('+ART+')';
-    t.style.left=(c*100/COLS)+'%'; t.style.top=(r*100/ROWS)+'%';
-    t.style.width=(100/COLS)+'%'; t.style.height=(100/ROWS)+'%';
-    t.style.backgroundSize=(COLS*100)+'% '+(ROWS*100)+'%';
-    t.style.backgroundPosition=(c/(COLS-1)*100)+'% '+(r/(ROWS-1)*100)+'%';
-    var dx=((i*37)%29)-14, dy=((i*53)%25)-12, rot=(((i*29)%13)-6)/5;
-    var dist=Math.sqrt(Math.pow(c-(COLS-1)/2,2)+Math.pow(r-(ROWS-1)/2,2));
-    t.style.setProperty('--dx',dx+'px'); t.style.setProperty('--dy',dy+'px');
-    t.style.setProperty('--rot',rot.toFixed(2)+'deg');
-    t.style.setProperty('--dl',Math.round(dist*135+(i%3)*40)+'ms');
-    tilesBox.appendChild(t);
-  }
   function clear(){timers.forEach(clearTimeout);timers=[]}
   function finish(){clear();intro.classList.add('done');document.body.style.overflow='';replay.style.display='block';setTimeout(function(){intro.style.display='none'},600)}
   function pose(s){
-    clear();intro.classList.add('posed');intro.classList.add('mono');
+    clear();intro.classList.add('posed');
     if(s==='off'){intro.style.display='none';replay.style.display='block';return}
     if(s==='name'){intro.classList.add('named')}
     document.getElementById('fk-skip').style.display='none';
@@ -348,10 +346,8 @@ footer .small{font-size:13px;color:#7e8794;margin-top:14px}
   function run(){
     intro.style.display='flex';intro.classList.remove('done','named','posed','settled','play');void intro.offsetWidth;intro.classList.add('play');
     replay.style.display='none';document.body.style.overflow='hidden';document.getElementById('fk-skip').style.display='block';
-    timers.push(setTimeout(function(){intro.classList.add('settled')},2800));
-    timers.push(setTimeout(function(){intro.classList.add('mono')},3050));
-    timers.push(setTimeout(function(){intro.classList.add('named')},4300));
-    timers.push(setTimeout(finish,7600));
+    timers.push(setTimeout(function(){intro.classList.add('named')},1350));
+    timers.push(setTimeout(finish,3600));
   }
   document.getElementById('fk-skip').addEventListener('click',finish);
   intro.addEventListener('click',function(e){if(e.target.id!=='fk-skip')finish()});
@@ -418,7 +414,7 @@ footer .small{font-size:13px;color:#7e8794;margin-top:14px}
 </section>
 
 <!-- INTERACTIVE: THE PROSPERITY EXPERIMENT -->
-<section id="idea" style="background:#10141a;padding:72px 0 0" aria-label="His graphic presentation, restored"><div class="wrap"><div class="sec-head"><span class="k" style="color:var(--amber2)">His Graphic Presentation &middot; 2009, Restored</span><h2 style="color:var(--cream)">This is the current situation</h2></div><div class="rule"></div><p style="color:#c8cdd4;max-width:760px;font-size:17px;line-height:1.65;margin:0 0 26px">In 2009 Farid animated his whole argument as a graphic presentation for his first website: costs rising against incomes that stand still &mdash; and then the way out. Freeze, reduce, eliminate. Flash is gone; the diagram has been restored and rebuilt. It plays on its own as you scroll to it &mdash; once, the way a drawing should.</p></div><iframe id="grafico-film" title="The Graphic Presentation — Zero Cost Economics, restored and rebuilt" src="grafico-film.html?embed=1&autoplay=1" style="display:block;width:100%;height:940px;border:0;background:#10141a" scrolling="no"></iframe><div class="wrap" style="padding:30px 0 64px"><div style="border:1px solid #2c3138;background:#171b21;padding:26px 28px;display:flex;gap:22px;align-items:center;flex-wrap:wrap"><div style="flex:1;min-width:280px"><div style="font-size:11.5px;letter-spacing:.22em;color:var(--amber2);text-transform:uppercase;font-weight:700">The Institute for a Zero-Cost Economy</div><p style="color:#c8cdd4;font-size:15.5px;line-height:1.6;margin:8px 0 0">The presentation is the idea in one drawing. The Economy Lab is the idea in your own numbers &mdash; your paycheck, your costs, his switches. The Institute page holds the mission and the goals.</p></div><a href="lab.html" style="background:var(--amber);color:#191c20;font-weight:800;font-size:14px;letter-spacing:.1em;text-transform:uppercase;padding:14px 22px;border-radius:3px;text-decoration:none;white-space:nowrap">Enter the Economy Lab &rarr;</a></div></div></section>
+<section id="idea" style="background:#10141a;padding:72px 0 0" aria-label="His graphic presentation, restored"><div class="wrap"><div class="sec-head"><span class="k" style="color:var(--amber2)">His Graphic Presentation &middot; 2009, Restored</span><h2 style="color:var(--cream)">This is the current situation</h2></div><div class="rule"></div><p style="color:#c8cdd4;max-width:760px;font-size:17px;line-height:1.65;margin:0 0 26px">In 2009 Farid animated his whole argument as a graphic presentation for his first website: costs rising against incomes that stand still &mdash; and then the way out. Freeze, reduce, eliminate. Flash is gone; the diagram has been restored and rebuilt. It plays on its own as you scroll to it &mdash; once, the way a drawing should.</p></div><iframe id="grafico-film" title="The Graphic Presentation — Zero Cost Economics, restored and rebuilt" src="grafico-film.html?embed=1&autoplay=1" style="display:block;width:100%;height:min(940px,calc(56.25vw + 300px));border:0;background:#10141a" scrolling="no"></iframe><div class="wrap" style="padding:30px 0 64px"><div style="border:1px solid #2c3138;background:#171b21;padding:26px 28px;display:flex;gap:22px;align-items:center;flex-wrap:wrap"><div style="flex:1;min-width:280px"><div style="font-size:11.5px;letter-spacing:.22em;color:var(--amber2);text-transform:uppercase;font-weight:700">The Institute for a Zero-Cost Economy</div><p style="color:#c8cdd4;font-size:15.5px;line-height:1.6;margin:8px 0 0">The presentation is the idea in one drawing. The Economy Lab is the idea in your own numbers &mdash; your paycheck, your costs, his switches. The Institute page holds the mission and the goals.</p></div><a href="lab.html" style="background:var(--amber);color:#191c20;font-weight:800;font-size:14px;letter-spacing:.1em;text-transform:uppercase;padding:14px 22px;border-radius:3px;text-decoration:none;white-space:nowrap">Enter the Economy Lab &rarr;</a></div></div></section>
 <script>
 addEventListener('message',event=>{const frame=document.getElementById('prosperity-experiment');if(event.source!==frame.contentWindow||event.origin!==location.origin)return;if(event.data?.type==='khavari-experiment-navigate'&&['home','books'].includes(event.data.hash)){location.hash=event.data.hash;return}if(event.data?.type==='khavari-experiment-height'&&Number.isFinite(event.data.height))frame.style.height=Math.max(500,Math.min(10000,event.data.height))+'px'});
 </script>
@@ -426,74 +422,205 @@ addEventListener('message',event=>{const frame=document.getElementById('prosperi
 <!-- BOOKS BAND -->
 <section class="books-band" id="books" style="padding-top:0">
   <div class="band-head"><span class="band-title">Books</span></div>
-  <p class="band-sub">His books — the work of a lifetime, presented the way a bookstore would. Click a cover or the buy button to find it on Amazon.</p>
+  <p class="band-sub">His books — the work of a lifetime, on a moving shelf. The rows slide on their own; tap a row to pause it, tap a cover or the buy button to find the book on Amazon.</p>
   <div class="stage">
     <div class="stageword" aria-hidden="true">ZERO COST ECONOMICS</div>
     <div class="series-head on-stage"><h3>The Zero Cost Economics Series</h3><p>One argument, built book by book: an economy whose costs freeze, fall and disappear — and the wealth that leaves behind. The books are numbered, so the argument builds as you read. The newest, Book 2, is featured above; start with Book 1.</p></div>
-    <div class="shelf shelf-series" aria-label="The Zero Cost Economics series, in reading order">
-    <div class="book-card">
-    <a class="coverlink" href="https://www.amazon.com/s?k=Zero+Cost+Economics%3A+A+New+Framework+for+Universal+Prosperity+Farid+A.+Khavari" target="_blank" rel="noopener" aria-label="Buy on Amazon: Zero Cost Economics: A New Framework for Universal Prosperity"><span class="bk"><img class="cover-img" src="assets/cover-new-framework.jpg" alt="Cover of Zero Cost Economics: A New Framework for Universal Prosperity — Book 1"></span></a>
-    <div class="bnum">BOOK 1</div>
-    <div class="bt">Zero Cost Economics: A New Framework for Universal Prosperity</div>
-    <p class="bd">The framework for universal prosperity — how an economy is rebuilt so its costs fall instead of rise.</p>
-    <a class="buybtn" href="https://www.amazon.com/s?k=Zero+Cost+Economics%3A+A+New+Framework+for+Universal+Prosperity+Farid+A.+Khavari" target="_blank" rel="noopener">Buy on Amazon &#8594;</a>
-    </div>
-    <div class="book-card">
-    <a class="coverlink" href="https://www.amazon.com/s?k=Zero+Cost+Economics%3A+An+Action+Plan+Farid+A.+Khavari" target="_blank" rel="noopener" aria-label="Buy on Amazon: Zero Cost Economics: An Action Plan — The Road to World Peace and Prosperity Begins in Post-Mullah Iran"><span class="bk"><img class="cover-img" src="assets/cover-action-plan.jpg" alt="Cover of Zero Cost Economics: An Action Plan — Book 3"></span></a>
-    <div class="bnum">BOOK 3</div>
-    <div class="bt">Zero Cost Economics: An Action Plan — The Road to World Peace and Prosperity Begins in Post-Mullah Iran</div>
-    <p class="bd">The action plan — the concrete steps, and why the road to world peace and prosperity begins in post-mullah Iran.</p>
-    <div class="bprice">2026 · $19.99 · Kindle $9.99</div>
-    <a class="buybtn" href="https://www.amazon.com/s?k=Zero+Cost+Economics%3A+An+Action+Plan+Farid+A.+Khavari" target="_blank" rel="noopener">Buy on Amazon &#8594;</a>
-    </div>
-    <div class="book-card">
-    <a class="coverlink" href="https://www.amazon.com/s?k=China+vs.+U.S.A.+Farid+A.+Khavari" target="_blank" rel="noopener" aria-label="Buy on Amazon: China vs. U.S.A.: A New Paradigm for Global Economic Leadership"><span class="bk"><img class="cover-img" src="assets/cover-china-vs-usa.jpg" alt="Cover of China vs. U.S.A. — Book 4"></span></a>
-    <div class="bnum">BOOK 4</div>
-    <div class="bt">China vs. U.S.A.: A New Paradigm for Global Economic Leadership</div>
-    <p class="bd">China vs. U.S.A. — a new paradigm for global economic leadership.</p>
-    <div class="bprice">2026 · $14.99 · Kindle $9.99</div>
-    <a class="buybtn" href="https://www.amazon.com/s?k=China+vs.+U.S.A.+Farid+A.+Khavari" target="_blank" rel="noopener">Buy on Amazon &#8594;</a>
-    </div>
-    <div class="book-card">
-    <a class="coverlink" href="https://www.amazon.com/s?k=Trumpocracy+Forming+Dollar-Bloc+Nations+Farid+A.+Khavari" target="_blank" rel="noopener" aria-label="Buy on Amazon: Trumpocracy: Forming Dollar-Bloc Nations — The Blueprint for Global Economic Stability and Prosperity"><span class="bk"><img class="cover-img" src="assets/cover-trumpocracy.jpg" alt="Cover of Trumpocracy: Forming Dollar-Bloc Nations — Book 7"></span></a>
-    <div class="bnum">BOOK 7</div>
-    <div class="bt">Trumpocracy: Forming Dollar-Bloc Nations — The Blueprint for Global Economic Stability and Prosperity</div>
-    <p class="bd">Forming dollar-bloc nations — the blueprint for global economic stability and prosperity.</p>
-    <a class="buybtn" href="https://www.amazon.com/s?k=Trumpocracy+Forming+Dollar-Bloc+Nations+Farid+A.+Khavari" target="_blank" rel="noopener">Buy on Amazon &#8594;</a>
-    </div>
-    <div class="book-card">
-    <a class="coverlink" href="https://www.amazon.com/s?k=Manifesto+of+an+Unconventional+Economist+Farid+A.+Khavari" target="_blank" rel="noopener" aria-label="Buy on Amazon: Manifesto of an Unconventional Economist: A Compilation of Economic Calls to Action"><span class="bk"><img class="cover-img" src="assets/cover-manifesto.jpg" alt="Cover of Manifesto of an Unconventional Economist — Book 8"></span></a>
-    <div class="bnum">BOOK 8</div>
-    <div class="bt">Manifesto of an Unconventional Economist: A Compilation of Economic Calls to Action</div>
-    <p class="bd">His economic calls to action, compiled — the unconventional economist in his own words.</p>
-    <a class="buybtn" href="https://www.amazon.com/s?k=Manifesto+of+an+Unconventional+Economist+Farid+A.+Khavari" target="_blank" rel="noopener">Buy on Amazon &#8594;</a>
-    </div>
-    </div>
+    <div class="river r1"><div class="rtrack">
+      <div class="book-card rcard">
+      <a class="coverlink" href="https://www.amazon.com/s?k=Zero+Cost+Economics%3A+A+New+Framework+for+Universal+Prosperity+Farid+A.+Khavari" target="_blank" rel="noopener" aria-label="Buy on Amazon: Zero Cost Economics: A New Framework for Universal Prosperity"><span class="bk"><img class="cover-img" src="assets/cover-new-framework.jpg" alt="Cover of Zero Cost Economics: A New Framework for Universal Prosperity — Book 1"></span></a>
+      <div class="bnum">BOOK 1</div>
+      <div class="bt">Zero Cost Economics: A New Framework for Universal Prosperity</div>
+      <div class="bprice">&nbsp;</div>
+      <a class="buybtn" href="https://www.amazon.com/s?k=Zero+Cost+Economics%3A+A+New+Framework+for+Universal+Prosperity+Farid+A.+Khavari" target="_blank" rel="noopener">Buy on Amazon &#8594;</a>
+      </div>
+      <div class="book-card rcard">
+      <a class="coverlink" href="https://www.amazon.com/s?k=Zero+Cost+Economics%3A+An+Action+Plan+Farid+A.+Khavari" target="_blank" rel="noopener" aria-label="Buy on Amazon: Zero Cost Economics: An Action Plan — The Road to World Peace and Prosperity Begins in Post-Mullah Iran"><span class="bk"><img class="cover-img" src="assets/cover-action-plan.jpg" alt="Cover of Zero Cost Economics: An Action Plan — Book 3"></span></a>
+      <div class="bnum">BOOK 3</div>
+      <div class="bt">Zero Cost Economics: An Action Plan — The Road to World Peace and Prosperity Begins in Post-Mullah Iran</div>
+      <div class="bprice">2026 · $19.99 · Kindle $9.99</div>
+      <a class="buybtn" href="https://www.amazon.com/s?k=Zero+Cost+Economics%3A+An+Action+Plan+Farid+A.+Khavari" target="_blank" rel="noopener">Buy on Amazon &#8594;</a>
+      </div>
+      <div class="book-card rcard">
+      <a class="coverlink" href="https://www.amazon.com/s?k=China+vs.+U.S.A.+Farid+A.+Khavari" target="_blank" rel="noopener" aria-label="Buy on Amazon: China vs. U.S.A.: A New Paradigm for Global Economic Leadership"><span class="bk"><img class="cover-img" src="assets/cover-china-vs-usa.jpg" alt="Cover of China vs. U.S.A. — Book 4"></span></a>
+      <div class="bnum">BOOK 4</div>
+      <div class="bt">China vs. U.S.A.: A New Paradigm for Global Economic Leadership</div>
+      <div class="bprice">2026 · $14.99 · Kindle $9.99</div>
+      <a class="buybtn" href="https://www.amazon.com/s?k=China+vs.+U.S.A.+Farid+A.+Khavari" target="_blank" rel="noopener">Buy on Amazon &#8594;</a>
+      </div>
+      <div class="book-card rcard">
+      <a class="coverlink" href="https://www.amazon.com/s?k=Trumpocracy+Forming+Dollar-Bloc+Nations+Farid+A.+Khavari" target="_blank" rel="noopener" aria-label="Buy on Amazon: Trumpocracy: Forming Dollar-Bloc Nations — The Blueprint for Global Economic Stability and Prosperity"><span class="bk"><img class="cover-img" src="assets/cover-trumpocracy.jpg" alt="Cover of Trumpocracy: Forming Dollar-Bloc Nations — Book 7"></span></a>
+      <div class="bnum">BOOK 7</div>
+      <div class="bt">Trumpocracy: Forming Dollar-Bloc Nations — The Blueprint for Global Economic Stability and Prosperity</div>
+      <div class="bprice">&nbsp;</div>
+      <a class="buybtn" href="https://www.amazon.com/s?k=Trumpocracy+Forming+Dollar-Bloc+Nations+Farid+A.+Khavari" target="_blank" rel="noopener">Buy on Amazon &#8594;</a>
+      </div>
+      <div class="book-card rcard">
+      <a class="coverlink" href="https://www.amazon.com/s?k=Manifesto+of+an+Unconventional+Economist+Farid+A.+Khavari" target="_blank" rel="noopener" aria-label="Buy on Amazon: Manifesto of an Unconventional Economist: A Compilation of Economic Calls to Action"><span class="bk"><img class="cover-img" src="assets/cover-manifesto.jpg" alt="Cover of Manifesto of an Unconventional Economist — Book 8"></span></a>
+      <div class="bnum">BOOK 8</div>
+      <div class="bt">Manifesto of an Unconventional Economist: A Compilation of Economic Calls to Action</div>
+      <div class="bprice">&nbsp;</div>
+      <a class="buybtn" href="https://www.amazon.com/s?k=Manifesto+of+an+Unconventional+Economist+Farid+A.+Khavari" target="_blank" rel="noopener">Buy on Amazon &#8594;</a>
+      </div>
+      <div class="book-card rcard">
+      <a class="coverlink" href="https://www.amazon.com/s?k=Zero+Cost+Economics%3A+A+New+Framework+for+Universal+Prosperity+Farid+A.+Khavari" target="_blank" rel="noopener" aria-label="Buy on Amazon: Zero Cost Economics: A New Framework for Universal Prosperity"><span class="bk"><img class="cover-img" src="assets/cover-new-framework.jpg" alt="Cover of Zero Cost Economics: A New Framework for Universal Prosperity — Book 1"></span></a>
+      <div class="bnum">BOOK 1</div>
+      <div class="bt">Zero Cost Economics: A New Framework for Universal Prosperity</div>
+      <div class="bprice">&nbsp;</div>
+      <a class="buybtn" href="https://www.amazon.com/s?k=Zero+Cost+Economics%3A+A+New+Framework+for+Universal+Prosperity+Farid+A.+Khavari" target="_blank" rel="noopener">Buy on Amazon &#8594;</a>
+      </div>
+      <div class="book-card rcard">
+      <a class="coverlink" href="https://www.amazon.com/s?k=Zero+Cost+Economics%3A+An+Action+Plan+Farid+A.+Khavari" target="_blank" rel="noopener" aria-label="Buy on Amazon: Zero Cost Economics: An Action Plan — The Road to World Peace and Prosperity Begins in Post-Mullah Iran"><span class="bk"><img class="cover-img" src="assets/cover-action-plan.jpg" alt="Cover of Zero Cost Economics: An Action Plan — Book 3"></span></a>
+      <div class="bnum">BOOK 3</div>
+      <div class="bt">Zero Cost Economics: An Action Plan — The Road to World Peace and Prosperity Begins in Post-Mullah Iran</div>
+      <div class="bprice">2026 · $19.99 · Kindle $9.99</div>
+      <a class="buybtn" href="https://www.amazon.com/s?k=Zero+Cost+Economics%3A+An+Action+Plan+Farid+A.+Khavari" target="_blank" rel="noopener">Buy on Amazon &#8594;</a>
+      </div>
+      <div class="book-card rcard">
+      <a class="coverlink" href="https://www.amazon.com/s?k=China+vs.+U.S.A.+Farid+A.+Khavari" target="_blank" rel="noopener" aria-label="Buy on Amazon: China vs. U.S.A.: A New Paradigm for Global Economic Leadership"><span class="bk"><img class="cover-img" src="assets/cover-china-vs-usa.jpg" alt="Cover of China vs. U.S.A. — Book 4"></span></a>
+      <div class="bnum">BOOK 4</div>
+      <div class="bt">China vs. U.S.A.: A New Paradigm for Global Economic Leadership</div>
+      <div class="bprice">2026 · $14.99 · Kindle $9.99</div>
+      <a class="buybtn" href="https://www.amazon.com/s?k=China+vs.+U.S.A.+Farid+A.+Khavari" target="_blank" rel="noopener">Buy on Amazon &#8594;</a>
+      </div>
+      <div class="book-card rcard">
+      <a class="coverlink" href="https://www.amazon.com/s?k=Trumpocracy+Forming+Dollar-Bloc+Nations+Farid+A.+Khavari" target="_blank" rel="noopener" aria-label="Buy on Amazon: Trumpocracy: Forming Dollar-Bloc Nations — The Blueprint for Global Economic Stability and Prosperity"><span class="bk"><img class="cover-img" src="assets/cover-trumpocracy.jpg" alt="Cover of Trumpocracy: Forming Dollar-Bloc Nations — Book 7"></span></a>
+      <div class="bnum">BOOK 7</div>
+      <div class="bt">Trumpocracy: Forming Dollar-Bloc Nations — The Blueprint for Global Economic Stability and Prosperity</div>
+      <div class="bprice">&nbsp;</div>
+      <a class="buybtn" href="https://www.amazon.com/s?k=Trumpocracy+Forming+Dollar-Bloc+Nations+Farid+A.+Khavari" target="_blank" rel="noopener">Buy on Amazon &#8594;</a>
+      </div>
+      <div class="book-card rcard">
+      <a class="coverlink" href="https://www.amazon.com/s?k=Manifesto+of+an+Unconventional+Economist+Farid+A.+Khavari" target="_blank" rel="noopener" aria-label="Buy on Amazon: Manifesto of an Unconventional Economist: A Compilation of Economic Calls to Action"><span class="bk"><img class="cover-img" src="assets/cover-manifesto.jpg" alt="Cover of Manifesto of an Unconventional Economist — Book 8"></span></a>
+      <div class="bnum">BOOK 8</div>
+      <div class="bt">Manifesto of an Unconventional Economist: A Compilation of Economic Calls to Action</div>
+      <div class="bprice">&nbsp;</div>
+      <a class="buybtn" href="https://www.amazon.com/s?k=Manifesto+of+an+Unconventional+Economist+Farid+A.+Khavari" target="_blank" rel="noopener">Buy on Amazon &#8594;</a>
+      </div>
+      <div class="book-card rcard">
+      <a class="coverlink" href="https://www.amazon.com/s?k=Zero+Cost+Economics%3A+A+New+Framework+for+Universal+Prosperity+Farid+A.+Khavari" target="_blank" rel="noopener" aria-label="Buy on Amazon: Zero Cost Economics: A New Framework for Universal Prosperity"><span class="bk"><img class="cover-img" src="assets/cover-new-framework.jpg" alt="Cover of Zero Cost Economics: A New Framework for Universal Prosperity — Book 1"></span></a>
+      <div class="bnum">BOOK 1</div>
+      <div class="bt">Zero Cost Economics: A New Framework for Universal Prosperity</div>
+      <div class="bprice">&nbsp;</div>
+      <a class="buybtn" href="https://www.amazon.com/s?k=Zero+Cost+Economics%3A+A+New+Framework+for+Universal+Prosperity+Farid+A.+Khavari" target="_blank" rel="noopener">Buy on Amazon &#8594;</a>
+      </div>
+      <div class="book-card rcard">
+      <a class="coverlink" href="https://www.amazon.com/s?k=Zero+Cost+Economics%3A+An+Action+Plan+Farid+A.+Khavari" target="_blank" rel="noopener" aria-label="Buy on Amazon: Zero Cost Economics: An Action Plan — The Road to World Peace and Prosperity Begins in Post-Mullah Iran"><span class="bk"><img class="cover-img" src="assets/cover-action-plan.jpg" alt="Cover of Zero Cost Economics: An Action Plan — Book 3"></span></a>
+      <div class="bnum">BOOK 3</div>
+      <div class="bt">Zero Cost Economics: An Action Plan — The Road to World Peace and Prosperity Begins in Post-Mullah Iran</div>
+      <div class="bprice">2026 · $19.99 · Kindle $9.99</div>
+      <a class="buybtn" href="https://www.amazon.com/s?k=Zero+Cost+Economics%3A+An+Action+Plan+Farid+A.+Khavari" target="_blank" rel="noopener">Buy on Amazon &#8594;</a>
+      </div>
+      <div class="book-card rcard">
+      <a class="coverlink" href="https://www.amazon.com/s?k=China+vs.+U.S.A.+Farid+A.+Khavari" target="_blank" rel="noopener" aria-label="Buy on Amazon: China vs. U.S.A.: A New Paradigm for Global Economic Leadership"><span class="bk"><img class="cover-img" src="assets/cover-china-vs-usa.jpg" alt="Cover of China vs. U.S.A. — Book 4"></span></a>
+      <div class="bnum">BOOK 4</div>
+      <div class="bt">China vs. U.S.A.: A New Paradigm for Global Economic Leadership</div>
+      <div class="bprice">2026 · $14.99 · Kindle $9.99</div>
+      <a class="buybtn" href="https://www.amazon.com/s?k=China+vs.+U.S.A.+Farid+A.+Khavari" target="_blank" rel="noopener">Buy on Amazon &#8594;</a>
+      </div>
+      <div class="book-card rcard">
+      <a class="coverlink" href="https://www.amazon.com/s?k=Trumpocracy+Forming+Dollar-Bloc+Nations+Farid+A.+Khavari" target="_blank" rel="noopener" aria-label="Buy on Amazon: Trumpocracy: Forming Dollar-Bloc Nations — The Blueprint for Global Economic Stability and Prosperity"><span class="bk"><img class="cover-img" src="assets/cover-trumpocracy.jpg" alt="Cover of Trumpocracy: Forming Dollar-Bloc Nations — Book 7"></span></a>
+      <div class="bnum">BOOK 7</div>
+      <div class="bt">Trumpocracy: Forming Dollar-Bloc Nations — The Blueprint for Global Economic Stability and Prosperity</div>
+      <div class="bprice">&nbsp;</div>
+      <a class="buybtn" href="https://www.amazon.com/s?k=Trumpocracy+Forming+Dollar-Bloc+Nations+Farid+A.+Khavari" target="_blank" rel="noopener">Buy on Amazon &#8594;</a>
+      </div>
+      <div class="book-card rcard">
+      <a class="coverlink" href="https://www.amazon.com/s?k=Manifesto+of+an+Unconventional+Economist+Farid+A.+Khavari" target="_blank" rel="noopener" aria-label="Buy on Amazon: Manifesto of an Unconventional Economist: A Compilation of Economic Calls to Action"><span class="bk"><img class="cover-img" src="assets/cover-manifesto.jpg" alt="Cover of Manifesto of an Unconventional Economist — Book 8"></span></a>
+      <div class="bnum">BOOK 8</div>
+      <div class="bt">Manifesto of an Unconventional Economist: A Compilation of Economic Calls to Action</div>
+      <div class="bprice">&nbsp;</div>
+      <a class="buybtn" href="https://www.amazon.com/s?k=Manifesto+of+an+Unconventional+Economist+Farid+A.+Khavari" target="_blank" rel="noopener">Buy on Amazon &#8594;</a>
+      </div>
+    </div></div>
+    <div class="series-head on-stage slim"><h3>The Earlier Books</h3><p>Before the series — the original blueprint, the academic foundation, and a novel that saw it coming.</p></div>
+    <div class="river r2"><div class="rtrack">
+      <div class="book-card rcard">
+      <a class="coverlink" href="https://www.amazon.com/dp/1440121680" target="_blank" rel="noopener" aria-label="Buy on Amazon: Towards a Zero-Cost Economy: A Blueprint to Create General Economic Security in a Carefree Economy"><span class="bk"><img class="cover-img" src="assets/cover-towards-zero-cost.jpg" alt="Cover of Towards a Zero-Cost Economy (2009)"></span></a>
+      <div class="bnum alt">THE ORIGINAL · 2009</div>
+      <div class="bt">Towards a Zero-Cost Economy: A Blueprint to Create General Economic Security in a Carefree Economy</div>
+      <div class="bprice">&nbsp;</div>
+      <a class="buybtn" href="https://www.amazon.com/dp/1440121680" target="_blank" rel="noopener">Buy on Amazon &#8594;</a>
+      </div>
+      <div class="book-card rcard">
+      <a class="coverlink" href="https://www.amazon.com/dp/027594462X" target="_blank" rel="noopener" aria-label="Buy on Amazon: Environomics: The Economics of Environmentally Safe Prosperity"><span class="bk"><img class="cover-img" src="assets/cover-environomics.jpg" alt="Cover of Environomics (1993)"></span></a>
+      <div class="bnum alt">1993 · PRAEGER</div>
+      <div class="bt">Environomics: The Economics of Environmentally Safe Prosperity</div>
+      <div class="bprice">&nbsp;</div>
+      <a class="buybtn" href="https://www.amazon.com/dp/027594462X" target="_blank" rel="noopener">Buy on Amazon &#8594;</a>
+      </div>
+      <div class="book-card rcard">
+      <a class="coverlink" href="https://www.amazon.com/s?k=The+Final+Reckoning+Farid+A.+Khavari" target="_blank" rel="noopener" aria-label="Buy on Amazon: The Final Reckoning: The Islamic Plot to Destroy the Dollar"><span class="bk"><img class="cover-img" src="assets/cover-final-reckoning.jpg" alt="Cover of The Final Reckoning: The Islamic Plot to Destroy the Dollar (1995)"></span></a>
+      <div class="bnum alt">1995 · A NOVEL</div>
+      <div class="bt">The Final Reckoning: The Islamic Plot to Destroy the Dollar</div>
+      <div class="bprice">&nbsp;</div>
+      <a class="buybtn" href="https://www.amazon.com/s?k=The+Final+Reckoning+Farid+A.+Khavari" target="_blank" rel="noopener">Buy on Amazon &#8594;</a>
+      </div>
+      <div class="book-card rcard">
+      <a class="coverlink" href="https://www.amazon.com/dp/1440121680" target="_blank" rel="noopener" aria-label="Buy on Amazon: Towards a Zero-Cost Economy: A Blueprint to Create General Economic Security in a Carefree Economy"><span class="bk"><img class="cover-img" src="assets/cover-towards-zero-cost.jpg" alt="Cover of Towards a Zero-Cost Economy (2009)"></span></a>
+      <div class="bnum alt">THE ORIGINAL · 2009</div>
+      <div class="bt">Towards a Zero-Cost Economy: A Blueprint to Create General Economic Security in a Carefree Economy</div>
+      <div class="bprice">&nbsp;</div>
+      <a class="buybtn" href="https://www.amazon.com/dp/1440121680" target="_blank" rel="noopener">Buy on Amazon &#8594;</a>
+      </div>
+      <div class="book-card rcard">
+      <a class="coverlink" href="https://www.amazon.com/dp/027594462X" target="_blank" rel="noopener" aria-label="Buy on Amazon: Environomics: The Economics of Environmentally Safe Prosperity"><span class="bk"><img class="cover-img" src="assets/cover-environomics.jpg" alt="Cover of Environomics (1993)"></span></a>
+      <div class="bnum alt">1993 · PRAEGER</div>
+      <div class="bt">Environomics: The Economics of Environmentally Safe Prosperity</div>
+      <div class="bprice">&nbsp;</div>
+      <a class="buybtn" href="https://www.amazon.com/dp/027594462X" target="_blank" rel="noopener">Buy on Amazon &#8594;</a>
+      </div>
+      <div class="book-card rcard">
+      <a class="coverlink" href="https://www.amazon.com/s?k=The+Final+Reckoning+Farid+A.+Khavari" target="_blank" rel="noopener" aria-label="Buy on Amazon: The Final Reckoning: The Islamic Plot to Destroy the Dollar"><span class="bk"><img class="cover-img" src="assets/cover-final-reckoning.jpg" alt="Cover of The Final Reckoning: The Islamic Plot to Destroy the Dollar (1995)"></span></a>
+      <div class="bnum alt">1995 · A NOVEL</div>
+      <div class="bt">The Final Reckoning: The Islamic Plot to Destroy the Dollar</div>
+      <div class="bprice">&nbsp;</div>
+      <a class="buybtn" href="https://www.amazon.com/s?k=The+Final+Reckoning+Farid+A.+Khavari" target="_blank" rel="noopener">Buy on Amazon &#8594;</a>
+      </div>
+      <div class="book-card rcard">
+      <a class="coverlink" href="https://www.amazon.com/dp/1440121680" target="_blank" rel="noopener" aria-label="Buy on Amazon: Towards a Zero-Cost Economy: A Blueprint to Create General Economic Security in a Carefree Economy"><span class="bk"><img class="cover-img" src="assets/cover-towards-zero-cost.jpg" alt="Cover of Towards a Zero-Cost Economy (2009)"></span></a>
+      <div class="bnum alt">THE ORIGINAL · 2009</div>
+      <div class="bt">Towards a Zero-Cost Economy: A Blueprint to Create General Economic Security in a Carefree Economy</div>
+      <div class="bprice">&nbsp;</div>
+      <a class="buybtn" href="https://www.amazon.com/dp/1440121680" target="_blank" rel="noopener">Buy on Amazon &#8594;</a>
+      </div>
+      <div class="book-card rcard">
+      <a class="coverlink" href="https://www.amazon.com/dp/027594462X" target="_blank" rel="noopener" aria-label="Buy on Amazon: Environomics: The Economics of Environmentally Safe Prosperity"><span class="bk"><img class="cover-img" src="assets/cover-environomics.jpg" alt="Cover of Environomics (1993)"></span></a>
+      <div class="bnum alt">1993 · PRAEGER</div>
+      <div class="bt">Environomics: The Economics of Environmentally Safe Prosperity</div>
+      <div class="bprice">&nbsp;</div>
+      <a class="buybtn" href="https://www.amazon.com/dp/027594462X" target="_blank" rel="noopener">Buy on Amazon &#8594;</a>
+      </div>
+      <div class="book-card rcard">
+      <a class="coverlink" href="https://www.amazon.com/s?k=The+Final+Reckoning+Farid+A.+Khavari" target="_blank" rel="noopener" aria-label="Buy on Amazon: The Final Reckoning: The Islamic Plot to Destroy the Dollar"><span class="bk"><img class="cover-img" src="assets/cover-final-reckoning.jpg" alt="Cover of The Final Reckoning: The Islamic Plot to Destroy the Dollar (1995)"></span></a>
+      <div class="bnum alt">1995 · A NOVEL</div>
+      <div class="bt">The Final Reckoning: The Islamic Plot to Destroy the Dollar</div>
+      <div class="bprice">&nbsp;</div>
+      <a class="buybtn" href="https://www.amazon.com/s?k=The+Final+Reckoning+Farid+A.+Khavari" target="_blank" rel="noopener">Buy on Amazon &#8594;</a>
+      </div>
+      <div class="book-card rcard">
+      <a class="coverlink" href="https://www.amazon.com/dp/1440121680" target="_blank" rel="noopener" aria-label="Buy on Amazon: Towards a Zero-Cost Economy: A Blueprint to Create General Economic Security in a Carefree Economy"><span class="bk"><img class="cover-img" src="assets/cover-towards-zero-cost.jpg" alt="Cover of Towards a Zero-Cost Economy (2009)"></span></a>
+      <div class="bnum alt">THE ORIGINAL · 2009</div>
+      <div class="bt">Towards a Zero-Cost Economy: A Blueprint to Create General Economic Security in a Carefree Economy</div>
+      <div class="bprice">&nbsp;</div>
+      <a class="buybtn" href="https://www.amazon.com/dp/1440121680" target="_blank" rel="noopener">Buy on Amazon &#8594;</a>
+      </div>
+      <div class="book-card rcard">
+      <a class="coverlink" href="https://www.amazon.com/dp/027594462X" target="_blank" rel="noopener" aria-label="Buy on Amazon: Environomics: The Economics of Environmentally Safe Prosperity"><span class="bk"><img class="cover-img" src="assets/cover-environomics.jpg" alt="Cover of Environomics (1993)"></span></a>
+      <div class="bnum alt">1993 · PRAEGER</div>
+      <div class="bt">Environomics: The Economics of Environmentally Safe Prosperity</div>
+      <div class="bprice">&nbsp;</div>
+      <a class="buybtn" href="https://www.amazon.com/dp/027594462X" target="_blank" rel="noopener">Buy on Amazon &#8594;</a>
+      </div>
+      <div class="book-card rcard">
+      <a class="coverlink" href="https://www.amazon.com/s?k=The+Final+Reckoning+Farid+A.+Khavari" target="_blank" rel="noopener" aria-label="Buy on Amazon: The Final Reckoning: The Islamic Plot to Destroy the Dollar"><span class="bk"><img class="cover-img" src="assets/cover-final-reckoning.jpg" alt="Cover of The Final Reckoning: The Islamic Plot to Destroy the Dollar (1995)"></span></a>
+      <div class="bnum alt">1995 · A NOVEL</div>
+      <div class="bt">The Final Reckoning: The Islamic Plot to Destroy the Dollar</div>
+      <div class="bprice">&nbsp;</div>
+      <a class="buybtn" href="https://www.amazon.com/s?k=The+Final+Reckoning+Farid+A.+Khavari" target="_blank" rel="noopener">Buy on Amazon &#8594;</a>
+      </div>
+    </div></div>
     <p class="startline">Looking for the short front door? <a href="https://www.amazon.com/s?k=Zero+Cost+Economics%3A+An+Introduction+Farid+A.+Khavari" target="_blank" rel="noopener">Zero Cost Economics: An Introduction</a> — the whole system in miniature, on Amazon.</p>
-  </div>
-  <div class="series-head"><h3>The Earlier Books</h3><p>Before the series — the original blueprint, the academic foundation, and a novel that saw it coming.</p></div>
-  <div class="shelf shelf-early" aria-label="Earlier books by Farid A. Khavari">
-    <div class="book-card">
-    <a class="coverlink" href="https://www.amazon.com/dp/1440121680" target="_blank" rel="noopener" aria-label="Buy on Amazon: Towards a Zero-Cost Economy: A Blueprint to Create General Economic Security in a Carefree Economy"><span class="bk"><img class="cover-img" src="assets/cover-towards-zero-cost.jpg" alt="Cover of Towards a Zero-Cost Economy (2009)"></span></a>
-    <div class="bnum alt">THE ORIGINAL · 2009</div>
-    <div class="bt">Towards a Zero-Cost Economy: A Blueprint to Create General Economic Security in a Carefree Economy</div>
-    <p class="bd">The book that started it all — a blueprint to create general economic security in a carefree economy.</p>
-    <a class="buybtn" href="https://www.amazon.com/dp/1440121680" target="_blank" rel="noopener">Buy on Amazon &#8594;</a>
-    </div>
-    <div class="book-card">
-    <a class="coverlink" href="https://www.amazon.com/dp/027594462X" target="_blank" rel="noopener" aria-label="Buy on Amazon: Environomics: The Economics of Environmentally Safe Prosperity"><span class="bk"><img class="cover-img" src="assets/cover-environomics.jpg" alt="Cover of Environomics (1993)"></span></a>
-    <div class="bnum alt">1993 · PRAEGER</div>
-    <div class="bt">Environomics: The Economics of Environmentally Safe Prosperity</div>
-    <p class="bd">The academic foundation — the economics of environmentally safe prosperity.</p>
-    <a class="buybtn" href="https://www.amazon.com/dp/027594462X" target="_blank" rel="noopener">Buy on Amazon &#8594;</a>
-    </div>
-    <div class="book-card">
-    <a class="coverlink" href="https://www.amazon.com/s?k=The+Final+Reckoning+Farid+A.+Khavari" target="_blank" rel="noopener" aria-label="Buy on Amazon: The Final Reckoning: The Islamic Plot to Destroy the Dollar"><span class="bk"><img class="cover-img" src="assets/cover-final-reckoning.jpg" alt="Cover of The Final Reckoning: The Islamic Plot to Destroy the Dollar (1995)"></span></a>
-    <div class="bnum alt">1995 · A NOVEL</div>
-    <div class="bt">The Final Reckoning: The Islamic Plot to Destroy the Dollar</div>
-    <p class="bd">A novel of economic terrorism — the plot to destroy the dollar, told as a thriller.</p>
-    <a class="buybtn" href="https://www.amazon.com/s?k=The+Final+Reckoning+Farid+A.+Khavari" target="_blank" rel="noopener">Buy on Amazon &#8594;</a>
-    </div>
   </div>
   <div class="classics">
     <h3>Earlier works — the full bibliography</h3>
@@ -589,7 +716,7 @@ addEventListener('message',event=>{const frame=document.getElementById('prosperi
     <div>
       <b>Farid A. Khavari, Ph.D.</b>
       <div style="margin-top:8px;font-size:14.5px">Economist · Inventor · Author<br>Miami, Florida</div>
-      <div class="small">Books available on Amazon · Original site: ZeroCostEconomy.com<br>Intro gas-price photo: “ARCO gas prices, Los Angeles” by Downtowngal, via Wikimedia Commons (CC BY-SA 4.0)</div><p style="margin-top:16px"><a href="https://www.zerocosteconomy.com/contact.html">Contact Dr. Khavari ↗</a></p>
+      <div class="small">Books available on Amazon · Original site: ZeroCostEconomy.com</div><p style="margin-top:16px"><a href="https://www.zerocosteconomy.com/contact.html">Contact Dr. Khavari ↗</a></p>
     </div>
     <div>
       <div style="color:#fff;font-size:13px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px">Explore</div>
@@ -641,5 +768,9 @@ document.getElementById('tlTitle').textContent=tl[0][0]+' — '+tl[0][1];documen
 </script>
 
 <script>(function(){var f=document.getElementById('grafico-film');if(!f||!('IntersectionObserver' in window))return;var sent=false;function send(){try{f.contentWindow.postMessage({fkPlay:1},'*')}catch(e){} setTimeout(function(){try{f.contentWindow.postMessage({fkPlay:1},'*')}catch(e){}},600); setTimeout(function(){try{f.contentWindow.postMessage({fkPlay:1},'*')}catch(e){}},1500);}var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.intersecting&&!sent){sent=true;send();io.disconnect()}})},{threshold:.3});io.observe(f);f.addEventListener('load',function(){if(sent)send()});})();</script>
+
+<script>window.addEventListener('message',function(e){if(e.data&&e.data.fkHeight){document.querySelectorAll('iframe[src*="grafico-film"]').forEach(function(f){f.style.height=e.data.fkHeight+'px'})}});</script>
+
+<script>document.querySelectorAll('.river').forEach(function(r){r.addEventListener('click',function(e){if(e.target.closest('a'))return;r.querySelector('.rtrack').classList.toggle('paused')})});</script>
 </body>
 </html>
