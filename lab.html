@@ -466,7 +466,7 @@ details.assump li{font-size:13.5px;color:var(--muted);margin:5px 0}
 
 <section id="lab-film" style="padding-top:8px">
   <div class="wrap"><span class="k">Where It Started · 2009</span><h2>The drawing that started it all</h2><p class="sub">Before the Lab, there was the presentation — his whole argument as one animated drawing, restored. It plays on its own as you reach it.</p></div>
-  <iframe title="The Graphic Presentation — Zero Cost Economics" src="grafico-film.html?embed=1&autoplay=1" style="display:block;width:100%;height:660px;border:0;background:#10141a" scrolling="no" loading="lazy"></iframe>
+  <iframe title="The Graphic Presentation — Zero Cost Economics" src="grafico-film.html?embed=1&autoplay=1" style="display:block;width:100%;height:840px;border:0;background:#10141a" scrolling="no" loading="lazy"></iframe>
 </section>
 <section id="badges" aria-labelledby="s8h">
   <span class="k">Step 8 · Challenges & badges</span>
@@ -1035,5 +1035,7 @@ renderViz();
 })();
 </script>
 
+
+<script>window.addEventListener('message',function(e){if(e.data&&e.data.fkHeight){document.querySelectorAll('iframe[src*="grafico-film"]').forEach(function(f){f.style.height=e.data.fkHeight+'px'})}});</script>
 </body>
 </html>
