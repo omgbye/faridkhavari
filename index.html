@@ -213,54 +213,7 @@ footer .small{font-size:13px;color:#7e8794;margin-top:14px}
 @media(max-width:680px){.mast-lab{font-size:11.5px;padding:8px 12px;letter-spacing:.02em}}
 </style>
 <link rel="stylesheet" href="hero.css">
-<style>
-/* ===== INTRO v4 — "The Collage": his supplied artwork assembles tile by tile, settles, then the name lands. ===== */
-#fk-intro{position:fixed;inset:0;z-index:999;background:#f8eddf;overflow:hidden;font-family:'Helvetica Neue',Arial,sans-serif;display:flex;align-items:center;justify-content:center;animation:fkfailsafe .6s ease 12s both}
-@keyframes fkfailsafe{to{opacity:0;visibility:hidden}}
-#fk-intro .art{position:relative;width:min(1060px,94vw);aspect-ratio:4/3;box-shadow:0 24px 60px rgba(96,74,24,.16);overflow:hidden;background:#f8eddf}
-#fk-intro .artIn{position:absolute;inset:0;background-image:url(assets/intro-collage.webp);background-size:cover;background-position:center;filter:grayscale(1) contrast(1.06);opacity:0;transform:scale(1.045);transition:opacity 1.1s ease,transform 1.7s ease}
-#fk-intro.play .artIn,#fk-intro.posed .artIn{opacity:1;transform:none}
-#fk-intro.posed .artIn{transition:none}
 
-@media(max-width:640px){#fk-intro .artIn{background-image:url(assets/intro-collage-portrait.webp)}}
-
-#fk-intro .scrim{position:absolute;left:0;right:0;bottom:0;height:52%;background:linear-gradient(180deg,rgba(24,20,12,0),rgba(24,20,12,.52) 58%,rgba(24,20,12,.74));opacity:0}
-#fk-intro.named .scrim{opacity:1;transition:opacity .85s ease}
-#fk-intro .namewrap2{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 20px;opacity:0;pointer-events:none}
-@media(max-width:640px){#fk-intro .namewrap2{justify-content:flex-end;padding-bottom:24%}}
-#fk-intro .namewrap2::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 90% 56% at 50% 50%,rgba(18,15,8,.55),rgba(18,15,8,.22) 58%,rgba(18,15,8,0) 85%);opacity:0;transition:opacity .9s ease}
-#fk-intro.named .namewrap2::before{opacity:1}
-#fk-intro .namewrap2>*{position:relative}
-#fk-intro.named .namewrap2{opacity:1;transition:opacity .7s ease .05s}
-#fk-intro .n-rule{width:min(300px,60vw);height:2px;background:#c9a86a;margin-bottom:28px}
-#fk-intro .nm{font-family:Georgia,serif;font-weight:700;font-size:clamp(44px,8.5vw,88px);letter-spacing:.1em;text-transform:uppercase;line-height:1.08;background-image:linear-gradient(110deg,#f7f3ea 42%,#ffffff 50%,#f5bc3a 54%,#f7f3ea 62%);background-size:250% 100%;background-position:120% 0;-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-stroke:.8px rgba(247,243,234,.9);filter:drop-shadow(0 0 16px rgba(245,188,58,.40)) drop-shadow(0 3px 12px rgba(0,0,0,.65))}
-@media(max-width:640px){#fk-intro .nm{font-size:clamp(26px,7.2vw,34px);letter-spacing:.04em}}
-#fk-intro.named .nm{animation:fkname .65s cubic-bezier(.2,.8,.25,1) both,fkshine 1.9s ease .25s both}
-@keyframes fkshine{from{background-position:120% 0}to{background-position:-120% 0}}
-@keyframes fkname{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
-#fk-intro.done{opacity:0!important;pointer-events:none;transition:opacity .55s ease;animation:none}
-#fk-skip{position:absolute;right:22px;bottom:20px;z-index:5;background:rgba(247,243,234,.07);border:1px solid #2c3138;color:#c9cfd8;font-size:12px;letter-spacing:.22em;text-transform:uppercase;padding:10px 15px;border-radius:3px;cursor:pointer}
-#fk-replay{position:fixed;right:16px;bottom:16px;z-index:60;background:#171b21;color:#f7f3ea;border:1px solid #e8a820;font-size:12px;letter-spacing:.18em;text-transform:uppercase;padding:9px 13px;border-radius:3px;cursor:pointer;display:none}
-#fk-intro.posed{animation:none}
-
-#fk-intro.posed .nm,#fk-intro.posed .nsub2,#fk-intro.posed .nsub3{animation:none!important;opacity:1!important;transform:none!important}
-#fk-intro .mktbg{position:absolute;inset:0;width:100%;height:100%;opacity:.5}
-#fk-intro .mkt{stroke-dasharray:100;stroke-dashoffset:100;fill:none;stroke-linejoin:round;stroke-linecap:round}
-#fk-intro.play .mkt-red{animation:mkdraw 1.3s cubic-bezier(.5,.1,.4,1) .3s both}
-#fk-intro.play .mkt-grn{animation:mkdraw 1.7s cubic-bezier(.5,.1,.4,1) 1.6s both}
-@keyframes mkdraw{to{stroke-dashoffset:0}}
-#fk-intro .mfill{opacity:0}
-#fk-intro.play .mfill-r{animation:mkfade 1s ease 1.2s both}
-#fk-intro.play .mfill-g{animation:mkfade 1.2s ease 2.7s both}
-@keyframes mkfade{to{opacity:var(--fo,.12)}}
-#fk-intro .mdot{opacity:0}
-#fk-intro.play .mdot{animation:mkfade .5s ease 3.3s both}
-#fk-intro.posed .mkt{stroke-dashoffset:0!important;animation:none!important}
-#fk-intro.posed .mfill{opacity:var(--fo,.12)!important;animation:none!important}
-#fk-intro.posed .mdot{opacity:1!important;animation:none!important}
-@media(max-width:640px){#fk-intro .art{aspect-ratio:9/16;width:min(430px,94vw)}#fk-intro .scrim{height:36%}}
-@media(prefers-reduced-motion:reduce){#fk-intro .artIn{animation:none}}
-</style>
 
 <style>
 .vband{background:#10141a;padding:48px 0 42px;border-top:1px solid #23272c}
@@ -294,8 +247,6 @@ footer .small{font-size:13px;color:#7e8794;margin-top:14px}
 .newrel::after{content:"";position:absolute;left:0;bottom:-7px;border:4px solid transparent;border-top-color:#7e1a12;border-left-color:#7e1a12}
 .book-card.small .newrel{font-size:10.5px;top:10px;right:-6px;padding:6px 10px}
 </style>
-<link rel="preload" as="image" media="(max-width:640px)" href="assets/intro-collage-portrait.webp">
-<link rel="preload" as="image" media="(min-width:641px)" href="assets/intro-collage.webp">
 <meta name="robots" content="index, follow">
 <meta property="og:site_name" content="Farid A. Khavari">
 <meta property="og:locale" content="en_US">
@@ -451,52 +402,7 @@ footer .small{font-size:13px;color:#7e8794;margin-top:14px}
 </script>
 </head>
 <body>
-<div id="fk-intro" aria-hidden="true">
-  <svg class="mktbg" viewBox="0 0 1440 810" preserveAspectRatio="none" aria-hidden="true">
-    <defs><pattern id="mgrid" width="90" height="90" patternUnits="userSpaceOnUse"><path d="M90,0H0V90" fill="none" stroke="rgba(96,74,24,.08)" stroke-width="1"/></pattern></defs>
-    <rect width="1440" height="810" fill="url(#mgrid)"/>
-    <path class="mfill mfill-r" style="--fo:.07" d="M-20,300 L120,330 L240,315 L360,360 L470,345 L580,395 L690,430 L690,810 L-20,810 Z" fill="#b02a20"/>
-    <path class="mfill mfill-g" style="--fo:.12" d="M690,430 L820,405 L950,350 L1080,300 L1210,225 L1340,160 L1470,95 L1470,810 L690,810 Z" fill="#a4c639"/>
-    <path class="mkt mkt-red" pathLength="100" d="M-20,300 L120,330 L240,315 L360,360 L470,345 L580,395 L690,430" stroke="#b02a20" stroke-width="3.5"/>
-    <path class="mkt mkt-grn" pathLength="100" d="M690,430 L820,405 L950,350 L1080,300 L1210,225 L1340,160 L1470,95" stroke="#7d9b26" stroke-width="3.5"/>
-    <circle class="mdot" style="--fo:1" cx="1452" cy="102" r="7" fill="#7d9b26"/>
-  </svg>
-  <div class="art" role="img" aria-label="An editorial collage: Farid A. Khavari speaking into a microphone, surrounded by the Capitol, the stock exchange, a world map, war and its costs, money, solar panels and wind turbines">
-    <div class="artIn" id="fk-tiles"></div>
-    <div class="scrim"></div>
-    <div class="namewrap2">
-      <div class="n-rule"></div>
-      <div class="nm">Farid A. Khavari</div>
-    </div>
-  </div>
-  <button id="fk-skip" type="button">Skip intro</button>
-</div>
-<button id="fk-replay" type="button">&#8635; Replay intro</button>
-<script>
-(function(){
-  var intro=document.getElementById('fk-intro'), replay=document.getElementById('fk-replay'), tilesBox=document.getElementById('fk-tiles'), timers=[], stage=new URLSearchParams(location.search).get('stage');
-  function clear(){timers.forEach(clearTimeout);timers=[]}
-  function finish(){clear();intro.classList.add('done');document.body.style.overflow='';replay.style.display='block';setTimeout(function(){intro.style.display='none'},600)}
-  function pose(s){
-    clear();intro.classList.add('posed');
-    if(s==='off'){intro.style.display='none';replay.style.display='block';return}
-    if(s==='name'){intro.classList.add('named')}
-    document.getElementById('fk-skip').style.display='none';
-  }
-  function run(){
-    intro.style.display='flex';intro.classList.remove('done','named','posed','settled','play');void intro.offsetWidth;intro.classList.add('play');
-    replay.style.display='none';document.body.style.overflow='hidden';document.getElementById('fk-skip').style.display='block';
-    timers.push(setTimeout(function(){intro.classList.add('named')},1350));
-    timers.push(setTimeout(finish,3600));
-  }
-  document.getElementById('fk-skip').addEventListener('click',finish);
-  intro.addEventListener('click',function(e){if(e.target.id!=='fk-skip')finish()});
-  replay.addEventListener('click',run);
-  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches && !stage){pose('name');timers.push(setTimeout(finish,1100))}
-  else if(stage){pose(stage)}
-  else{run()}
-})();
-</script>
+
 
 
 <a class="skip-link" href="#idea">Skip to content</a>
